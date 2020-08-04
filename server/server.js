@@ -29,19 +29,19 @@ mongoose.connect(
 
 //require routes handlers
 const indexRoutes = require('./routes/index');
-const loginRoutes = require('./routes/login');
-const registerRoutes = require('./routes/register');
-const customerRoutes = require('./routes/customer');
-const messRoutes = require('./routes/mess');
-const oauthRoutes = require('./routes/oauth');
+const loginRoutes = require('./routes/entry/login');
+const registerRoutes = require('./routes/entry/register');
+const customerRoutes = require('./routes/users/customer');
+const messRoutes = require('./routes/users/mess');
+const oauthRoutes = require('./routes/entry/oauth');
 
 //routes
 app.use('/', indexRoutes);
-app.use('/login', loginRoutes);
-app.use('/register', registerRoutes);
-app.use('/oauth', oauthRoutes);
-app.use('/customer', customerRoutes);
-app.use('/mess', messRoutes);
+app.use('/api/login', loginRoutes);
+app.use('/api/register', registerRoutes);
+app.use('/api/oauth', oauthRoutes);
+app.use('/api/customer', customerRoutes);
+app.use('/api/mess', messRoutes);
 
 app.listen(9000, () => {
     console.log("app running on port:" + 9000);
