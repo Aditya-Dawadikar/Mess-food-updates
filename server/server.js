@@ -16,9 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 //connect to database
-const db_name = process.env.DB_NAME;
-const db_password = process.env.DB_PASSWORD;
-const uri = "mongodb+srv://" + db_name + ":" + db_password + "@cluster0.eayvl.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const uri = "mongodb+srv://messfood:messfood@cluster0.eayvl.mongodb.net/<dbname>?retryWrites=true&w=majority";
 mongoose.connect(
     uri, {
         useNewUrlParser: true,

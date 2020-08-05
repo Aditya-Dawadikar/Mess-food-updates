@@ -16,7 +16,7 @@ const messSchema = mongoose.Schema({
             DeliveryCharge: Number
         },
         onVenue: {
-            availabel: Boolean
+            available: Boolean
         }
     },
     Speciality: [],
