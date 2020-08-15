@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 
 const Customer = require('../../models/customer');
 const Mess = require('../../models/mess');
+const Notification = require('../../modules/smtp');
 
 exports.getRegisterPage = (req, res) => {
     res.send("register page");
@@ -10,7 +11,6 @@ exports.getRegisterPage = (req, res) => {
 
 //customer registration
 exports.customerRegister = (req, res) => {
-
     var availabilityFlag = false;
 
     //check if the customer already exists
@@ -20,6 +20,46 @@ exports.customerRegister = (req, res) => {
             if (doc.length < 1) {
                 //new entry
                 availabilityFlag = true;
+                //if the email is available to used as new user, then create new user
+                if (availabilityFlag === true) {
+                    //hash the password received from request body
+                    bcrypt.hash(req.body.password, 10, (err, result) => {
+                        if (err) {
+                            //send error response if error occurs while hashing password
+                            res.status(500).json({
+                                message: "error occured while storing the customer password",
+                                error: "internal server error"
+                            });
+                        } else {
+                            //create new customer with hashed password
+                            const customerPassword = result;
+                            const customer = new Customer({
+                                _id: new mongoose.Types.ObjectId,
+                                name: req.body.name,
+                                email: req.body.email,
+                                password: customerPassword,
+                                phone: req.body.phone
+                            });
+                            //save new customer in the collection "customers"
+                            customer.save()
+                                .then(doc => {
+                                    const notifier = new Notification();
+                                    const message = "we are glad that you have choosen us to help you find your favourite food!!!";
+                                    notifier.successEmailOnRegistration(req.body.email, message);
+                                    res.status(200).json({
+                                        message: "success",
+                                        customer: doc
+                                    });
+                                })
+                                .catch(err => {
+                                    res.status(500).json({
+                                        message: "some error occured while storing new customer",
+                                        error: "internal server error"
+                                    });
+                                });
+                        }
+                    })
+                }
             } else {
                 res.status(400).json({
                     message: "this email already exists, try logging in with this email or try another email and register"
@@ -32,45 +72,6 @@ exports.customerRegister = (req, res) => {
                 error: "internal server error"
             });
         })
-
-    //if the email is available to used as new user, then create new user
-    if (availabilityFlag === true) {
-        //hash the password received from request body
-        bcrypt.hash(req.body.password, 10, (err, result) => {
-            if (err) {
-                //send error response if error occurs while hashing password
-                res.status(500).json({
-                    message: "error occured while storing the customer password",
-                    error: "internal server error"
-                });
-            } else {
-                //create new customer with hashed password
-                const customerPassword = result;
-                const customer = new Customer({
-                    _id: new mongoose.Types.ObjectId,
-                    name: req.body.name,
-                    email: req.body.email,
-                    password: customerPassword,
-                    phone: req.body.phone
-                });
-                //save new customer in the collection "customers"
-                customer.save()
-                    .then(doc => {
-                        console.log(doc);
-                        res.status(200).json({
-                            message: "success",
-                            customer: doc
-                        });
-                    })
-                    .catch(err => {
-                        res.status(500).json({
-                            message: "some error occured while storing new customer",
-                            error: "internal server error"
-                        });
-                    });
-            }
-        })
-    }
 }
 
 //mess registration

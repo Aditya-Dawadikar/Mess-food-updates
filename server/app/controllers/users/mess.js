@@ -1,5 +1,4 @@
 const Mess = require('../../models/mess');
-
 exports.getMessPage = (req, res) => {
     res.send("mess page");
 }
@@ -48,8 +47,7 @@ exports.getMessById = (req, res) => {
 }
 
 exports.getMessByEmail = (req, res) => {
-    email = req.params.email;
-    Mess.find({ email: email })
+    Mess.find({ email: req.body.email })
         .exec()
         .then(doc => {
             if (doc.length === 1) {

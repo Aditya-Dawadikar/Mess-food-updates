@@ -1,0 +1,226 @@
+index route
+/
+------------------------------------------------------
+login routes
+
+>> /api/login/
+	Type: GET
+	Body: null
+	Response: 
+		1.redirect to login page
+
+>> /api/login/customer
+	Type: POST
+	Body:{
+			"email":"abc@gmail.com",
+			"password":"******"
+		}
+	Response: 
+		1. success, redirect to dashboard, JWT(to be saved in the localstorage and to be used as request header bearer token)
+		2. failure
+
+>> /api/login/mess
+	Type: POST
+	Body:{
+			"email":"abc@gmail.com",
+			"password":"******"
+		}
+	Response: 
+		1. success, redirect to dashboard, JWT(to be saved in the localstorage and to be used as request header bearer token)
+		2. failure
+
+------------------------------------------------------
+Registration routes
+
+>> /api/register
+	Type: GET
+	Body: null
+	Response: 
+		1.redirect to login page
+
+>> /api/register/customer
+	Type: POST
+	Body:{
+			"name": "abc",
+			"email": "abc@gmail.com",
+			"password": "123",
+			"phone": 1234567890
+		}
+	Response: 
+		1. success, redirect to login page
+		2. Failure 
+
+>> /api/register/mess
+	Type: POST
+	Body:{
+		    "email": "abc@gmail.com",
+		    "password": "123",
+		    "messDetails": {
+		        "messName": "mess_name",
+		        "ownerName": "owner_name",
+		        "phone": 1234567890,
+		        "address": "some address"
+		    },
+		    "price": {
+		        "homeDelivery": {
+		            "available": true/false
+		        },
+		        "onVenue": {
+		            "available": true/false
+		        }
+		    }
+		}
+	Response: 
+		1. success, redirect to login page
+		2. Failure
+
+------------------------------------------------------
+Customer routes
+
+>> /api/customer
+	Type: GET 
+	Params: null
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. redirect to cutomer dashboard
+		2. failure
+
+>> /api/customer/all
+	Type: GET
+	Params: null
+	Header: Authentication bearer token
+	Body: null
+	Response: 
+		1. success , list of all customers
+
+>> /api/customer/:id
+	Type: GET
+	Params: id
+	Header: Authentication bearer token
+	Body: null
+	Response: 
+		1. success , single document 
+		2. failure
+
+>> /api/customer/email
+	Type: GET
+	Params: null
+	Header: Authentication bearer token
+	Body:{
+			"email":"abc@gmail.com"
+		}
+	Response:
+		1. success , single document 
+		2. failure
+
+>> /api/customer/update/:id
+	Type: PATCH
+	Params: id
+	Header: Authentication bearer token
+	Body:{
+		"name": "abc",
+	    "email": "abc@gmail.com"
+	    "phone": 1111111111
+	}
+	note: the request body may differ depending on the fields to be updated
+	Response: 
+		1. success
+		2. failure
+
+>> /api/customer/delete/:id
+	Type: DELETE
+	Params: id
+	Header: Authentication bearer token
+	Body: null
+	Response: 
+		1. success 
+		2. failure
+
+------------------------------------------------------
+mess routes
+
+>> /api/mess
+	Type: GET
+	Params: null
+	Header: Authentication bearer token
+	Body: null
+	Response: 
+		1. redirect to mess dashboard
+		2. failure
+
+>> /api/mess/all
+	Type: GET
+	Params: id
+	Header: Authentication bearer token
+	Body: null
+	Response: 
+		1. success
+		2. failure
+
+>> /api/mess/:id
+	Type: GET
+	Params: id
+	Header: Authentication bearer token
+	Body: null
+	Response: 
+		1. success, single document
+		2. failure
+
+>> /api/mess/email
+	Type:  GET
+	Params: null
+	Header: Authentication bearer token
+	Body:{
+			"email":"abc@gmail.com"
+		}
+	Response:
+		1. success, single document
+		2. failure
+
+>> /api/mess/update/:id
+	Type:  PATCH
+	Params: id
+	Header: Authentication bearer token
+	Body:{
+			"messDetails": {
+            	"messName": "tikhat tarri missal",
+            	"ownerName": "Neha Shelar",
+                "phone": 9999999999,
+                "address": "corner vr"
+			},
+			"price": {
+				"homeDelivery": {
+			        "available": true,
+			        "DeliveryCharge": null
+			    },
+			    "onVenue": {
+			        "available": true/false
+			    }
+			}
+		}
+	note: the request body may differ depending on the fields to be updated
+	Response: 
+		1. success
+		2. failure
+
+>> /api/mess/delete/:id
+	Type: DELETE
+	Params: id
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
+
+------------------------------------------------------
+open authorization route (to be handled later)
+
+>> /api/oauth
+
+------------------------------------------------------
+Email routes (to be handled later)
+
+>> /api/notification
+
+------------------------------------------------------

@@ -9,11 +9,11 @@ router.get('/', messControllers.getMessPage);
 //get all mess
 router.get('/all', messControllers.getAllMess);
 
+//get mess by email
+router.get('/email', messControllers.getMessByEmail);
+
 //get mess by id
 router.get('/:id', messControllers.getMessById);
-
-//get mess by email
-router.get('/email/:email', messControllers.getMessByEmail);
 
 //update mess by id
 router.patch('/update/:id', messControllers.updateMessById);
