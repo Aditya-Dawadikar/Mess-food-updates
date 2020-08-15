@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const messControllers = require('../../controllers/users/mess');
+const mess = require('../../models/mess');
 
 router.get('/', messControllers.getMessPage);
 
@@ -12,7 +13,7 @@ router.get('/all', messControllers.getAllMess);
 router.get('/:id', messControllers.getMessById);
 
 //get mess by email
-router.get('/:email', messControllers.getMessByEmail);
+router.get('/email/:email', messControllers.getMessByEmail);
 
 //update mess by id
 router.patch('/update/:id', messControllers.updateMessById);
