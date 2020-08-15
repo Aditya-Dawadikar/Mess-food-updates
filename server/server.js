@@ -6,6 +6,8 @@ var multer = require('multer');
 var cors = require('cors');
 var logger = require('morgan');
 var passport = require('passport');
+var dotenv = require('dotenv');
+dotenv.config();
 
 var app = express();
 
@@ -16,7 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 //connect to database
-const uri = "mongodb+srv://messfood:messfood@cluster0.eayvl.mongodb.net/<dbname>?retryWrites=true&w=majority";
+const uri = process.env.DB_CONNECTION_STRING;
 mongoose.connect(
     uri, {
         useNewUrlParser: true,
@@ -26,12 +28,12 @@ mongoose.connect(
     })
 
 //require routes handlers
-const indexRoutes = require('./routes/index');
-const loginRoutes = require('./routes/entry/login');
-const registerRoutes = require('./routes/entry/register');
-const customerRoutes = require('./routes/users/customer');
-const messRoutes = require('./routes/users/mess');
-const oauthRoutes = require('./routes/entry/oauth');
+const indexRoutes = require('./app/routes/index');
+const loginRoutes = require('./app/routes/entry/login');
+const registerRoutes = require('./app/routes/entry/register');
+const customerRoutes = require('./app/routes/users/customer');
+const messRoutes = require('./app/routes/users/mess');
+const oauthRoutes = require('./app/routes/entry/oauth');
 
 //routes
 app.use('/', indexRoutes);
