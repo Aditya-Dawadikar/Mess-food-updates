@@ -1,6 +1,7 @@
 const Customer = require('../../models/customer');
 const Mess = require('../../models/mess');
 const bcrypt = require('bcrypt');
+const jwttoken = require('../../modules/jwt');
 
 exports.getLoginPage = (req, res) => {
     res.send("login page");
@@ -29,13 +30,20 @@ exports.customerLogin = (req, res) => {
                         })
                     }
                     if (result === true) {
+                        //create token
+                        const role = "customer";
+                        const time = 60 * 20;
+                        const jwt = new jwttoken();
+                        const token = jwt.createToken(email, role, time);
+
                         //return response
                         res.status(200).json({
                             message: "success",
-                            /*token: token,
-                            refreshToken: refreshToken,
-                            redirect: ""
-                            */
+                            token: token
+                                /*
+                                refreshToken: refreshToken,
+                                redirect: ""
+                                */
                         })
                     } else {
                         res.status(400).json({
@@ -77,14 +85,20 @@ exports.messLogin = (req, res) => {
                         })
                     }
                     if (result === true) {
+                        //create token
+                        const role = "mess";
+                        const time = 60 * 20;
+                        const jwt = new jwttoken();
+                        const token = jwt.createToken(email, role, time);
+
                         //return response
                         res.status(200).json({
                             message: "success",
-                            /*
-                            token: token,
-                            refreshToken: refreshToken,
-                            redirect: ""
-                            */
+                            token: token
+                                /*
+                                refreshToken: refreshToken,
+                                redirect: ""
+                                */
                         })
                     } else {
                         res.status(400).json({

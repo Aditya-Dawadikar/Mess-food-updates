@@ -3,7 +3,29 @@ const jwt = require('jsonwebtoken');
 module.exports = class Authorization {
     constructor() {}
 
-    //send token for mess user
-    //send token for customer user
+    //send token
+    createToken(email, role, time) {
+        const token = jwt.sign({
+                email: email,
+                role: role
+            },
+            process.env.JWT_KEY, {
+                expiresIn: time
+            }
+        );
+        /*
+            const refreshToken = jwt.sign({
+                    email: doc[0].Admin_email,
+                    role: "admin"
+                },
+                process.env.JWT_REFRESH_KEY, {
+                    expiresIn: 60 * 40
+                }
+            );
+        */
+
+        return token;
+    }
+
     //verify token 
 }

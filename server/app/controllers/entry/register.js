@@ -140,6 +140,9 @@ exports.messRegister = (req, res) => {
                 mess.save()
                     .then(doc => {
                         console.log(doc);
+                        const notifier = new Notification();
+                        const message = "we are glad that you have choosen us to help you grow your business!!!";
+                        notifier.successEmailOnRegistration(req.body.email, message);
                         res.status(200).json({
                             message: "success",
                             mess: doc
