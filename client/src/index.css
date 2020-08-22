@@ -1,13 +1,511 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+@import url("https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap");
+
+*,
+::after,
+::before {
+  padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
+  overflow-x: visible;
+  overflow: visible;
+  /* font-family: "Josefin Sans", "Raleway", sans-serif, "Roboto", "Courier New",
+    "Arial Narrow", Arial, sans-serif, monospace;  */
+  font-family: "Recursive", sans-serif;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+#root {
+  content: "";
+  position: absolute;
+  background: white;
+  width: 100%;
+  height: 100%;
+  /* border: 2px solid rgb(5, 38, 223); */
 }
+
+html {
+  font-size: 82.5%;
+  background: white;
+}
+
+.container {
+  padding: 0 8px;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  /* border: 2px solid rgb(80, 207, 30); */
+}
+
+.img_logo {
+  position: relative;
+  width: 50%;
+  height: 100vh;
+  background-color: #edde5d;
+  /* border: 2px solid red; */
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.img_logo img {
+  position: relative;
+  top: 40%;
+  width: 13.7rem;
+  /* left: 28.5%;
+  justify-content: center;
+  align-items: center; */
+  /* border: 2px solid rgb(184, 224, 4); */
+  /* margin: 15.7rem 11.1rem;*/
+}
+
+/* .img_logo .animated {
+  animation: up-down 2s ease-in-out infinite alternate both;
+} */
+
+@-webkit-keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}
+
+/* =============================================================
+====================   Rigth Part    ============================ 
+================================================================*/
+
+h1 {
+  font-family: "Recursive", sans-serif;
+  color: black;
+  background: transparent;
+  /* padding-bottom: 3rem; */
+  letter-spacing: 0.5rem;
+  text-shadow: 0 2rem 2rem black;
+  /* border: 2px solid rgb(247, 242, 242); */
+}
+
+h3 {
+  font-family: "Recursive", sans-serif;
+  color: black;
+  background: transparent;
+  /* padding-bottom: 3rem; */
+  top: 5rem;
+  letter-spacing: 0.5rem;
+  text-shadow: 0 2rem 2rem black;
+  z-index: 1;
+  position: absolute;
+  /* border: 2px solid rgb(247, 242, 242); */
+}
+
+.switch button {
+  background: transparent;
+  outline: none;
+  border: none;
+}
+
+.main_div {
+  position: relative;
+  width: 50%;
+  height: 100vh;
+  background-color: rgb(230, 230, 210);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.inputForm {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: 2px solid rgb(5, 38, 223); */
+}
+
+.main_div .inputForm img {
+  visibility: hidden;
+  position: absolute;
+  margin: 0;
+  top: 0;
+}
+
+form {
+  /* background-image: linear-gradient(
+    to bottom right,
+
+     rgb(243, 151, 30),
+    rgb(233, 73, 73) 
+  ); */
+  position: absolute;
+  background-color: rgb(230, 230, 210);
+  top: 0;
+  width: 100%;
+  height: 100vh;
+}
+
+.main_div input {
+  position: relative;
+  background: transparent;
+  /* text-align: center; */
+  border: 0.1rem solid rgb(61, 55, 55);
+  width: 100%;
+  padding: 1rem 4rem;
+  outline: none;
+  margin: 0.7rem 0;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.inputTag {
+  position: relative;
+  margin: 0 4.8rem;
+  background: transparent;
+  /* border: 2px solid rgb(5, 38, 223); */
+}
+
+input:hover {
+  background-color: rgb(24, 20, 20);
+  color: #ffffff !important;
+  opacity: 0.3;
+}
+::placeholder {
+  font-family: "Recursive", sans-serif;
+  color: black;
+  text-transform: uppercase;
+  margin: 0 5rem;
+}
+
+.inputTag button {
+  width: 100%;
+  padding: 0 3rem;
+  line-height: 2.4rem;
+  background: #39383a;
+  color: white;
+  border: 0.1rem solid #ecf0f1;
+  outline: none;
+  border-radius: 2.8rem;
+  letter-spacing: 0.5rem;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+.inputTag button:hover {
+  background: rgb(15, 14, 14);
+  transition: 0.9s;
+}
+
+.inputTag button:focus {
+  outline: none;
+}
+
+/* =============================================================
+==============media queries - responsive part=================== 
+================================================================*/
+
+@media (max-width: 800px) {
+  html {
+    font-size: 85%;
+  }
+
+  .container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid rgb(80, 207, 30); */
+  }
+
+  .img_logo {
+    position: relative;
+    width: 100%;
+    height: 13rem;
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    /* border: 2px solid red; */
+  }
+
+  .img_logo img {
+    position: relative;
+    top: 0;
+  }
+
+  .animated {
+    animation: none;
+    height: 10rem;
+    top: 0;
+  }
+
+  .main_div {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+  }
+
+  .main_div .inputForm img {
+    position: absolute;
+    visibility: visible;
+    width: 10.2rem;
+    height: 10.2rem;
+    left: auto;
+    margin: 2rem;
+    top: 1rem;
+    animation: dinner 1s ease-in-out infinite alternate both;
+  }
+
+  @-webkit-keyframes dinner {
+    0% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes dinner {
+    0% {
+      transform: translateY(10px);
+    }
+    100% {
+      transform: translateY(-10px);
+    }
+  }
+}
+
+@media (max-width: 520px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  html {
+    font-size: 65%;
+  }
+
+  .container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* border: 2px solid rgb(80, 207, 30); */
+  }
+}
+
+/* span{
+  border-bottom:"5rem solid black"
+}
+
+.container-fluid{
+  border-bottom: black;
+} */
+
+/*
+.center_div {
+  width: 25%;
+
+  height: 70vh;
+
+  background-color: #f4f4f4;
+
+  box-shadow: 5rem 5rem 25rem -5rem rgba(0, 0, 0, 0.5);
+
+  border-radius: 15rem;
+}
+
+h1 {
+  color: rgba(0, 0, 0, 0.87);
+
+  font-size: 50rem;
+
+  margin-bottom: 30rem;
+
+  min-width: 64rem;
+
+  box-sizing: border-box;
+
+  font-family: "Comfortaa", cursive;
+
+  font-weight: 500;
+
+  border-radius: 4rem;
+
+  letter-spacing: 0.02857em;
+
+  text-transform: uppercase;
+
+  text-shadow: 5rem 5rem 5rem rgba(0, 0, 0, 0.3);
+}
+
+input {
+  text-align: center;
+
+  height: 30rem;
+
+  border: none;
+
+  background: transparent;
+
+  font-size: 20rem;
+
+  font-weight: 500;
+
+  width: 60%;
+
+  border-bottom: 2rem solid #8566aa;
+
+  outline: none;
+
+  margin-right: 20rem;
+}
+
+.newBtn {
+  width: 50rem;
+
+  height: 55rem;
+
+  background-color: #16a085 !important;
+
+  color: white !important;
+
+  box-shadow: 5rem 5rem 15rem -5rem rgba(0, 0, 0, 0.3);
+
+  border-radius: 50% !important;
+}
+
+.newBtn:hover {
+  color: #16a085 !important;
+
+  background: white !important;
+}
+
+/* //the add symbol inside the button in app comp */
+
+/* .MuiSvgIcon-root {
+  width: 2rem !important;
+
+  height: 2rem !important;
+}
+
+ol {
+  margin-top: 30rem;
+
+  /* margin-right: 50rem; */
+/* }
+
+ol li {
+  padding-left: 0rem;
+
+  text-align: left;
+
+  font-size: 20rem;
+
+  font-weight: 500;
+
+  min-height: 40rem;
+
+  display: flex;
+
+  align-items: center;
+
+  color: #8566aa;
+
+  text-transform: capitalize;
+
+  list-style: none;
+}
+
+.todo_style {
+  display: flex;
+
+  flex-direction: row;
+
+  justify-content: left;
+
+  align-items: center;
+}
+
+.todo_style .deleteIcon {
+  width: 25rem;
+
+  height: 25rem;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  background-color: #8566aa;
+
+  border-radius: 50%;
+
+  margin: 0 15rem 0 35rem;
+
+  padding: 5rem;
+
+  color: aliceblue;
+
+  box-shadow: 5rem 5rem 15rem -5rem rgba(0, 0, 0, 0.3);
+}
+
+.todo_style .deleteIcon:hover {
+  background-color: transparent;
+
+  color: crimson;
+
+  box-shadow: 5rem 5rem 15rem -5rem rgba(255, 0, 0, 0.5);
+}
+
+.todo_style .fa-times:hover .list_style {
+  color: crimson;
+}
+
+@media (max-width: 768rem) {
+  .center_div {
+    width: 55%;
+  }
+
+  .todo_style .fa-times {
+    margin: 0 15rem 0 15rem;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+  }
+
+  button {
+    margin-left: 5rem;
+
+    min-height: 40rem;
+
+    width: 40rem;
+
+    color: #fff;
+
+    font-size: 30rem;
+  } 
+} */
