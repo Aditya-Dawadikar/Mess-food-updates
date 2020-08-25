@@ -26,13 +26,16 @@
   /* border: 2px solid rgb(5, 38, 223); */
 }
 
-html {
-  font-size: 82.5%;
-  background: white;
-}
+ html , body {
+  font-size: 95%;
+  height: 100%;
+  margin: 0;
+  /* border: 2px solid rgb(62, 30, 207); */
+} 
 
-.container {
-  padding: 0 8px;
+.container-fluid {
+  padding: 0;
+  margin: 0;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -53,7 +56,7 @@ html {
 .img_logo img {
   position: relative;
   top: 40%;
-  width: 13.7rem;
+  width: 20rem;
   /* left: 28.5%;
   justify-content: center;
   align-items: center; */
@@ -87,15 +90,7 @@ html {
 ====================   Rigth Part    ============================ 
 ================================================================*/
 
-h1 {
-  font-family: "Recursive", sans-serif;
-  color: black;
-  background: transparent;
-  /* padding-bottom: 3rem; */
-  letter-spacing: 0.5rem;
-  text-shadow: 0 2rem 2rem black;
-  /* border: 2px solid rgb(247, 242, 242); */
-}
+
 
 h3 {
   font-family: "Recursive", sans-serif;
@@ -113,19 +108,25 @@ h3 {
 .switch button {
   background: transparent;
   outline: none;
-  border: none;
+  /* border: none; */
+  border: 2px solid rgb(5, 38, 223);
+}
+
+.cust-owner{
+  position: absolute;
+  display: flex;
 }
 
 .main_div {
   position: relative;
   width: 50%;
   height: 100vh;
-  background-color: rgb(230, 230, 210);
+  /* background-color: rgb(230, 230, 210); */
   display: flex;
-  flex-direction: row;
+  /* flex-direction: row; */
   justify-content: center;
-  align-items: center;
-  text-align: center;
+  /* align-items: center;
+  text-align: center; */
 }
 
 .inputForm {
@@ -136,7 +137,17 @@ h3 {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  /* border: 2px solid rgb(5, 38, 223); */
+  border: 2px solid rgb(5, 38, 223);
+}
+
+.inputForm h1 {
+  font-family: "Recursive", sans-serif;
+  color: black;
+  background: transparent;
+  /* padding-bottom: 3rem; */
+  letter-spacing: 0.5rem;
+  /* text-shadow: 0 2rem 2rem black; */
+  /* border: 2px solid rgb(247, 242, 242); */
 }
 
 .main_div .inputForm img {
@@ -153,9 +164,8 @@ form {
      rgb(243, 151, 30),
     rgb(233, 73, 73) 
   ); */
-  position: absolute;
-  background-color: rgb(230, 230, 210);
-  top: 0;
+  /* position: absolute; */
+  /* background-color: rgb(230, 230, 210); */
   width: 100%;
   height: 100vh;
 }
@@ -181,20 +191,27 @@ form {
 }
 
 input:hover {
-  background-color: rgb(24, 20, 20);
-  color: #ffffff !important;
-  opacity: 0.3;
+  background-color:rgba(182, 180, 180, 0.719);
+  /* text-decoration-color: black !important; */
+  /* opacity: 0.3; */
 }
+
 ::placeholder {
   font-family: "Recursive", sans-serif;
-  color: black;
+  /* color: black; */
   text-transform: uppercase;
   margin: 0 5rem;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
 .inputTag button {
   width: 100%;
-  padding: 0 3rem;
+  padding: 0.4rem 3rem;
   line-height: 2.4rem;
   background: #39383a;
   color: white;
@@ -226,7 +243,7 @@ input:hover {
     font-size: 85%;
   }
 
-  .container {
+  .container-fluid {
     position: relative;
     width: 100%;
     height: 100vh;
@@ -303,7 +320,7 @@ input:hover {
     font-size: 65%;
   }
 
-  .container {
+  .container-fluid {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -311,201 +328,3 @@ input:hover {
     /* border: 2px solid rgb(80, 207, 30); */
   }
 }
-
-/* span{
-  border-bottom:"5rem solid black"
-}
-
-.container-fluid{
-  border-bottom: black;
-} */
-
-/*
-.center_div {
-  width: 25%;
-
-  height: 70vh;
-
-  background-color: #f4f4f4;
-
-  box-shadow: 5rem 5rem 25rem -5rem rgba(0, 0, 0, 0.5);
-
-  border-radius: 15rem;
-}
-
-h1 {
-  color: rgba(0, 0, 0, 0.87);
-
-  font-size: 50rem;
-
-  margin-bottom: 30rem;
-
-  min-width: 64rem;
-
-  box-sizing: border-box;
-
-  font-family: "Comfortaa", cursive;
-
-  font-weight: 500;
-
-  border-radius: 4rem;
-
-  letter-spacing: 0.02857em;
-
-  text-transform: uppercase;
-
-  text-shadow: 5rem 5rem 5rem rgba(0, 0, 0, 0.3);
-}
-
-input {
-  text-align: center;
-
-  height: 30rem;
-
-  border: none;
-
-  background: transparent;
-
-  font-size: 20rem;
-
-  font-weight: 500;
-
-  width: 60%;
-
-  border-bottom: 2rem solid #8566aa;
-
-  outline: none;
-
-  margin-right: 20rem;
-}
-
-.newBtn {
-  width: 50rem;
-
-  height: 55rem;
-
-  background-color: #16a085 !important;
-
-  color: white !important;
-
-  box-shadow: 5rem 5rem 15rem -5rem rgba(0, 0, 0, 0.3);
-
-  border-radius: 50% !important;
-}
-
-.newBtn:hover {
-  color: #16a085 !important;
-
-  background: white !important;
-}
-
-/* //the add symbol inside the button in app comp */
-
-/* .MuiSvgIcon-root {
-  width: 2rem !important;
-
-  height: 2rem !important;
-}
-
-ol {
-  margin-top: 30rem;
-
-  /* margin-right: 50rem; */
-/* }
-
-ol li {
-  padding-left: 0rem;
-
-  text-align: left;
-
-  font-size: 20rem;
-
-  font-weight: 500;
-
-  min-height: 40rem;
-
-  display: flex;
-
-  align-items: center;
-
-  color: #8566aa;
-
-  text-transform: capitalize;
-
-  list-style: none;
-}
-
-.todo_style {
-  display: flex;
-
-  flex-direction: row;
-
-  justify-content: left;
-
-  align-items: center;
-}
-
-.todo_style .deleteIcon {
-  width: 25rem;
-
-  height: 25rem;
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  background-color: #8566aa;
-
-  border-radius: 50%;
-
-  margin: 0 15rem 0 35rem;
-
-  padding: 5rem;
-
-  color: aliceblue;
-
-  box-shadow: 5rem 5rem 15rem -5rem rgba(0, 0, 0, 0.3);
-}
-
-.todo_style .deleteIcon:hover {
-  background-color: transparent;
-
-  color: crimson;
-
-  box-shadow: 5rem 5rem 15rem -5rem rgba(255, 0, 0, 0.5);
-}
-
-.todo_style .fa-times:hover .list_style {
-  color: crimson;
-}
-
-@media (max-width: 768rem) {
-  .center_div {
-    width: 55%;
-  }
-
-  .todo_style .fa-times {
-    margin: 0 15rem 0 15rem;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-  }
-
-  button {
-    margin-left: 5rem;
-
-    min-height: 40rem;
-
-    width: 40rem;
-
-    color: #fff;
-
-    font-size: 30rem;
-  } 
-} */
