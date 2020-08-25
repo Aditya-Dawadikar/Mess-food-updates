@@ -1,31 +1,46 @@
-import React, { useState } from "react";
-import SignUp from "./SignUp";
-import SignUpImg from "./SignUpImg";
-import Login from "./Login";
+import React from "react";
+import SignUp from "./components/auth/customer/SignUp";
+import SignUpImg from "./components/auth/SignUpImg";
+import Login from "./components/auth/customer/Login";
 // import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter,Switch,Route,NavLink } from 'react-router-dom';
+import LoginM from './components/auth/mess/Login';
+import SignUpM from './components/auth/mess/Signup';
+import CustDashboard from './components/dashboard/Customer';
+import MessDashboard from './components/dashboard/Mess';
+
 
 const App = () => {
-  const [check, setCheck] = useState({
-    loginCond: true,
-    signUpCond: false,
-  });
-  const loginAction = () => {
-    setCheck({
-      signUpCond: false,
-      loginCond: true,
-    });
-  };
-
-  const signUpAction = () => {
-    setCheck({
-      signUpCond: true,
-      loginCond: false,
-    });
-  };
-
   return (
-    <>
-      <div className="container-fluid ">
+    <BrowserRouter>
+      <div className="containerr">
+      
+          <SignUpImg />
+          <div className="main_div">
+            <h3 className="switch">
+              <button><NavLink to='/login/customer'>Login</NavLink></button> |
+              <button><NavLink to='/signup/customer'>SignUp</NavLink></button>
+            </h3>
+        
+          
+            <Switch>
+              <Route path='/login/customer' component={Login} />
+              <Route path='/signup/customer' component={SignUp} />
+              <Route path='/login/mess' component={LoginM} />
+              <Route path='/signup/mess' component={SignUpM} />
+              <Route path='/customer/dashboard' component={CustDashboard} />
+              <Route path='/mess/dashboard' component={MessDashboard} />
+            </Switch>
+        </div>
+      </div>
+    </BrowserRouter>
+  );
+};
+
+export default App;
+
+/*
+<div className="containerr">
         <SignUpImg />
         <div className="main_div">
           <h3 className="switch">
@@ -39,8 +54,5 @@ const App = () => {
           </div>
         </div>
       </div>
-    </>
-  );
-};
 
-export default App;
+*/

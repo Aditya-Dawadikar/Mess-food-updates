@@ -12,14 +12,14 @@ dotenv.config();
 var app = express();
 
 //middleware
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
+
 
 //connect to database
 const uri = process.env.DB_CONNECTION_STRING;
-//const uri = "mongodb+srv://messfood:messfood@cluster0.eayvl.mongodb.net/<dbname>?retryWrites=true&w=majority";
 mongoose.connect(
     uri, {
         useNewUrlParser: true,

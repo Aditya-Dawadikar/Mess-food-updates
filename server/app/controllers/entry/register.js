@@ -43,9 +43,9 @@ exports.customerRegister = (req, res) => {
                             //save new customer in the collection "customers"
                             customer.save()
                                 .then(doc => {
-                                    const notifier = new Notification();
-                                    const message = "we are glad that you have choosen us to help you find your favourite food!!!";
-                                    notifier.successEmailOnRegistration(req.body.email, message);
+                                    // const notifier = new Notification();
+                                    // const message = "we are glad that you have choosen us to help you find your favourite food!!!";
+                                    // notifier.successEmailOnRegistration(req.body.email, message);
                                     res.status(200).json({
                                         message: "success",
                                         customer: doc
@@ -86,6 +86,64 @@ exports.messRegister = (req, res) => {
             if (doc.length < 1) {
                 //new entry
                 availabilityFlag = true;
+                //if the email is available to used as new user, then create new user
+                if (availabilityFlag === true) {
+                    //hash the password received from request body
+                    bcrypt.hash(req.body.password, 10, (err, result) => {
+                        if (err) {
+                            //send error response if error occurs while hashing password
+                            res.status(500).json({
+                                message: "error occured while storing the mess password",
+                                error: "internal server error"
+                            });
+                        } else {
+                            //create new customer with hashed password
+                            const messPassword = result;
+                            const mess = new Mess({
+                                _id: new mongoose.Types.ObjectId,
+                                email: req.body.email,
+                                password: messPassword,
+                                messDetails: {
+                                    messName: req.body.messDetails.messName,
+                                    ownerName: req.body.messDetails.ownerName,
+                                    phone: req.body.messDetails.phone,
+                                    address: req.body.messDetails.address
+                                },
+                                price: {
+                                    homeDelivery: {
+                                        available: req.body.price.homeDelivery.available,
+                                        DeliveryCharge: null
+                                    },
+                                    onVenue: {
+                                        available: req.body.price.onVenue.available
+                                    }
+                                },
+                                Speciality: [],
+                                MenuList: [],
+                                Rating: 0,
+                                Reviews: []
+                            });
+                            //save new customer in the collection "customers"
+                            mess.save()
+                                .then(doc => {
+                                    console.log(doc);
+                                    // const notifier = new Notification();
+                                    // const message = "we are glad that you have choosen us to help you grow your business!!!";
+                                    // notifier.successEmailOnRegistration(req.body.email, message);
+                                    res.status(200).json({
+                                        message: "success",
+                                        mess: doc
+                                    });
+                                }).catch(err => {
+                                    console.log(err);
+                                    res.status(500).json({
+                                        message: "error occured while storing the mess details",
+                                        error: "internal server error"
+                                    });
+                                })
+                        }
+                    })
+                }
             } else {
                 res.status(400).json({
                     message: "this email already exists, try logging in with this email or try another email and register"
@@ -99,63 +157,5 @@ exports.messRegister = (req, res) => {
             });
         })
 
-    //if the email is available to used as new user, then create new user
-    if (availabilityFlag === true) {
-        //hash the password received from request body
-        bcrypt.hash(req.body.password, 10, (err, result) => {
-            if (err) {
-                //send error response if error occurs while hashing password
-                res.status(500).json({
-                    message: "error occured while storing the mess password",
-                    error: "internal server error"
-                });
-            } else {
-                //create new customer with hashed password
-                const messPassword = result;
-                const mess = new Mess({
-                    _id: new mongoose.Types.ObjectId,
-                    email: req.body.email,
-                    password: messPassword,
-                    messDetails: {
-                        messName: req.body.messDetails.messName,
-                        ownerName: req.body.messDetails.ownerName,
-                        phone: req.body.messDetails.phone,
-                        address: req.body.messDetails.address
-                    },
-                    price: {
-                        homeDelivery: {
-                            available: req.body.price.homeDelivery.available,
-                            DeliveryCharge: null
-                        },
-                        onVenue: {
-                            available: req.body.price.onVenue.available
-                        }
-                    },
-                    Speciality: [],
-                    MenuList: [],
-                    Rating: 0,
-                    Reviews: []
-                });
-                //save new customer in the collection "customers"
-                mess.save()
-                    .then(doc => {
-                        console.log(doc);
-                        const notifier = new Notification();
-                        const message = "we are glad that you have choosen us to help you grow your business!!!";
-                        notifier.successEmailOnRegistration(req.body.email, message);
-                        res.status(200).json({
-                            message: "success",
-                            mess: doc
-                        });
-                    }).catch(err => {
-                        console.log(err);
-                        res.status(500).json({
-                            message: "error occured while storing the mess details",
-                            error: "internal server error"
-                        });
-                    })
-            }
-        })
-    }
 
 }
