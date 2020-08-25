@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const customerAuth = require('../../controllers/auth/customerAuth');
 
 const customerController = require('../../controllers/users/customer');
 
@@ -15,9 +16,9 @@ router.get('/email', customerController.getCustomerByEmail);
 router.get('/:id', customerController.getCustomerById);
 
 //update customer by id
-router.patch('/update/:id', customerController.updateCustomerById);
+router.patch('/update/:id', customerAuth, customerController.updateCustomerById);
 
 //delete customer
-router.delete('/delete/:id', customerController.deleteCustomerById);
+router.delete('/delete/:id', customerAuth, customerController.deleteCustomerById);
 
 module.exports = router;

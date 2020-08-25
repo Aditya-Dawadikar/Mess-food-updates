@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 
+const messAuth = require('../../controllers/auth/messAuth');
 const messControllers = require('../../controllers/users/mess');
 const mess = require('../../models/mess');
 
@@ -16,9 +17,9 @@ router.get('/email', messControllers.getMessByEmail);
 router.get('/:id', messControllers.getMessById);
 
 //update mess by id
-router.patch('/update/:id', messControllers.updateMessById);
+router.patch('/update/:id', messAuth, messControllers.updateMessById);
 
 //delete mess
-router.delete('/delete/:id', messControllers.deleteMessById);
+router.delete('/delete/:id', messAuth, messControllers.deleteMessById);
 
 module.exports = router;
