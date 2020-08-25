@@ -6,24 +6,31 @@ import Login from "./components/auth/customer/Login";
 import { BrowserRouter,Switch,Route,NavLink } from 'react-router-dom';
 import LoginM from './components/auth/mess/Login';
 import SignUpM from './components/auth/mess/Signup';
+import CustDashboard from './components/dashboard/Customer';
+import MessDashboard from './components/dashboard/Mess';
 
 
 const App = () => {
   return (
     <BrowserRouter>
       <div className="containerr">
-        <SignUpImg />
-        <div className="main_div">
-          <h3 className="switch">
-            <button><NavLink to='/customer/login'>Login</NavLink></button> |
-            <button><NavLink to='/customer/signup'>SignUp</NavLink></button>
-          </h3>
-          <Switch>
-            <Route path='/customer/login' component={Login} />
-            <Route path='/customer/signup' component={SignUp} />
-            <Route path='/mess/login' component={LoginM} />
-            <Route path='/mess/signup' component={SignUpM} />
-          </Switch>
+      
+          <SignUpImg />
+          <div className="main_div">
+            <h3 className="switch">
+              <button><NavLink to='/login/customer'>Login</NavLink></button> |
+              <button><NavLink to='/signup/customer'>SignUp</NavLink></button>
+            </h3>
+        
+          
+            <Switch>
+              <Route path='/login/customer' component={Login} />
+              <Route path='/signup/customer' component={SignUp} />
+              <Route path='/login/mess' component={LoginM} />
+              <Route path='/signup/mess' component={SignUpM} />
+              <Route path='/customer/dashboard' component={CustDashboard} />
+              <Route path='/mess/dashboard' component={MessDashboard} />
+            </Switch>
         </div>
       </div>
     </BrowserRouter>

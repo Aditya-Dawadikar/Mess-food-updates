@@ -39,27 +39,29 @@ const SignUp = () => {
     e.preventDefault();
     console.log(mess);
     axios.post('http://localhost:9000/api/register/mess',{
-        "email": mess.email,
-		"password": mess.password,
-		"messDetails": {
-            "messName": mess.messDetails[0],
-            "ownerName": mess.messDetails[1],
-            "phone": mess.messDetails[2],
-            "address": mess.messDetails[3]
-		    },
-		"price": {
-            "homeDelivery": {
-                "available": mess.price.homeDelivery[0],
-                "DeliveryCharge": mess.price.homeDelivery[1]
-            },
-            "onVenue": {
-                "available": mess.price.onVenue[0]
-            }
-		}
+      "email": mess.email,
+      "password": mess.password,
+      "messDetails": {
+              "messName": mess.messName,
+              "ownerName": mess.ownerName,
+              "phone": mess.phone,
+              "address": mess.address
+          },
+      "price": {
+              "homeDelivery": {
+                  "available": mess.available,
+                  "DeliveryCharge": mess.DeliveryCharge 
+              },
+              "onVenue": {
+                  "available": mess.available
+              }
+      }
     })
     .then((response) => {
         console.log(response);
-        console.log("sign Up successfully");
+        alert("sign Up successfully");
+        if(response.status === 200)
+          window.location = '/login/mess';
     })
     .catch( (error) => {
         console.log(error)
@@ -71,7 +73,7 @@ const SignUp = () => {
   return (
     <>
         <form onSubmit={onSubmit} autoComplete="off">
-          <div className="inputForm">
+          <div className="inputForm" style={{ marginTop: "100px"}}>
             <h1>
               Sign Up <FastfoodIcon />
             </h1>

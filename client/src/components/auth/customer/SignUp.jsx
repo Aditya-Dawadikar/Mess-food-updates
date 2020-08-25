@@ -37,12 +37,14 @@ const SignUp = () => {
     })
     .then((response) => {
         console.log(response);
-        console.log("sign Up successfully");
+        alert("sign Up successfully");
+        if(response.status === 200)
+          window.location = '/login/customer';
     })
     .catch( (error) => {
         console.log(error)
     })  
-  
+    
   };
 
   return (
