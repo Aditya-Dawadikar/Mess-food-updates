@@ -31,11 +31,12 @@ html {
   background: white;
 }
 
-.container {
+.containerr {
   padding: 0 8px;
   width: 100%;
   height: 100vh;
   display: flex;
+  margin: 10px 10px 5px 5px ;
   /* border: 2px solid rgb(80, 207, 30); */
 }
 
@@ -52,8 +53,10 @@ html {
 
 .img_logo img {
   position: relative;
-  top: 40%;
-  width: 13.7rem;
+  top: 30%;
+  /* //width: 13.7rem; */
+  height: 40%;
+  width: 75%;
   /* left: 28.5%;
   justify-content: center;
   align-items: center; */
@@ -93,7 +96,6 @@ h1 {
   background: transparent;
   /* padding-bottom: 3rem; */
   letter-spacing: 0.5rem;
-  text-shadow: 0 2rem 2rem black;
   /* border: 2px solid rgb(247, 242, 242); */
 }
 
@@ -104,7 +106,6 @@ h3 {
   /* padding-bottom: 3rem; */
   top: 5rem;
   letter-spacing: 0.5rem;
-  text-shadow: 0 2rem 2rem black;
   z-index: 1;
   position: absolute;
   /* border: 2px solid rgb(247, 242, 242); */
@@ -154,7 +155,7 @@ form {
     rgb(233, 73, 73) 
   ); */
   position: absolute;
-  background-color: rgb(230, 230, 210);
+  background-color: white; /*rgb(230, 230, 210);*/
   top: 0;
   width: 100%;
   height: 100vh;
@@ -164,7 +165,7 @@ form {
   position: relative;
   background: transparent;
   /* text-align: center; */
-  border: 0.1rem solid rgb(61, 55, 55);
+  border: 0.1rem solid none;
   width: 100%;
   padding: 1rem 4rem;
   outline: none;
@@ -180,11 +181,11 @@ form {
   /* border: 2px solid rgb(5, 38, 223); */
 }
 
-input:hover {
+/* input:hover {
   background-color: rgb(24, 20, 20);
   color: #ffffff !important;
   opacity: 0.3;
-}
+} */
 ::placeholder {
   font-family: "Recursive", sans-serif;
   color: black;
@@ -192,9 +193,12 @@ input:hover {
   margin: 0 5rem;
 }
 
+span{
+  color:black;
+}
 .inputTag button {
-  width: 100%;
-  padding: 0 3rem;
+  width: 95%;
+  padding: .5rem 3rem;
   line-height: 2.4rem;
   background: #39383a;
   color: white;
@@ -226,7 +230,7 @@ input:hover {
     font-size: 85%;
   }
 
-  .container {
+  .containerr {
     position: relative;
     width: 100%;
     height: 100vh;
@@ -238,7 +242,7 @@ input:hover {
   .img_logo {
     position: relative;
     width: 100%;
-    height: 13rem;
+    height: 40rem;
     display: table-cell;
     text-align: center;
     vertical-align: middle;
@@ -247,7 +251,7 @@ input:hover {
 
   .img_logo img {
     position: relative;
-    top: 0;
+    top: 25%;
   }
 
   .animated {
@@ -303,7 +307,7 @@ input:hover {
     font-size: 65%;
   }
 
-  .container {
+  .containerr {
     width: 100%;
     height: 100vh;
     display: flex;
@@ -312,7 +316,7 @@ input:hover {
   }
 }
 
-/* span{
+/*cd span{
   border-bottom:"5rem solid black"
 }
 
