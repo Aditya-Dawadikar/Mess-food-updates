@@ -4,10 +4,12 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import PhoneIphoneOutlinedIcon from "@material-ui/icons/PhoneIphoneOutlined";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
+import axios from 'axios';
+
 
 const SignUp = () => {
-  const [set, setState] = useState({
-    fullname: "",
+  const [user, setState] = useState({
+    fullName: "",
     password: "",
     email: "",
     phone: "",
@@ -26,8 +28,21 @@ const SignUp = () => {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(set);
-    alert("sign Up successfully");
+    console.log(user);
+    axios.post('http://localhost:9000/api/register/customer',{
+      "name": user.fullName,
+			"email": user.email,
+			"password": user.password,
+			"phone": user.phone
+    })
+    .then((response) => {
+        console.log(response);
+        console.log("sign Up successfully");
+    })
+    .catch( (error) => {
+        console.log(error)
+    })  
+  
   };
 
   return (
@@ -41,9 +56,9 @@ const SignUp = () => {
               <input
                 type="text"
                 placeholder="Enter Your Name"
-                name="fullname"
+                name="fullName"
                 onChange={inputEvent}
-                value={set.fullname}
+                value={user.fullName}
               />
               <PersonOutlineOutlinedIcon
                 style={{
@@ -59,7 +74,7 @@ const SignUp = () => {
                 placeholder="Enter Your EmailID"
                 name="email"
                 onChange={inputEvent}
-                value={set.email}
+                value={user.email}
               />
               <EmailOutlinedIcon
                 style={{
@@ -75,7 +90,7 @@ const SignUp = () => {
                 placeholder="Enter Your Phone no."
                 name="phone"
                 onChange={inputEvent}
-                value={set.phone}
+                value={user.phone}
               />
               <PhoneIphoneOutlinedIcon
                 style={{
@@ -91,7 +106,7 @@ const SignUp = () => {
                 placeholder="Enter Your password"
                 name="password"
                 onChange={inputEvent}
-                value={set.password}
+                value={user.password}
               />
               <LockOutlinedIcon
                 style={{
