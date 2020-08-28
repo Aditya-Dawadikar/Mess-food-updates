@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Mess() {
+const Mess=()=> {
     return (
         <div>
             <p>This is Mess's dashboard</p>

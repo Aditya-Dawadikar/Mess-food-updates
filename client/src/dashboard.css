@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+@import url("https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+   /* overflow-x: v; */
+  overflow: visible;
+  font-family: "Recursive", sans-serif;
+}
+
+/*****Customer-1st-Page CSS *******/
+
+/* Start */
+
+.carousel-item{
+  width: 100%;
+  height: 300px;
+}
+
+#carousel-card{
+  width: 30%;
+  height:50vh;
+}
+
+.price-tag h2{
+  font-family: 'Righteous', cursive;
+}
+
+
+/* End */
+
+
+/*====== Customer-2nd-Page CSS ======*/
+
+
+
+/* ===== Mess-1st-Page CSS ====== */
+
+
+
+/*===== Mess-2nd-Page CSS ======*/
