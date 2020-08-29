@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
+import { NavLink } from "react-router-dom";
+import SignUpImg from "../SignUpImg"
 import axios from 'axios';
 
 
@@ -72,8 +74,21 @@ const SignUp = () => {
 
   return (
     <>
+      <div className="containerr">
+        <SignUpImg />
+        <div className="main_div">
+          <h3 className="switch">
+            <button>
+              <NavLink to="/login/mess">Login</NavLink>
+            </button>
+            |
+            <button>
+              <NavLink to="/signup/mess">SignUp</NavLink>
+            </button>
+          </h3>
+
         <form onSubmit={onSubmit} autoComplete="off">
-          <div className="inputForm" style={{ marginTop: "100px"}}>
+          <div className="inputForm" id="mess-signup">
             <h1>
               Sign Up <FastfoodIcon />
             </h1>
@@ -145,6 +160,12 @@ const SignUp = () => {
             </div>
           </div>
         </form>
+        <h3 className="switch-user">
+              <button><NavLink to='/login/customer'>Customer</NavLink></button>
+              <button><NavLink to='/login/mess'>Mess</NavLink></button>
+        </h3>
+        </div>
+      </div>        
     </>
   );
 };
