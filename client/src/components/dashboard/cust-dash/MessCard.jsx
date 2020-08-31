@@ -5,6 +5,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import DirectionsIcon from "@material-ui/icons/Directions";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
+import { NavLink } from "react-router-dom";
 
 const MessCard = () => {
   return (
@@ -40,8 +41,8 @@ const MessCard = () => {
                 </p>
               </div>
               <div className="d-flex justify-content-between">
-                <button type="button" class="btn btn-warning text-white w-25">
-                View
+                <button type="button" class="btn btn-warning text-white w-25"><NavLink to='/customer/mess-details' style={{color: 'white', textDecoration: 'none'}}>
+                View</NavLink>
                 </button>
                 <BookmarkBorderIcon
                   className="d-flex ml-5"

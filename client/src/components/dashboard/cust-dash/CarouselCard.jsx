@@ -23,10 +23,10 @@ const CarouselCard = () => {
               <h5 class="card-title" style={{ color: "#FFB800" }}>
                 Surya Mess <VerifiedUserIcon className=" text-success" />
               </h5>
-              <div style={{ color: "#FFB800" }}>
+              <div style={{ color: "#FFB800"}}>
                 <GradeRoundedIcon />
-                <GradeRoundedIcon />
-                <GradeRoundedIcon />
+                <GradeRoundedIcon/>
+                <GradeRoundedIcon/>
                 <GradeRoundedIcon />
               </div>
               <p class="card-text text-dark">Chinese,FastFoood,North ....</p>
