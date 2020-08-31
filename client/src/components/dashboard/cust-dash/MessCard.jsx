@@ -5,6 +5,7 @@ import LocationOnIcon from "@material-ui/icons/LocationOn";
 import DirectionsIcon from "@material-ui/icons/Directions";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
+import { NavLink } from "react-router-dom";
 
 
 const MessCard = (props) => {

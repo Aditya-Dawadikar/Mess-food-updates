@@ -156,6 +156,56 @@ li .account-icon{
 
 /*====== Customer-2nd-Page CSS ======*/
 
+.containerDetails{
+  margin-top: 5%;
+  width: 100%;
+  height: 100vh;
+  background: #FFF8DE;
+  display: flex;
+  align-items: center;
+  padding: 0 1.5rem;
+}
+
+h1{
+  font-size: 3.3rem;
+  letter-spacing: normal;
+}
+.mess-info{
+  padding: 3% 7%;
+}
+.mess-menus{
+  padding: 15px 0px;
+  border-left: 8px solid #FEC200;
+  margin-top: 10px;
+  /* border: 1px solid #FEC200; */
+  background-color: #ffffff;
+}
+li{
+  display: inline-block;
+  width: 45%;
+  padding-left: 15px;
+}
+li:nth-child(2){
+  width: 45%;
+}
+li:nth-child(3){
+  width: 10%;
+}
+.veg{
+  transform: scale(.5);
+}
+@media only screen and (min-width: 1000px) {
+  .mess-card{
+    margin-left: 100px;
+  }
+  .containerDetails{
+    width: 90vw;
+    margin-left: 5rem;
+  }
+  #mess-pic{
+    height: 17rem;
+  }
+}
 
 
 /* ===== Mess-1st-Page CSS ====== */

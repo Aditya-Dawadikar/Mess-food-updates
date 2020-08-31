@@ -7,6 +7,7 @@ import LoginM from "./components/auth/mess/Login";
 import SignUpM from "./components/auth/mess/Signup";
 import CustDashboard from "./components/dashboard/cust-dash/Customer.jsx";
 import MessDashboard from "./components/dashboard/mess-dash/Mess.jsx";
+import MessDetails from "./components/dashboard/cust-dash/MessDetails";
 
 const App = () => {
   return (
@@ -19,6 +20,7 @@ const App = () => {
         <Route path="/signup/mess" component={SignUpM} />
         <Route path="/customer/dashboard" component={CustDashboard} />
         <Route path="/mess/dashboard" component={MessDashboard} />
+        <Route path="/customer/mess-details" component={MessDetails} />
       </Switch>
     </BrowserRouter>
   );
