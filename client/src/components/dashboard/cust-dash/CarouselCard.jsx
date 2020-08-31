@@ -11,63 +11,108 @@ const CarouselCard = () => {
     <>
       <div
         className="card bg-light text-black"
-        style={{ height: "-webkit-fill-available" }}
+        style={{ height: "-webkit-fill-available", margin: "0 80px" }}
       >
-        <img src={food1} className="card-img" id="carousel-card" alt="food1" />
+        <img
+          src={food1}
+          className="card-img"
+          id="carousel-card-img"
+          alt="food1"
+        />
         <div
           className="card-img-overlay "
           style={{ marginLeft: "30%", display: "flex" }}
         >
-          <div className="card-title" style={{ width: "33%" }}>
-            <div class="card-body">
-              <h5 class="card-title" style={{ color: "#FFB800" }}>
+          <div className="card-title" style={{ width: "36%" }}>
+            <div className="card-body">
+              <h5
+                className="card-title mb-2"
+                style={{ color: "#FFB800", fontSize: "2rem" }}
+              >
                 Surya Mess <VerifiedUserIcon className=" text-success" />
               </h5>
-              <div style={{ color: "#FFB800"}}>
+              <div className="mb-3" style={{ color: "#FFB800" }}>
+                <GradeRoundedIcon />
+                <GradeRoundedIcon />
                 <GradeRoundedIcon />
                 <GradeRoundedIcon/>
                 <GradeRoundedIcon/>
                 <GradeRoundedIcon />
               </div>
-              <p class="card-text text-dark">Chinese,FastFoood,North ....</p>
-              <div>
+              <p className="card-text text-dark mt-4">
+                Chinese,FastFood,North ....
+              </p>
+              <div className="d-flex mt-5">
                 <LocationOnIcon
+                  className=" mt-2"
                   style={{ color: "#FF4D00", transform: "scale(1.5)" }}
                 />
-                Krushna Chowk, Akurdi
-                <p className="ml-4">
-                  5 km from Pccoe
-                  <DirectionsIcon style={{ color: "#FFB800" }} />
-                </p>
+                <span className="ml-3">
+                  Krushna Chowk, Akurdi
+                  <p className=" d-block">
+                    5 km from Pccoe
+                    <DirectionsIcon
+                      className="ml-1"
+                      style={{ color: "#FFB800" }}
+                    />
+                  </p>
+                </span>
               </div>
             </div>
           </div>
-          <div className="card-text" style={{ width: "33%" }}>
-            <h5 className="mb-5">Today's Special</h5>
-            <p>
-              Special bhaji<span className="text-secondary mx-4">1bowl</span>{" "}
-              7INR
-            </p>
-            <p>
-              Daal <span className="text-secondary mx-5">1bowl</span> 7INR
-            </p>
-            <p>
-              Rice <span className="text-secondary mx-5">1bowl</span> 10INR
-            </p>
-            <p>
-              Roti <span className="text-secondary mx-5">5</span> 12INR
-            </p>
+          <div
+            className="card-text"
+            style={{ width: "35%", textAlign: "-webkit-center" }}
+          >
+            <h5 className="mb-4 mt-4">Today's Special</h5>
+            <table id="customers">
+            <tbody>
+              <tr>
+                <td>Special bhaji</td>
+                <td>1bowl</td>
+                <td>7 INR</td>
+              </tr>
+              <tr>
+                <td>Daal</td>
+                <td>1bowl</td>
+                <td>7 INR</td>
+              </tr>
+              <tr>
+                <td>Rice</td>
+                <td>1bowl</td>
+                <td>10 INR</td>
+              </tr>
+              <tr>
+                <td>Roti</td>
+                <td>5</td>
+                <td>12 INR</td>
+              </tr>
+              </tbody>
+            </table>
           </div>
           <div
             className="card-text price-tag mt-5"
-            style={{ width: "33%", color: "#FF4D00" }}
+            style={{ width: "29%", color: "#FF4D00", textAlign: "center" }}
           >
-            <h2>60 INR</h2>
-            <LocalOfferIcon
-              className="mx-3 my-3 d-block"
-              style={{ color: "#FFB800", transform: "scale(2)" }}
-            />
-            <button type="button" class="btn btn-warning text-white w-50">
+            <h1
+              className="d-block"
+              style={{ color: "#FF4D00", transform: "scale(1.2)" }}
+            >
+              60
+            </h1>
+            <h4 className="d-flex" style={{ justifyContent: "center" }}>
+              INR
+              <LocalOfferIcon
+                className=" ml-2"
+                style={{ color: "#FFB800", transform: "scale(1.2)" }}
+              />
+            </h4>
+
+            <button
+              type="button"
+              className="btn btn-warning text-white w-50 mt-2"
+              style={{ transform: "scale(1.3)" }}
+            >
               View
             </button>
           </div>
