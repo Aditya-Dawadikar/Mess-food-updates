@@ -1,87 +1,81 @@
 import React from "react";
-import FormatListBulletedRoundedIcon from "@material-ui/icons/FormatListBulletedRounded";
-import { BiSearchAlt } from "react-icons/bi";
-import Card from "./MessCard";
+import NavBar from "./NavBar"; 
+import MessCard from "./MessCard";
 import CarouselCard from "./CarouselCard";
 import food1 from "../../../imgs/food1.jpg";
+import MessCardData from "./MessCardData";
 
 const Customer = () => {
   return (
     <>
-      <nav className="navbar navbar-fixed-top mt-2">
-        <div className="navbar-brand">
-          <FormatListBulletedRoundedIcon />
-        </div>
-        <form className="form-inline mx-auto">
-          <input
-            className="form-control rounded-pill"
-            type="search"
-            placeholder="Search"
-            aria-label="Search"
-          />
-          <button className="btn btn-warning ml-2 " type="submit">
-            <BiSearchAlt />
-          </button>
-        </form>
-      </nav>
+      <NavBar/>
 
-      <header className=" my-3">
+      <header className=" mt-3">
         <div className="container">
           <div
             id="carouselExampleControls"
-            class="carousel slide mx-5"
+            className="carousel slide mx-5"
             data-ride="carousel"
            >
-           <div class="carousel-inner">
-              <div class="carousel-item active ">
+           <div className="carousel-inner">
+              <div className="carousel-item active ">
                 <CarouselCard />
               </div>
-              <div class="carousel-item">
+              <div className="carousel-item">
                 <CarouselCard />
               </div>
-              <div class="carousel-item">
+              <div className="carousel-item">
                 <CarouselCard />
               </div>
-            </div>
+           </div>
             <a
-              class="carousel-control-prev"
+              className="carousel-control-prev"
               href="#carouselExampleControls"
+              style={{ width:"10%"}}
               role="button"
               data-slide="prev"
             >
               <span
-                class="carousel-control-prev-icon"
-                style={{ filter: "invert(1)" }}
+                className="carousel-control-prev-icon"
+                style={{ filter: "invert(1)" , width:"45px",height: "26px"}}
                 aria-hidden="true"
               ></span>
-              <span class="sr-only">Previous</span>
+              <span className="sr-only">Previous</span>
             </a>
             <a
-              class="carousel-control-next"
+              className="carousel-control-next "
+              style={{ width:"10%"}}
               href="#carouselExampleControls"
               role="button"
               data-slide="next"
             >
               <span
-                class="carousel-control-next-icon"
-                style={{ filter: "invert(1)" }}
+                className="carousel-control-next-icon"
+                style={{ filter: "invert(1)" , width:"45px",height: "26px"}}
                 aria-hidden="true"
               ></span>
-              <span class="sr-only">Next</span>
+              <span className="sr-only">Next</span>
             </a>
           </div>
         </div>
       </header>
 
+
+    
       <div className="my-5">
         <div className="container-fluid">
           <div className="row">
             <div className="col-10 mx-auto">
               <div className="row justify-content-center ">
-                <Card geet={food1} />
-                <Card />
-                <Card />
-                <Card />
+                {
+                  MessCardData.map((item , index )=>{
+                    return <MessCard key={index}
+                      messImg={item.messDetails.messImg}
+                      messName={item.messDetails.messName}
+                      messAdd={item.messDetails.address}
+                    />
+                  })
+                }
               </div>
             </div>
           </div>
