@@ -6,23 +6,24 @@ import DirectionsIcon from "@material-ui/icons/Directions";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 
-const MessCard = () => {
+
+const MessCard = (props) => {
   return (
     <>
-      <div class="card mb-3 mr-3" style={{ maxWidth: "500px" }}>
-        <div class="row no-gutters">
-          <div class="col-md-4">
+      <div className="card mb-3 mr-3" style={{ maxWidth: "475px" , backgroundColor:"#FFF8DE"}}>
+        <div className="row no-gutters">
+          <div className="col-md-4">
             <img
-              src={food1}
-              class="card-img"
-              style={{ height: "175px" }}
+              src={props.messImg}
+              className="card-img pt-2 pl-2"
+              style={{ height: "160px" , borderRadius:"10px" }}
               alt="food1"
             />
           </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title" style={{ color: "#FFB800" }}>
-                Surya Mess <VerifiedUserIcon className=" text-success" />
+          <div className="col-md-8">
+            <div className="card-body">
+              <h5 className="card-title" style={{ color: "#FFB800" }}>
+                {props.messName} <VerifiedUserIcon className=" text-success" />
               </h5>
               <div style={{ color: "#FFB800" }}>
                 <GradeRoundedIcon />
@@ -30,22 +31,30 @@ const MessCard = () => {
                 <GradeRoundedIcon />
                 <GradeRoundedIcon />
               </div>
-              <p class="card-text text-dark">Chinese,FastFoood,North ....</p>
-              <div>
-                <LocationOnIcon style={{ color: "#FF4D00" }} />
-                Krushna Chowk, Akurdi
-                <p>
-                  5 km from Pccoe
-                  <DirectionsIcon style={{ color: "#FFB800" }} />
-                </p>
+              <p className="card-text text-dark mt-2">Chinese,FastFoood,North India....</p>
+              <div className=" d-flex">
+              <LocationOnIcon
+                  className=" mt-2"
+                  style={{ color: "#FF4D00", transform: "scale(1.5)" ,cursor:"pointer" }}
+                />
+                <span className="ml-1">
+                  {props.messAdd}
+                  <p className=" d-block">
+                    5 km from Pccoe
+                    <DirectionsIcon
+                      className="ml-1"
+                      style={{ color: "#FFB800" }}
+                    />
+                  </p>
+                </span>
               </div>
-              <div className="d-flex justify-content-between">
-                <button type="button" class="btn btn-warning text-white w-25">
+              <div className="d-flex justify-content-between" style={{alignItems:"center"}}>
+                <button type="button" className="btn btn-warning text-white " style={{ width:"8rem" }}> 
                 View
                 </button>
                 <BookmarkBorderIcon
-                  className="d-flex ml-5"
-                  style={{ color: "#FFB800" }}
+                  className="d-flex mr-1"
+                  style={{ color: "#FFB800" ,transform:"scale(1.2)",cursor:"pointer" }}
                 />
               </div>
             </div>
