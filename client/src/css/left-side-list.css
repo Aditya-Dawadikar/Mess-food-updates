@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+@import url("https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap');
+
+*,
+::after,
+::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+   /* overflow-x: v; */
+  overflow: hidden;
+  font-family: "Recursive", sans-serif;
+}
+
+.Mess-Account{
+    margin: 20px 20px;
+    width: calc(100% - 40px);
+    height: calc(100vh - 40px);
+    background: #FFF8DE;
+    border-radius:20px ;
+    /* border: 2px solid red; */
+    /* padding: 0 1.5rem; */
+}
+
+.left-list{
+  width: 100%;
+  height: calc(100vh - 80px);
+  color: #FFB800;
+  list-style: none;
+  /* border:2px solid blue; */
+  
+}
+
+.left-list li{
+  cursor: pointer;
+}
+
+.left-list li:hover{
+  background: rgba(255, 92, 0, 0.23);
+  border-radius: 5px;
+  color: #db9e04;
+}
+
+.left-list li .mess-account-icon{
+ width: 30%;
+ height: 75px;
+}
+
+.left-list a li{
+  text-align: left;
+}
+
+.left-list li:nth-child(1){
+  font-size: 30px;
+  /* border:2px solid rgb(17, 180, 99); */
+}
+.left-list li:nth-child(2){
+  font-size: 25px;
+  /* border:2px solid rgb(184, 21, 21); */
+}
+.left-list li:nth-child(3){
+  font-size: 25px;
+  /* border:2px solid rgb(5, 5, 19); */
+}
+.left-list li:nth-child(4){
+  font-size: 25px;
+  /* border:2px solid rgb(179, 21, 131); */
+}
+
+.left-list a{
+  text-decoration: none;
+  color: #FFB800;
+}
+
+.page-switch-active li{
+  border-radius: 5px;
+  background-color: rgba(255, 92, 0, 0.23);
+  color: #c48f0c;
+}

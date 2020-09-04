@@ -101,8 +101,8 @@ const MessCardData = [
   },
   {
     messDetails: {
-      messName: "vrushabh DaruWala",
-      ownerName: "Daru Shop ..Peeyo jee bharke",
+      messName: "Pluto Mess",
+      ownerName: "Vrushabh Kulye",
       phone: 8208117388,
       address: "Pimple Saudagar Pimpri",
       messImg: img4,

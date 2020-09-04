@@ -93,10 +93,10 @@ const SignUp = () => {
               </div>
             </div>
           </form>
-          <h3 className="switch-user">
-              <button><NavLink to='/login/customer'>Customer</NavLink></button>
-              <button><NavLink to='/login/mess'>Mess</NavLink></button>
-          </h3>
+          <div className="switch-user">
+              <button ><NavLink to='/login/customer' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Customer</NavLink></button>
+              <button ><NavLink to='/login/mess' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Mess</NavLink></button>
+          </div>
         </div>
       </div>
     </>

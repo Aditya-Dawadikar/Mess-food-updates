@@ -1,5 +1,4 @@
 import React from "react";
-import food1 from "../../../imgs/food1.jpg";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import DirectionsIcon from "@material-ui/icons/Directions";
@@ -50,9 +49,11 @@ const MessCard = (props) => {
                 </span>
               </div>
               <div className="d-flex justify-content-between" style={{alignItems:"center"}}>
+              <NavLink to='/customer/mess-details'>
                 <button type="button" className="btn btn-warning text-white " style={{ width:"8rem" }}> 
                 View
                 </button>
+              </NavLink>  
                 <BookmarkBorderIcon
                   className="d-flex mr-1"
                   style={{ color: "#FFB800" ,transform:"scale(1.2)",cursor:"pointer" }}
