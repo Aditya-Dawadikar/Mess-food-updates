@@ -35,8 +35,7 @@ const CarouselCard = () => {
                 <GradeRoundedIcon />
                 <GradeRoundedIcon />
                 <GradeRoundedIcon />
-                <GradeRoundedIcon/>
-                <GradeRoundedIcon/>
+                <GradeRoundedIcon />
                 <GradeRoundedIcon />
               </div>
               <p className="card-text text-dark mt-4">

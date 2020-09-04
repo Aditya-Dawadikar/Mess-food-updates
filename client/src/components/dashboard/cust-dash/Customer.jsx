@@ -2,7 +2,6 @@ import React from "react";
 import NavBar from "./NavBar"; 
 import MessCard from "./MessCard";
 import CarouselCard from "./CarouselCard";
-import food1 from "../../../imgs/food1.jpg";
 import MessCardData from "./MessCardData";
 
 const Customer = () => {
