@@ -10,6 +10,7 @@ import MessDashboard from "./components/dashboard/mess-dash/Mess.jsx";
 import MessDetails from "./components/dashboard/cust-dash/MessDetails";
 import MessSettings from "./components/dashboard/mess-dash/MessSettings";
 import Mess from "./components/dashboard/mess-dash/Mess.jsx";
+import Settings from './components/dashboard/cust-dash/Settings';
 
 const App = () => {
   return (
@@ -24,10 +25,7 @@ const App = () => {
         <Route path="/mess/dashboard" component={MessDashboard} />
         <Route path="/customer/mess-details" component={MessDetails} />
         <Route path="/mess/settings" component={MessSettings} />
-        <Route path="/mess/mess-user-1" component={Mess} />
-        <Route path="/mess/mess-user-2" component={MessSettings} />
-        <Route path="/mess/mess-user-3" component={MessSettings} />
-        <Route path="/mess/mess-user-4" component={MessSettings} />
+        <Route path="/customer/settings" component={Settings} />
       </Switch>
     </BrowserRouter>
   );

@@ -5,7 +5,7 @@ const Mess_user2 = () => {
   return (
     <>
       
-        <form style={{ border: "2px solid red", width: "70%" }}>
+        <form style={{ width: "65%" }}>
           <div className="edit-profile ml-1 container">
             <div
               className="photo container mt-3"
