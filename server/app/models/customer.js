@@ -5,7 +5,11 @@ const customerSchema = mongoose.Schema({
     name: String,
     email: String,
     password: String,
-    phone: Number
+    phone: Number,
+    savedMess: [{
+        messId: mongoose.Schema.Types.ObjectId,
+        messName: String
+    }]
 });
 
 module.exports = mongoose.model('customer', customerSchema);
