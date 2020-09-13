@@ -161,8 +161,8 @@ const SignUp = () => {
           </div>
         </form>
         <div className="switch-user">
-              <button ><NavLink to='/login/customer' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Customer</NavLink></button>
-              <button ><NavLink to='/login/mess' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Mess</NavLink></button>
+        <NavLink to='/login/customer' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Customer</button></NavLink>
+        <NavLink to='/login/mess' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Mess</button></NavLink>
         </div>
         </div>
       </div>        

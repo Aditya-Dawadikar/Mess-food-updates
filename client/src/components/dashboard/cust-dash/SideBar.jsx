@@ -5,6 +5,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import SettingsIcon from "@material-ui/icons/Settings";
+import Badge from '@material-ui/core/Badge';
 
 const SideBar = () => {
   const [toggle, setToggle] = useState(false);
@@ -43,8 +44,11 @@ const SideBar = () => {
                 <AccountCircleIcon className="account-icon"/>
               </li>
               <li>Aditya Dawadikar #121</li>
-              <li>
-                <NotificationsNoneIcon className=" mr-3"/>
+              <li style={{height:"60px"}}>
+              <Badge badgeContent={4} color="error" style={{}}>
+              <NotificationsNoneIcon className=" text-white mr-3"/>
+              </Badge>
+                {/* <NotificationsNoneIcon className=" mr-3"/> */}
                 Notifications
               </li>
               <li>

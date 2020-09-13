@@ -35,20 +35,3 @@ const App = () => {
 
 export default App;
 
-/*
-<div className="containerr">
-        <SignUpImg />
-        <div className="main_div">
-          <h3 className="switch">
-            <button onClick={loginAction}>Login</button> |
-            <button onClick={signUpAction}>SignUp</button>
-          </h3>
-          {check.loginCond ? <Login/> : <SignUp/> }
-          <div className="cust-owner">
-            <button onClick={loginAction}>Customer</button> |
-            <button onClick={signUpAction}>Mess Owner</button>
-          </div>
-        </div>
-      </div>
-
-*/

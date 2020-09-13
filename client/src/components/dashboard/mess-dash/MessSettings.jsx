@@ -10,13 +10,15 @@ const MessSettings = () => {
     <>
       <BrowserRouter>
         <Switch>
-          <div className="Mess-Account d-flex">
-            <LeftSideList />
+          <>
+            <div className="Mess-Account d-flex">
+              <LeftSideList />
               <Route exact path="/mess/settings" component={Mess_user2} />
               <Route path="/mess/mess-user-2" component={Mess_user2} />
               <Route path="/mess/mess-user-3" component={Mess_user3} />
               <Route path="/mess/mess-user-4" component={Mess_user4} />
-          </div>
+            </div>
+          </>
         </Switch>
       </BrowserRouter>
     </>

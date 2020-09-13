@@ -26,7 +26,7 @@ const MessCardData = [
       messName: "tikhat tarri missal",
       ownerName: "Neha Shelar",
       phone: 9999999999,
-      address: "corner vr",
+      address: "corner vr,Akurdi",
       messImg: img1,
     },
     price: {
