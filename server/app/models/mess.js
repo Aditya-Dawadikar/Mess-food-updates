@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const menuSchema = require('./menu');
+
 const messSchema = mongoose.Schema({
     _id: mongoose.Types.ObjectId,
     email: String,
@@ -19,8 +21,8 @@ const messSchema = mongoose.Schema({
             available: Boolean
         }
     },
-    Speciality: [],
-    MenuList: [],
+    Speciality: [{ type: String }],
+    MenuList: [{ menuSchema }],
     Rating: Number,
     Reviews: []
 });

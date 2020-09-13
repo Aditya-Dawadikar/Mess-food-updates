@@ -1,19 +1,40 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
-    try {
-        const token = req.headers.authorization.split(" ")[1];
-        const decoded = jwt.decode(token, process.env.JWT_KEY);
-        if (decoded.role != "customer") {
-            throw new jwt.JsonWebTokenError;
+    const payload = req.headers.authorization;
+    if (payload) {
+        try {
+            const token = payload.split(' ')[1];
+            jwt.verify(token, process.env.JWT_KEY, (err, verified) => {
+                if (err) {
+                    res.status(401).json({
+                        message: "Auth failed",
+                        error: "token expired"
+                    })
+                } else {
+                    const decoded = jwt.decode(token);
+                    if (decoded.role === "customer" || decoded.role === "mess") {
+                        next()
+                    } else {
+                        res.status(401).json({
+                            message: "Auth failed",
+                            error: "cannot grant access to the resource"
+                        })
+                    }
+                }
+            })
+        } catch (err) {
+            res.status(401).json({
+                message: "Auth failed",
+                error: "token was tampered"
+            })
         }
-    } catch (err) {
-        //console.log(err);
+
+
+    } else {
         res.status(401).json({
-            message: "unauthorized user",
-            error: "Permission denied to fetch the resource. This might occur because of invalid access token"
+            message: "Auth failed",
+            error: "token not found"
         })
     }
-
-    next();
 }
