@@ -20,15 +20,15 @@
 .Mess-Account{
     margin: 20px 20px; 
     width: calc(100% - 40px);
-    height: calc(100vh - 40px);
+    height: calc(100vh - 80px);
     background: #FFF8DE;
-    /* border-radius:20px ; */
+    border-radius:20px ;
     /* border: 2px solid red; */
     /* padding: 0 1.5rem; */
 }
 .settings-container{
-    margin: 50px 40px;
-    margin-left: 40px;
+    margin: 15px 40px;
+    /* margin-left: 40px; */
     
     width: 94%;
     height: 100vh;
@@ -36,7 +36,7 @@
 }
 .left-list{
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 120px);
   color: #FFB800;
   list-style: none;
   /* border:2px solid blue; */
@@ -60,7 +60,8 @@
 
 .left-list a li{
   text-align: left;
-  font-size: 20px;
+  height: 50px;
+  font-size: 25px;
 }
 
  /* .left-list li:nth-child(1){

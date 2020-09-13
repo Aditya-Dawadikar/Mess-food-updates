@@ -5,7 +5,7 @@ import "./MessSettings.css";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 
-const Mess_user2 = () => {
+const EditProfile = () => {
   const [messImage, setMessImage] = useState({
     profileImg: messImg,
   });
@@ -130,4 +130,4 @@ const Mess_user2 = () => {
   );
 };
 
-export default Mess_user2;
+export default EditProfile;

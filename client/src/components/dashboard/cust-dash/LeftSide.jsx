@@ -3,22 +3,20 @@ import { NavLink } from "react-router-dom";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 import PersonIcon from "@material-ui/icons/Person";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
-import PostAddIcon from "@material-ui/icons/PostAdd";
-import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import "../../../css/left-side-list.css";
 
 const LeftSide = () => {
     return (
         <div
             className="container-fluid d-flex"
-            style={{ marginLeft: "5%", width: "25%" }}
+            style={{ width: "30%" }}
         >
             <div
                 className="left-list px-2 mt-4"
-                style={{ borderRight: "5px solid #FFB800" }}
+                style={{ borderRight: "7px solid #FFB800" }}
             >
             <li>
-                <div style={{ borderBottom: "5px solid #FFB800",fontSize:"25px" }}>
+                <div style={{ borderBottom: "7px solid #FFB800",fontSize:"25px" }}>
                 <AccountCircleIcon className="mess-account-icon my-2" />
                 My Account
                 </div>
