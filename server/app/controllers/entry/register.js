@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const Customer = require('../../models/customer');
 const Mess = require('../../models/mess');
-const Notification = require('../../modules/smtp');
+const Notification = require('../modules/smtp');
 
 exports.getRegisterPage = (req, res) => {
     res.send("register page");
