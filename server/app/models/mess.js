@@ -22,7 +22,8 @@ const messSchema = mongoose.Schema({
         }
     },
     Speciality: [{ type: String }],
-    MenuList: [{ menuSchema }],
+    //MenuList: [{ menuSchema }],
+    MenuList: [],
     Rating: Number,
     Reviews: []
 });

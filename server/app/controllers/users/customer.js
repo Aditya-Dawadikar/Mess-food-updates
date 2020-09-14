@@ -1,9 +1,16 @@
+const Customer=require('../../models/customer')
+
 exports.getCustomerPage = (req, res) => {
     res.send("customer page");
 }
 
 exports.getAllCustomers = (req, res) => {
-    res.send('sending all customers');
+    console.log("Hi")
+   Customer.find()
+        .exec()
+        .then(docs =>{
+            console.log(docs)
+        })
 }
 
 exports.getCustomerById = (req, res) => {

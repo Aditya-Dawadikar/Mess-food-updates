@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const indexRoutes = require('../controllers/index');
-const emailTest = require('../modules/smtp');
+const emailTest = require('../controllers/modules/smtp');
 
 router.get('/', indexRoutes.getIndexPage);
 

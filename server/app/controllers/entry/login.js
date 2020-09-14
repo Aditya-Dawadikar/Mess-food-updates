@@ -1,7 +1,7 @@
 const Customer = require('../../models/customer');
 const Mess = require('../../models/mess');
 const bcrypt = require('bcrypt');
-const jwttoken = require('../../modules/jwt');
+const jwttoken = require('../modules/jwt');
 
 exports.getLoginPage = (req, res) => {
     res.send("login page");
