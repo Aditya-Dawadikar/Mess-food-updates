@@ -34,6 +34,9 @@ const SignUp = () => {
       .then(function (response) {
         console.log(response);
         if (response.status === 200) window.location = "/mess/dashboard";
+      })
+      .catch(error=>{
+        console.log(error);
       });
   };
 
@@ -44,7 +47,7 @@ const SignUp = () => {
         <div className="main_div">
           <h3 className="switch">
             <button>
-              <NavLink eaxct to="/login/mess">Login</NavLink>
+              <NavLink exact to="/login/mess">Login</NavLink>
             </button>
             |
             <button>
@@ -94,8 +97,8 @@ const SignUp = () => {
             </div>
           </form>
          <div className="switch-user">
-              <button ><NavLink to='/login/customer' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Customer</NavLink></button>
-              <button ><NavLink to='/login/mess' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item">Mess</NavLink></button>
+         <NavLink to='/login/customer' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Customer</button></NavLink>
+          <NavLink to='/login/mess' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Mess</button></NavLink>
           </div>
         </div>
       </div>

@@ -9,7 +9,6 @@ import CustDashboard from "./components/dashboard/cust-dash/Customer.jsx";
 import MessDashboard from "./components/dashboard/mess-dash/Mess.jsx";
 import MessDetails from "./components/dashboard/cust-dash/MessDetails";
 import MessSettings from "./components/dashboard/mess-dash/MessSettings";
-import Mess from "./components/dashboard/mess-dash/Mess.jsx";
 import Settings from './components/dashboard/cust-dash/Settings';
 
 const App = () => {
@@ -17,15 +16,21 @@ const App = () => {
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
+
+        {/* login and signup routes */}
         <Route path="/signup/customer" component={SignUp} />
         <Route path="/login/customer" component={Login} />
         <Route path="/login/mess" component={LoginM} />
         <Route path="/signup/mess" component={SignUpM} />
+
+        {/* dashboard routes */}
         <Route path="/customer/dashboard" component={CustDashboard} />
         <Route path="/mess/dashboard" component={MessDashboard} />
         <Route path="/customer/mess-details" component={MessDetails} />
-        <Route path="/mess/settings" component={MessSettings} />
+
+        {/* Mess and customer Settings Routes */}
         <Route path="/customer/settings" component={Settings} />
+        <Route path="/mess/settings" component={MessSettings} />
       </Switch>
     </BrowserRouter>
   );
@@ -33,20 +38,3 @@ const App = () => {
 
 export default App;
 
-/*
-<div className="containerr">
-        <SignUpImg />
-        <div className="main_div">
-          <h3 className="switch">
-            <button onClick={loginAction}>Login</button> |
-            <button onClick={signUpAction}>SignUp</button>
-          </h3>
-          {check.loginCond ? <Login/> : <SignUp/> }
-          <div className="cust-owner">
-            <button onClick={loginAction}>Customer</button> |
-            <button onClick={signUpAction}>Mess Owner</button>
-          </div>
-        </div>
-      </div>
-
-*/

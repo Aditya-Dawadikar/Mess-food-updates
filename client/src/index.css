@@ -20,7 +20,7 @@
   background: white;
   width: 100%;
   height: 100%;
-  /* overflow-y: scroll; */
+  overflow-y: scroll;
   /* border: 2px solid rgb(5, 38, 223); */
 }
 
@@ -126,35 +126,36 @@ h3 {
   position: absolute;
   outline: none;
   width: -webkit-fill-available;
-  top: 92vh;
+  /* top: 92vh; */
+  bottom: 0;
   display: flex;
   /* border: none; */
   /* border: 2px solid rgb(223, 67, 5); */
 }
 
-.switch-user button{
-  /* background: transparent; */
+.switch-user a button {
+  background: transparent;
   height: 63px;
-  width: 50%;
-}
-
-.switch-user button > a{
+  width: 100%;
+  outline: none;
+  border: none;
   color: black;
   text-decoration: none;
-}
+} 
 
 
-.PageSwitcher__Item {
+.switch-user .PageSwitcher__Item{
   /* background-color: #4C5D72; */
+  width: 50%;
   color: #9DA6B1;
-  padding: 10px 25px;
+  padding: 0px 25px;
   cursor: pointer;
   font-size: 1.9em;
   /* border: none; */
   text-decoration: none;
 }
 
-.PageSwitcher__Item--Active {
+.switch-user .PageSwitcher__Item--Active {
   background-color: #FFB800;
   color: white;
 }
