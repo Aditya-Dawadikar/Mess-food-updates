@@ -1,6 +1,28 @@
 const mongoose = require('mongoose');
 
-const menuSchema = require('./menu');
+//menu subdocument
+const menuSchema = {
+    menuName: String,
+    menuItem: [{
+        type: String,
+        required: true
+    }],
+    price: Number,
+    tag: [
+        { type: String }
+    ]
+}
+
+//reviews sub document
+const reviewsSchema = {
+    comment: {
+        type: String
+    },
+    time: {
+        type: Date
+    }
+}
+
 
 const messSchema = mongoose.Schema({
     _id: mongoose.Types.ObjectId,
@@ -22,10 +44,9 @@ const messSchema = mongoose.Schema({
         }
     },
     Speciality: [{ type: String }],
-    //MenuList: [{ menuSchema }],
-    MenuList: [],
+    MenuList: [menuSchema],
     Rating: Number,
-    Reviews: []
+    Reviews: [reviewsSchema]
 });
 
 module.exports = mongoose.model('mess', messSchema);
