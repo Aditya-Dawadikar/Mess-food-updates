@@ -1,15 +1,65 @@
 const CurrentMenu = require('../../models/currentMenus');
 
 exports.getAllMenus = (req, res) => {
-    res.send("sending all available menus");
+    CurrentMenu.find()
+        .exec()
+        .then(docs => {
+            if(docs.length >=1){
+                res.status(200).json({
+                    message : "success",
+                    CurrentMenu :docs
+                })
+            }
+            else{
+                res.status(200).json({
+                    message : "success",
+                    CurrentMenu : "no current menu available"
+                })
+            }
+        }).catch(err => {
+            res.status(500).json({
+                message : "some error occured while fetching data",
+                error :err
+            })
+        })
+
 }
 
 exports.getMenuById = (req, res) => {
-    res.send("sending available menu by id:" + req.params.id);
+    CurrentMenu.findById({
+        _id:req.params.id
+    }).exec()
+    .then(doc => {
+        res.status(200).json({
+            message :"success",
+            CurrentMenu:doc
+        })
+    }).catch(err => {
+        res.status(500).json({
+            message : "some error occured while fetching data",
+            error :err
+        })
+    })
+
 }
 
 exports.postNewMenu = (req, res) => {
-    res.send("posting new menus");
+    const Menu=new CurrentMenu({
+        messId: req.body.messId,
+        menuId: req.body.menuId
+    })
+    Menu.save()
+        .then(doc => {
+           res.staus(200).json({
+               message :"success",
+               Menu:doc
+           })
+        }).catch(err => {
+            res.status(500).json({
+                message : "some error occured while storing data",
+                error :err
+            })
+        })
 }
 
 exports.updateCurrentMenuById = (req, res) => {
@@ -17,5 +67,17 @@ exports.updateCurrentMenuById = (req, res) => {
 }
 
 exports.deleteCurrentMenuById = (req, res) => {
-    res.send("delete current menu by id:" + req.params.id);
+    CurrentMenu.findByIdAndDelete({
+        _id:req.params.id
+    }).then(result => {
+        res.status(200).json({
+            message :"success",
+            CurrentMenu :result
+        })
+    }).catch(err => {
+        res.status(500).json({
+            message : "some error occured while deleting data",
+            error :err
+        })
+    })
 }

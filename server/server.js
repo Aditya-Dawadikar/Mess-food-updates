@@ -46,7 +46,7 @@ app.use('/api/register', registerRoutes);
 app.use('/api/oauth', oauthRoutes);
 app.use('/api/customer', customerRoutes);
 app.use('/api/mess', messRoutes);
-app.use('/api/currentmess', currentMenuRoutes);
+app.use('/api/currentmenu', currentMenuRoutes);
 //test routes
 app.use('/emailtest', testRoutes);
 
