@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 
 const currentMenuSchema = mongoose.Schema({
     messId: mongoose.Types.ObjectId,
-    menuId: mongoose.Types.ObjectId
+    menuId: mongoose.Types.ObjectId,
+    _id: mongoose.Types.ObjectId,
 })
 
 module.exports = mongoose.model('currentMenu', currentMenuSchema);
