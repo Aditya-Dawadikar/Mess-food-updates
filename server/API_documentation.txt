@@ -213,10 +213,81 @@ mess routes
 		1. success
 		2. failure
 
-------------------------------------------------------
-open authorization route (to be handled later)
+>> /api/mess/new/menu/:id
+	Type: DELETE
+	Params: id
+	Header: Authentication bearer token
+	Body: {
+		"menuItem": [
+			"potato sabji",
+			"chapati",
+			"salad",
+			"papad"
+			],
+		"tag": [
+				"veg",
+				"main course"
+			],
+		"menuName": "newMenu",
+		"price": 55
+	}
+	Response:
+		1. success
+		2. failure
 
->> /api/oauth
+------------------------------------------------------
+current menu routes
+
+>> /api/currentmenu/all
+	Type: GET
+	Params: null
+	Header: Authentication bearer token
+	Body: null
+	Response: 
+		1. success,array of documents
+		2. failure
+
+>> /api/currentmenu/:id
+	Type: GET
+	Params: id
+	Header: Authentication bearer token
+	Body: null
+	Response: 
+		1. success, single document
+		2. failure
+
+>> /api/currentmenu/new
+	Type: POST
+	Params: null
+	Header: Authentication bearer token
+	Body: {
+		    "messId":"5f2a85a17fbbd222a0036c02",
+		    "menuId":"5f6053fc00d6ea2780b29340"
+		}
+	Response: 
+		1. success
+		2. failure
+
+>> /api/currentmenu/update/:id
+	Type:  PATCH
+	Params: id
+	Header: Authentication bearer token
+	Body:{
+			"menuId":"5f6053fc00d6ea2780b29340"
+		}
+	note: the request body may differ depending on the fields to be updated
+	Response: 
+		1. success
+		2. failure
+
+>> /api/currentmenu/delete/:id
+	Type: DELETE
+	Params: id
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
 
 ------------------------------------------------------
 Email routes (to be handled later)

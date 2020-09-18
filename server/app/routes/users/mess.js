@@ -3,7 +3,6 @@ const router = express.Router();
 
 const messAuth = require('../../controllers/auth/messAuth');
 const messControllers = require('../../controllers/users/mess');
-const mess = require('../../models/mess');
 
 router.get('/', messControllers.getMessPage);
 
@@ -21,5 +20,8 @@ router.patch('/update/:id', messAuth, messControllers.updateMessById);
 
 //delete mess
 router.delete('/delete/:id', messAuth, messControllers.deleteMessById);
+
+//add new menu to menu list
+router.patch('/new/menu/:id', messAuth, messControllers.addNewMenu);
 
 module.exports = router;
