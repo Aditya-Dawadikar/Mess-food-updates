@@ -11,11 +11,7 @@ const EditProfile = () => {
   });
 
   const [visible, setVisible] = useState(false);
-  const [changeImg, setChangeimg] =useState(true);
-
-  const changePhoto=()=>{
-    setChangeimg(changeImg);
-  }
+  const [changeImg, setChangeimg] = useState(false);
 
   const imageHandler = (e) => {
     e.preventDefault();
@@ -39,7 +35,11 @@ const EditProfile = () => {
                 style={{ position: "absolute", borderRadius: "10px" }}
               >
                 <label className="image-upload" htmlFor="input">
-                  <div className="mess-img">
+                  <div className="mess-img" onMouseEnter={()=>{
+                    setChangeimg(true)
+                  }} onMouseLeave={()=>{
+                    setChangeimg(!changeImg)
+                  }}>
                     <img
                       src={messImage.profileImg}
                       alt="mess-img"
@@ -56,19 +56,22 @@ const EditProfile = () => {
                     accept="image/*"
                     name="image-upload"
                     id="input"
-                    onChange={imageHandler || changePhoto}
+                    onChange={imageHandler}
                   />
                 </label>
               </div>
-              <div className="hover__icon" onClick={changePhoto}>
+              { changeImg ? <div className="hover__icon" onChange={imageHandler} >
                 <AddPhotoAlternateIcon
                   className="hover__img"
                   style={{ height: "50px", width: "50px", filter: "invert(1)" }}
                 />
-                <h5 className="text-white" style={{ position: "initial" }} >
+                <h5 className="text-white" style={{ position: "initial" }}>
                   Change Photo
                 </h5>
               </div>
+              :null
+              }
+              
             </div>
           </div>
 
@@ -118,10 +121,14 @@ const EditProfile = () => {
               className="form-control"
               id="inputAddress"
               placeholder="Address..."
-              style={{height:"100px"}}
+              style={{ height: "100px" }}
             />
           </div>
-          <button type="submit" className="btn btn-warning text-white d-block mx-auto" style={{width:"7rem"}}>
+          <button
+            type="submit"
+            className="btn btn-warning text-white d-block mx-auto"
+            style={{ width: "7rem" }}
+          >
             Save
           </button>
         </div>

@@ -6,6 +6,8 @@ import CarouselCard from "./CarouselCard";
 import Loader from "react-loader-spinner";
 import axios from "axios";
 
+const base_url="http://localhost:9000"
+
 const Customer = () => {
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -13,7 +15,7 @@ const Customer = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("http://localhost:9000/api/mess/all")
+      .get(base_url+"/api/mess/all")
       .then((res) => {
         console.log(res.data);
         console.log(res.data.Mess);
