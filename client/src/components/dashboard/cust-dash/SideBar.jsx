@@ -15,35 +15,25 @@ const SideBar = () => {
   };
   return (
     <>
-      {/* <div className="navbar-brand"> */}
         <div className="navbar_toggle">
           <div className="menu-bars">
             <FormatListBulletedRoundedIcon onClick={showSideBar} />
           </div>
         </div>
         <nav className={toggle ? "nav-menu active" : "nav-menu"}>
-          <ul className="nav-menu-items" >
-            <li className="nav-toggle" onClick={showSideBar}>
-              <div className="menu-bars mt-4">
+          <ul className="nav-menu-items d-flex pr-4" >
+            <li className="nav-toggle" >
+              <div className="menu-bars mt-4" onClick={showSideBar}>
                 <CloseIcon style={{ color: "white" , transform:"scale(1.3)" }} />
               </div>
             </li>
-            {/* {SideBarInfo.map((item, index) =>{
-             return (
-              <li key={index} className={item.name}>
-                  <Link to={item.path}>
-                      {item.icons}
-                      {item.title}
-                  </Link>
-              </li>
-             );
-          })} */}
-            <div className="sidebar-list">
+            <div className="sidebar-list mt-4">
               <li>My Account</li>
               <li>
                 <AccountCircleIcon className="account-icon"/>
               </li>
               <li>Aditya Dawadikar #121</li>
+              
               <li style={{height:"60px"}}>
               <Badge badgeContent={4} color="error" style={{}}>
               <NotificationsNoneIcon className=" text-white mr-3"/>
@@ -62,7 +52,6 @@ const SideBar = () => {
             </div>
           </ul>
         </nav>
-      {/* </div> */}
     </>
   );
 };
