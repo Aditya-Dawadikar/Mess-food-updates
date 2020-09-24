@@ -39,6 +39,7 @@ exports.customerLogin = (req, res) => {
                         //return response
                         res.status(200).json({
                             message: "success",
+                            userId: doc[0]._id,
                             token: token
                                 /*
                                 refreshToken: refreshToken,
@@ -94,6 +95,7 @@ exports.messLogin = (req, res) => {
                         //return response
                         res.status(200).json({
                             message: "success",
+                            userId: doc[0]._id,
                             token: token
                                 /*
                                 refreshToken: refreshToken,
