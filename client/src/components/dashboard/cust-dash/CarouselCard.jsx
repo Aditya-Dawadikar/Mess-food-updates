@@ -6,7 +6,10 @@ import DirectionsIcon from "@material-ui/icons/Directions";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 
-const CarouselCard = () => {
+
+
+
+const CarouselCard = (props) => {
   return (
     <>
       <div
@@ -29,7 +32,7 @@ const CarouselCard = () => {
                 className="card-title mb-2"
                 style={{ color: "#FFB800", fontSize: "2rem" }}
               >
-                Surya Mess <VerifiedUserIcon className=" text-success" />
+              {props.mess} <VerifiedUserIcon className=" text-success" />
               </h5>
               <div className="mb-3" style={{ color: "#FFB800" }}>
                 <GradeRoundedIcon />
@@ -65,27 +68,20 @@ const CarouselCard = () => {
           >
             <h5 className="mb-4 mt-4">Today's Special</h5>
             <table id="customers">
-            <tbody>
-              <tr>
+              <tbody>
+              
+                {props.menuItem.map((item) => <tr key={item}><td>{item}</td></tr>)}
+              
+              {/* <tr>
                 <td>Special bhaji</td>
                 <td>1bowl</td>
                 <td>7 INR</td>
               </tr>
               <tr>
-                <td>Daal</td>
-                <td>1bowl</td>
-                <td>7 INR</td>
-              </tr>
-              <tr>
-                <td>Rice</td>
-                <td>1bowl</td>
-                <td>10 INR</td>
-              </tr>
-              <tr>
                 <td>Roti</td>
                 <td>5</td>
                 <td>12 INR</td>
-              </tr>
+              </tr> */}
               </tbody>
             </table>
           </div>
@@ -97,7 +93,7 @@ const CarouselCard = () => {
               className="d-block"
               style={{ color: "#FF4D00", transform: "scale(1.2)" }}
             >
-              60
+              {props.price}
             </h1>
             <h4 className="d-flex" style={{ justifyContent: "center" }}>
               INR
