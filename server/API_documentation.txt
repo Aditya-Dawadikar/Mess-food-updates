@@ -199,7 +199,8 @@ mess routes
 			    }
 			}
 		}
-	note: the request body may differ depending on the fields to be updated
+	note 1: the request body may differ depending on the fields to be updated.
+	note 2: If this request is used to update the MenuList, then it will rewrite entire MenuList array.
 	Response: 
 		1. success
 		2. failure
@@ -209,28 +210,6 @@ mess routes
 	Params: id
 	Header: Authentication bearer token
 	Body: null
-	Response:
-		1. success
-		2. failure
-
->> /api/mess/new/menu/:id
-	Type: DELETE
-	Params: id
-	Header: Authentication bearer token
-	Body: {
-		"menuItem": [
-			"potato sabji",
-			"chapati",
-			"salad",
-			"papad"
-			],
-		"tag": [
-				"veg",
-				"main course"
-			],
-		"menuName": "newMenu",
-		"price": 55
-	}
 	Response:
 		1. success
 		2. failure
@@ -283,6 +262,66 @@ current menu routes
 >> /api/currentmenu/delete/:id
 	Type: DELETE
 	Params: id
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
+
+------------------------------------------------------
+MenuList routes
+
+>>/api/menu/all/:messId
+	Type: GET
+	Params: messid
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
+
+>> /api/menu/new/:messid
+	Type: POST
+	Params: id
+	Header: Authentication bearer token
+	Body: {
+		"menuItem": [
+            {
+                "itemName": "Dal",
+                "quantity": "Unlimited",
+                "price": 15        
+            },
+            {
+                "itemName": "Rice",
+                "quantity": "Unlimited",
+                "price": 15        
+            }
+        ],
+		"tag": [
+				"veg",
+				"main course"
+			],
+		"menuName": "newMenu02",
+		"price": 32
+	}
+	Response:
+		1. success
+		2. failure
+
+>>/api/menu/update/:messid/:menuid
+	Type: PATCH
+	Params: messid,menuid
+	Header: Authentication bearer token
+	Body: {
+		//will put something here later
+	}
+	Response:
+		1. success
+		2. failure
+
+>>/api/menu/delete/:messid/:menuid
+	Type: GET
+	Params: messid
 	Header: Authentication bearer token
 	Body: null
 	Response:
