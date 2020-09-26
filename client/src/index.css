@@ -161,10 +161,17 @@ form .inputForm h1 {
 }
 
 
+.logout{
+  border-radius: 25px; 
+  width: 6rem;
+  position: absolute;
+  margin-left: 40%;
 
+}
 .cust-owner{
   position: absolute;
   display: flex;
+  flex-direction: column;
 }
 
 .main_div {

@@ -23,6 +23,9 @@ const NavBar = () => {
           <button className="btn btn-warning ml-2 " type="submit">
             <BiSearchAlt className=" text-white" style={{ transform: "scale(1.5)"}} />
           </button>
+          <button className="btn btn-warning text-white logout" >
+            Logout
+          </button>
         </form>
       </nav>
     </>

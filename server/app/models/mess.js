@@ -1,12 +1,16 @@
 const mongoose = require('mongoose');
 
+//menu item sub document
+const menuItemSchema = {
+    itemName: String,
+    quantity: String,
+    price: Number,
+}
+
 //menu subdocument
 const menuSchema = {
     menuName: String,
-    menuItem: [{
-        type: String,
-        required: true
-    }],
+    menuItem: [menuItemSchema],
     price: Number,
     tag: [
         { type: String }

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
@@ -7,35 +7,47 @@ import SignUpImg from "../SignUpImg";
 import axios from "axios";
 
 const SignUp = () => {
-  const [user, setFullName] = useState({
-    password: "",
-    email: "",
-  });
+  const [username, setUsername] = useState("");
+  const [password,setPassword ] = useState("");
+  const [user,setUser] = useState({});
+  
+  useEffect(() => {
+    const loggedInUser = localStorage.getItem('user');
+    console.log(loggedInUser);
+    if(loggedInUser){
+      const foundUser = JSON.parse(loggedInUser);
+      setUser(foundUser);
+    }
+  }, []);
 
-  const inputEvent = (e) => {
-    const { name, value } = e.target;
-
-    setFullName((preValue) => {
-      return {
-        ...preValue,
-        [name]: value,
-      };
-    });
-  };
-
-  const onSubmit = (e) => {
+  if(user){
+    window.location = "/customer/dashboard";
+    const x=localStorage.getItem('user');
+    console.log(x.token);
+  }
+  const onSubmit = async e => {
     e.preventDefault();
-    console.log(user);
-    axios
-      .post("http://localhost:9000/api/login/customer", {
-        email: user.email,
-        password: user.password,
-      })
-      .then(function (response) {
-        console.log(response);
-        if (response.status === 200) window.location = "/customer/dashboard";
-      });
+    try{
+        const user = { username, password };
+        //send username & password to server
+        const response = await axios.post(
+          "http://localhost:9000/api/login/customer", {
+            email:username,
+            password:password
+          }
+          
+        );
+        //set the state of user
+        setUser(response.data)
+        //store the user in localStorage
+        localStorage.setItem('user', response.data);
+        console.log(response.data);
+    }catch(err){
+      console.error(err);
+    }
   };
+  
+  
 
   return (
     <>
@@ -59,10 +71,10 @@ const SignUp = () => {
               <div className="inputTag">
                 <input
                   type="email"
-                  placeholder="Enter Your EmailID"
+                  placeholder="Enter Your username"
                   name="email"
-                  onChange={inputEvent}
-                  value={user.email}
+                  onChange={({ target }) => setUsername(target.value) }
+                  value={username}
                 />
                 <EmailOutlinedIcon
                   style={{
@@ -77,8 +89,8 @@ const SignUp = () => {
                   type="password"
                   placeholder="Enter Your password"
                   name="password"
-                  onChange={inputEvent}
-                  value={user.password}
+                  onChange={({ target }) => setPassword(target.value) }
+                  value={password}
                 />
                 <LockOutlinedIcon
                   style={{
