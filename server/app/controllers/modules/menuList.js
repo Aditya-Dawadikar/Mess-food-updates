@@ -1,7 +1,21 @@
 const Mess = require('../../models/mess');
 
 exports.getMyMenus = async(req, res) => {
-    console.log("send all menus from");
+    Mess.findById({
+        _id:req.params.messid
+    }).exec()
+    .then(doc => {
+        res.status(200).json({
+            messsage:"success",
+            Mess:doc.MenuList
+        })
+    })
+    .catch(err=>{
+        res.status(500).json({
+            message:"some error occured while fetching data",
+            error:err
+        })
+    })
 }
 
 //addNewMenu to the mess document
@@ -43,11 +57,55 @@ exports.addNewMenu = async(req, res) => {
 }
 
 exports.updateMenuById = async(req, res) => {
-    console.log("updating menu");
-    console.log(req.params.messid, req.params.menuid);
+   let menuArray=[]
+    await Mess.findById({
+        _id:req.params.messid
+    }).then(doc => {
+        menuArray=doc.MenuList
+    })
+    let ind=menuArray.findIndex(menu => {
+        console.log(menu._id)
+        return String(menu._id)===String(req.params.menuid)
+    })
+    menuArray.splice(ind,1,req.body)
+    await Mess.findByIdAndUpdate({_id:req.params.messid},{MenuList:menuArray})
+    .then(doc => {
+        res.status(200).json({
+            message : "success",
+            doc: doc
+        })
+    })
+    .catch(err => {
+        res.status(500).json({
+            message: "some error occured while updating data",
+            error: err
+        })
+    })
 }
 
 exports.deleteMenuById = async(req, res) => {
-    console.log("deleting menu");
-    console.log(req.params.messid, req.params.menuid);
+    let menuArray=[]
+    await Mess.findById({
+        _id:req.params.messid
+    }).then(doc => {
+        menuArray=doc.MenuList
+    })
+    let ind=menuArray.findIndex(menu => {
+        console.log(menu._id)
+        return String(menu._id)===String(req.params.menuid)
+    })
+    menuArray.splice(ind,1)
+    Mess.findByIdAndUpdate({_id:req.params.messid},{MenuList:menuArray})
+    .then(doc => {
+        res.status(200).json({
+            message : "success",
+            doc: doc
+        })
+    })
+    .catch(err => {
+        res.status(500).json({
+            message: "some error occured while updating data",
+            error: err
+        })
+    })
 }
