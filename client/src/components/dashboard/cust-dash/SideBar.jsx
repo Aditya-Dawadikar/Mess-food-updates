@@ -35,10 +35,9 @@ const SideBar = () => {
               <li>Aditya Dawadikar #121</li>
               
               <li style={{height:"60px"}}>
-              <Badge badgeContent={4} color="error" style={{}}>
-              <NotificationsNoneIcon className=" text-white mr-3"/>
+              <Badge className="mr-3" badgeContent={4} color="error" style={{}}>
+              <NotificationsNoneIcon className=" text-white"/>
               </Badge>
-                {/* <NotificationsNoneIcon className=" mr-3"/> */}
                 Notifications
               </li>
               <li>

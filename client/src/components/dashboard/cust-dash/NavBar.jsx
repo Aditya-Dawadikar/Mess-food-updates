@@ -12,7 +12,7 @@ const NavBar = () => {
           <Route path="/"/>
           </Switch>
         </BrowserRouter> */}
-        <form className="form-inline mx-auto" style={{ width: "465px" }}>
+        <form className="form-inline mx-auto" style={{ width: "435px" }}>
           <input
             className="form-control rounded-pill w-75"
             style={{border: "1.5px solid" }}

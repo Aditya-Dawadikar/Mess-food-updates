@@ -1,6 +1,7 @@
 import React from "react";
 import "./MessSettings.css";
 import EditIcon from '@material-ui/icons/Edit';
+import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 
 const MySavedMenu = () => {
   return (
