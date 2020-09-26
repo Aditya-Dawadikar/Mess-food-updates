@@ -36,7 +36,8 @@ const customerRoutes = require('./app/routes/users/customer');
 const messRoutes = require('./app/routes/users/mess');
 const oauthRoutes = require('./app/routes/entry/oauth');
 const currentMenuRoutes = require('./app/routes/modules/currentMenu');
-
+const menuRoutes = require('./app/routes/modules/menuList');
+//test routes handlers
 const testRoutes = require('./app/routes/index');
 
 //routes
@@ -46,6 +47,7 @@ app.use('/api/register', registerRoutes);
 app.use('/api/oauth', oauthRoutes);
 app.use('/api/customer', customerRoutes);
 app.use('/api/mess', messRoutes);
+app.use('/api/menu', menuRoutes);
 app.use('/api/currentmenu', currentMenuRoutes);
 //test routes
 app.use('/emailtest', testRoutes);
