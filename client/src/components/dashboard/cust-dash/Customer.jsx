@@ -12,7 +12,7 @@ const Customer = () => {
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentMenu, setCurrentMenu] = useState([]);
-  const [firstMenu,setFirstMenu] = useState({});
+  
 
   useEffect(() => {
     setLoading(true);
@@ -34,7 +34,6 @@ const Customer = () => {
       .then((res) => {
         console.log(res.data);
         console.log(res.data.availableMenus);
-        setFirstMenu(res.data);
         setCurrentMenu(res.data.availableMenus);
       })
       .catch((err) => {
