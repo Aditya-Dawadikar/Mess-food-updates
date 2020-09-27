@@ -11,6 +11,8 @@ const base_url="http://localhost:9000"
 const Customer = () => {
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [currentMenu, setCurrentMenu] = useState([]);
+  
 
   useEffect(() => {
     setLoading(true);
@@ -27,6 +29,16 @@ const Customer = () => {
       .catch((err) => {
         console.log(`${err}:some error while fetching mess-all data`);
       });
+    axios
+      .get(base_url+"/api/currentmenu/all")
+      .then((res) => {
+        console.log(res.data);
+        console.log(res.data.availableMenus);
+        setCurrentMenu(res.data.availableMenus);
+      })
+      .catch((err) => {
+        console.log(`${err}:some error while fetching current menu data`);
+      });  
   }, []);
   return (
     <>
@@ -40,15 +52,38 @@ const Customer = () => {
             data-ride="carousel"
           >
             <div className="carousel-inner">
-              <div className="carousel-item active ">
-                <CarouselCard />
-              </div>
-              <div className="carousel-item">
-                <CarouselCard />
-              </div>
-              <div className="carousel-item">
-                <CarouselCard />
-              </div>
+              
+                {currentMenu.splice(0,1).map((messInfo) => {
+                  return(
+                    <div className="carousel-item active" key={messInfo.menu._id}>
+                      <CarouselCard 
+                          
+                          menuItem={messInfo.menu.menuItem}
+                          menuName={messInfo.menu.menuName}
+                          price={messInfo.menu.price}
+                          mess={messInfo.messDetails.messName} 
+                        />
+                    </div> 
+                   );
+                 })   
+                }
+              
+              
+               {currentMenu.slice(1).map((messInfo) => {
+                  return(
+                    <div className="carousel-item" key={messInfo.menu._id}>
+                      <CarouselCard 
+                          
+                          menuItem={messInfo.menu.menuItem}
+                          menuName={messInfo.menu.menuName}
+                          price={messInfo.menu.price}
+                          mess={messInfo.messDetails.messName} 
+                        />
+                    </div>  
+                  );
+                })
+                }
+              
             </div>
             <a
               className="carousel-control-prev"
