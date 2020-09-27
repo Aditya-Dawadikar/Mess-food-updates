@@ -106,7 +106,25 @@ exports.deleteMessById = (req, res) => {
         })
 }
 
-exports.getMessByQuery = (req, res) => {
-    //use fuzzy search method
-    console.log("sending all matching results");
+exports.getMessByQuery = async(req, res) => {
+    await Mess.find( /*some code goes here */ )
+        .then(doc => {
+            if (doc.length === 1) {
+                res.status(200).json({
+                    message: "success",
+                    Mess: doc
+                });
+            } else {
+                res.status(400).json({
+                    message: "no mess found",
+                    Mess: null
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "some error occured while fetching data",
+                error: err
+            })
+        })
 }
