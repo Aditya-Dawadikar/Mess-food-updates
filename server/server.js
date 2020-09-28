@@ -23,7 +23,8 @@ const uri = process.env.DB_CONNECTION_STRING;
 mongoose.connect(
     uri, {
         useNewUrlParser: true,
-        useUnifiedTopology: true
+        useUnifiedTopology: true,
+        useFindAndModify: false
     }, () => {
         console.log("connected to database");
     })
