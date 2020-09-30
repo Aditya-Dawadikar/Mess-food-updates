@@ -1,4 +1,5 @@
 const Mess = require('../../models/mess');
+const Customer = require('../../models/customer');
 
 exports.getAllMess = (req, res) => {
     Mess.find()
@@ -89,8 +90,59 @@ exports.updateMessById = (req, res) => {
         })
 }
 
-exports.deleteMessById = (req, res) => {
-    Mess.findByIdAndDelete({ _id: req.params.id })
+exports.deleteMessById = async(req, res) => {
+    //remove inconsitency
+    let subArray = [];
+    await Mess.findById({ _id: req.params.id })
+        .then(doc => {
+            subArray = doc.subscribers;
+        })
+        .catch(err => {
+            console.log("first");
+            console.log(err);
+            res.status(500).json({
+                message: "some error occured while fetching data",
+                error: err
+            });
+        })
+
+    //removing this mess from all subscribers
+    for (let i = 0; i < subArray.length; i++) {
+        let customer = subArray[i];
+        console.log(subArray[i]);
+        let savedMessTempArray = [];
+        await Customer.findById({ _id: customer.customerId })
+            .then(doc => {
+                savedMessTempArray = doc.savedMess;
+            })
+            .catch(err => {
+                console.log("second");
+                res.status(500).json({
+                    message: "some error occured while fetching data",
+                    error: err
+                });
+            })
+
+        let ind = savedMessTempArray.findIndex(mess => {
+            return String(mess.messId) === String(req.param.id);
+        })
+        savedMessTempArray.splice(ind, 1);
+
+        await Customer.findByIdAndUpdate({ _id: customer.customerId }, { savedMess: savedMessTempArray })
+            .then(doc => {
+                console.log(doc)
+            })
+            .catch(err => {
+                res.status(500).json({
+                    message: "some error occured while updating data",
+                    error: err
+                });
+            })
+    }
+    //end of remove inconsistency
+
+
+    await Mess.findByIdAndDelete({ _id: req.params.id })
         .exec()
         .then(doc => {
             res.status(200).json({
