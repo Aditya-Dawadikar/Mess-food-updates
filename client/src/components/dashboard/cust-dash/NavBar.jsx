@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BiSearchAlt } from "react-icons/bi";
 import SideBar from "./SideBar";
 
 const NavBar = () => {
+
+  const logout=()=>{
+    localStorage.removeItem('token');
+    localStorage.removeItem('userId');
+  }
+  useEffect(()=>{
+    if(!localStorage.getItem('token'))
+    window.location = "/login/customer"
+  },[])
   return (
     <>
       <nav className="navbar navbar-fixed-top mt-3">
@@ -23,7 +32,7 @@ const NavBar = () => {
           <button className="btn btn-warning ml-2 " type="submit">
             <BiSearchAlt className=" text-white" style={{ transform: "scale(1.5)"}} />
           </button>
-          <button className="btn btn-warning text-white logout" >
+          <button className="btn btn-warning text-white logout" onClick={logout}>
             Logout
           </button>
         </form>
