@@ -20,19 +20,16 @@ const TaskListContextProvider = (props) => {
   // Add tasks
   const addTask = title => {
     setTasks([...tasks, { title, id: uuid() }]) 
-    props.addList(tasks);
   }
   
   // Remove tasks
   const removeTask = id => {
     setTasks(tasks.filter(task => task.id !== id))
-    props.addList(tasks);
   }
   
   // Clear tasks
   const clearList = () => {
     setTasks([])
-    props.addList(tasks);
   }
   
   // Find task
@@ -49,7 +46,6 @@ const TaskListContextProvider = (props) => {
 
     setTasks(newTasks)
     setEditItem(null)
-    props.addList(tasks);
   }
 
   return (

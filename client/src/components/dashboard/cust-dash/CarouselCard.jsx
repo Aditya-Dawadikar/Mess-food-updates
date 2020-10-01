@@ -6,9 +6,6 @@ import DirectionsIcon from "@material-ui/icons/Directions";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 
-
-
-
 const CarouselCard = (props) => {
   return (
     <>
@@ -32,7 +29,7 @@ const CarouselCard = (props) => {
                 className="card-title mb-2"
                 style={{ color: "#FFB800", fontSize: "2rem" }}
               >
-              {props.mess} <VerifiedUserIcon className=" text-success" />
+                {props.mess} <VerifiedUserIcon className=" text-success" />
               </h5>
               <div className="mb-3" style={{ color: "#FFB800" }}>
                 <GradeRoundedIcon />
@@ -50,7 +47,7 @@ const CarouselCard = (props) => {
                   style={{ color: "#FF4D00", transform: "scale(1.5)" }}
                 />
                 <span className="ml-3">
-                  Krushna Chowk, Akurdi
+                  {props.address}
                   <p className=" d-block">
                     5 km from Pccoe
                     <DirectionsIcon
@@ -69,10 +66,14 @@ const CarouselCard = (props) => {
             <h5 className="mb-4 mt-4">Today's Special</h5>
             <table id="customers">
               <tbody>
-              
-                {props.menuItem.map((item) => <tr key={item}><td>{item}</td></tr>)}
-              
-              {/* <tr>
+                {props.menuItem.map((item) => (
+                  <tr key={item._id}>
+                    <td>{item.itemName}</td>
+                    <td>{item.quantity}</td>
+                    <td>{item.price}</td>
+                  </tr>
+                ))}
+                {/* <tr>
                 <td>Special bhaji</td>
                 <td>1bowl</td>
                 <td>7 INR</td>
