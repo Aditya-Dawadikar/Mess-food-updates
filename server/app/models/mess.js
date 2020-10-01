@@ -27,6 +27,10 @@ const reviewsSchema = {
     }
 }
 
+const subscriberSchema = {
+    customerId: mongoose.Types.ObjectId
+}
+
 
 const messSchema = mongoose.Schema({
     _id: mongoose.Types.ObjectId,
@@ -50,7 +54,8 @@ const messSchema = mongoose.Schema({
     Speciality: [{ type: String }],
     MenuList: [menuSchema],
     Rating: Number,
-    Reviews: [reviewsSchema]
+    Reviews: [reviewsSchema],
+    subscribers: [subscriberSchema]
 });
 
 module.exports = mongoose.model('mess', messSchema);

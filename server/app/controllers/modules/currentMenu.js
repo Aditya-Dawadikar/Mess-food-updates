@@ -34,6 +34,7 @@ exports.getAllMenus = async(req, res) => {
                     for (let j = 0; j < tempMenuArray.length; j++) {
                         if (String(tempMenuArray[j]._id) === String(currentMessArray[i].menuId)) {
                             menuObject = {
+                                identification: currentMessArray[i],
                                 messDetails: doc.messDetails,
                                 menu: tempMenuArray[j]
                             }
