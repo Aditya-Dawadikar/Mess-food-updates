@@ -50,6 +50,7 @@ exports.getAllMenus = async(req, res) => {
             availableMenus: finalMenuArray
         })
     } catch (error) {
+        console.log(error)
         res.status(500).json({
             message: "some error occured while fetching data",
             error: error

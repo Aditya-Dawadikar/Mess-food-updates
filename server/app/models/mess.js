@@ -31,7 +31,6 @@ const subscriberSchema = {
     customerId: mongoose.Types.ObjectId
 }
 
-
 const messSchema = mongoose.Schema({
     _id: mongoose.Types.ObjectId,
     email: String,
