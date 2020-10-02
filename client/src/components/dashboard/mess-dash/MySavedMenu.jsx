@@ -7,7 +7,7 @@ const MySavedMenu = () => {
     <div className="mt-4" style={{ width: "70%" }}>
       <div className="edit-profile ml-1 container">
         <div style={{ backgroundColor: "#FFF8DE" }}>
-          <ul class="col sm-12 mess-menus">
+          <ul className="col sm-12 mess-menus">
             <li>
               Aloo Sabji, Roti, Dal Rice, Papad, Pickle, Taak
               <img
@@ -19,7 +19,7 @@ const MySavedMenu = () => {
             <li><EditIcon style={{color:"#FFB800"}}/></li>
             <li>Veg</li>
           </ul>
-          <ul class="col my-2 sm-12 mess-menus">
+          <ul className="col my-2 sm-12 mess-menus">
             <li>
               Khichadi , Dahi, Sabudana wada
               <img
@@ -31,7 +31,7 @@ const MySavedMenu = () => {
             <li><EditIcon style={{color:"#FFB800"}}/></li>
             <li>Veg</li>
           </ul>
-          <ul class="col sm-12 mess-menus">
+          <ul className="col sm-12 mess-menus">
             <li>
               Paneer, Roti, Fried Rice, Dal tadka
               <img
@@ -43,7 +43,7 @@ const MySavedMenu = () => {
             <li><EditIcon style={{color:"#FFB800"}}/></li>
             <li>Veg</li>
           </ul>
-          <ul class="col sm-12 mess-menus">
+          <ul className="col sm-12 mess-menus">
             <li>
               Shwarma Vegeta
               <img
@@ -55,7 +55,7 @@ const MySavedMenu = () => {
             <li><EditIcon style={{color:"#FFB800"}}/></li>
             <li>Veg</li>
           </ul>
-          <ul class="col sm-12 mess-menus">
+          <ul className="col sm-12 mess-menus">
             <li>
               Dal Khicdi,dal bath
               <img

@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
@@ -7,47 +7,50 @@ import SignUpImg from "../SignUpImg";
 import axios from "axios";
 
 const SignUp = () => {
-  const [username, setUsername] = useState("");
-  const [password,setPassword ] = useState("");
-  const [user,setUser] = useState({});
-  
-  useEffect(() => {
-    const loggedInUser = localStorage.getItem('user');
-    console.log(loggedInUser);
-    if(loggedInUser){
-      const foundUser = JSON.parse(loggedInUser);
-      setUser(foundUser);
-    }
-  }, []);
+  const initialState = localStorage.getItem('token');
+  const [custToken, setCustToken]=useState(initialState);
+  const [mess, setUser] = useState({
+    password: "",
+    email: "",
+  });
 
-  if(user){
-    window.location = "/customer/dashboard";
-    const x=localStorage.getItem('user');
-    console.log(x.token);
-  }
-  const onSubmit = async e => {
-    e.preventDefault();
-    try{
-        const user = { username, password };
-        //send username & password to server
-        const response = await axios.post(
-          "http://localhost:9000/api/login/customer", {
-            email:username,
-            password:password
-          }
-          
-        );
-        //set the state of user
-        setUser(response.data)
-        //store the user in localStorage
-        localStorage.setItem('user', response.data);
-        console.log(response.data);
-    }catch(err){
-      console.error(err);
-    }
+  useEffect(()=>{
+    if(custToken)
+    window.location = "/customer/dashboard"
+  },[custToken])
+
+
+  const inputEvent = (e) => {
+    const { name, value } = e.target;
+
+    setUser((preValue) => {
+      return {
+        ...preValue,
+        [name]: value,
+      };
+    });
   };
   
-  
+  const onSubmit = (e) => {
+    e.preventDefault();
+    console.log(mess);
+    axios
+      .post("http://localhost:9000/api/login/customer", {
+        email: mess.email,
+        password: mess.password,
+      })
+      .then(response => {
+        console.log(response.data);
+        localStorage.setItem('token',response.data.token)
+        localStorage.setItem('userId',response.data.userId)
+        setCustToken(response.data);
+        // console.log(custToken);
+        if (response.status === 200) window.location = "/mess/dashboard";
+      })
+      .catch(error=>{
+        console.log(error);
+      });
+  };
 
   return (
     <>
@@ -56,11 +59,11 @@ const SignUp = () => {
         <div className="main_div">
           <h3 className="switch">
             <button>
-              <NavLink to="/login/customer">Login</NavLink>
+              <NavLink exact to="/login/customer">Login</NavLink>
             </button>
             |
             <button>
-              <NavLink to="/signup/customer">SignUp</NavLink>
+              <NavLink exact to="/signup/customer">SignUp</NavLink>
             </button>
           </h3>
           <form onSubmit={onSubmit} autoComplete="off">
@@ -71,10 +74,10 @@ const SignUp = () => {
               <div className="inputTag">
                 <input
                   type="email"
-                  placeholder="Enter Your username"
+                  placeholder="Enter Your EmailID"
                   name="email"
-                  onChange={({ target }) => setUsername(target.value) }
-                  value={username}
+                  onChange={inputEvent}
+                  value={mess.email}
                 />
                 <EmailOutlinedIcon
                   style={{
@@ -89,8 +92,8 @@ const SignUp = () => {
                   type="password"
                   placeholder="Enter Your password"
                   name="password"
-                  onChange={({ target }) => setPassword(target.value) }
-                  value={password}
+                  onChange={inputEvent}
+                  value={mess.password}
                 />
                 <LockOutlinedIcon
                   style={{
@@ -105,8 +108,8 @@ const SignUp = () => {
               </div>
             </div>
           </form>
-          <div className="switch-user">
-          <NavLink to='/login/customer' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Customer</button></NavLink>
+         <div className="switch-user">
+         <NavLink to='/login/customer' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Customer</button></NavLink>
           <NavLink to='/login/mess' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Mess</button></NavLink>
           </div>
         </div>
@@ -116,3 +119,4 @@ const SignUp = () => {
 };
 
 export default SignUp;
+

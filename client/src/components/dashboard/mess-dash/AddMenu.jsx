@@ -68,7 +68,7 @@ const AddMenu = () => {
             <div className="main">
               {/* <TaskListContextProvider > */}
               <TaskListContextProvider addList={addList}>
-                <TaskForm addList={addList} />
+                <TaskForm />
                 <TaskList />
               </TaskListContextProvider>
             </div>

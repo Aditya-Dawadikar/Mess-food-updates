@@ -6,40 +6,43 @@ import CarouselCard from "./CarouselCard";
 import Loader from "react-loader-spinner";
 import axios from "axios";
 
-const base_url="http://localhost:9000"
+const base_url = "http://localhost:9000";
 
 const Customer = () => {
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentMenu, setCurrentMenu] = useState([]);
-  
 
   useEffect(() => {
     setLoading(true);
     axios
-      .get(base_url+"/api/mess/all")
+      .get(base_url + "/api/mess/all")
       .then((res) => {
         console.log(res.data);
-        console.log(res.data.Mess);
+        // console.log(res.data.Mess);
         setState(res.data.Mess);
-        setLoading(false);
+        
         // alert("CUSTOMER DASHBOARD LOADED SUCCESFULLY");
         //we can also add toast ...
       })
       .catch((err) => {
         console.log(`${err}:some error while fetching mess-all data`);
       });
+
     axios
-      .get(base_url+"/api/currentmenu/all")
+      .get(base_url + "/api/currentmenu/all")
       .then((res) => {
-        console.log(res.data);
+        console.log(res);
         console.log(res.data.availableMenus);
         setCurrentMenu(res.data.availableMenus);
+        setLoading(false);
       })
       .catch((err) => {
         console.log(`${err}:some error while fetching current menu data`);
-      });  
+      });
+      
   }, []);
+
   return (
     <>
       <NavBar />
@@ -52,38 +55,32 @@ const Customer = () => {
             data-ride="carousel"
           >
             <div className="carousel-inner">
-              
-                {currentMenu.splice(0,1).map((messInfo) => {
-                  return(
-                    <div className="carousel-item active" key={messInfo.menu._id}>
-                      <CarouselCard 
-                          
-                          menuItem={messInfo.menu.menuItem}
-                          menuName={messInfo.menu.menuName}
-                          price={messInfo.menu.price}
-                          mess={messInfo.messDetails.messName} 
-                        />
-                    </div> 
-                   );
-                 })   
-                }
-              
-              
-               {currentMenu.slice(1).map((messInfo) => {
-                  return(
-                    <div className="carousel-item" key={messInfo.menu._id}>
-                      <CarouselCard 
-                          
-                          menuItem={messInfo.menu.menuItem}
-                          menuName={messInfo.menu.menuName}
-                          price={messInfo.menu.price}
-                          mess={messInfo.messDetails.messName} 
-                        />
-                    </div>  
-                  );
-                })
-                }
-              
+              {currentMenu.splice(0, 1).map((messInfo) => {
+                return (
+                  <div className="carousel-item active" key={messInfo.menu._id}>
+                    <CarouselCard
+                      menuItem={messInfo.menu.menuItem}
+                      menuName={messInfo.menu.menuName}
+                      price={messInfo.menu.price}
+                      mess={messInfo.messDetails.messName}
+                      address={messInfo.messDetails.address}
+                    />
+                  </div>
+                );
+              })}
+
+              {currentMenu.slice(1).map((messInfo) => {
+                return (
+                  <div className="carousel-item" key={messInfo.menu._id}>
+                    <CarouselCard
+                      menuItem={messInfo.menu.menuItem}
+                      menuName={messInfo.menu.menuName}
+                      price={messInfo.menu.price}
+                      mess={messInfo.messDetails.messName}
+                    />
+                  </div>
+                );
+              })}
             </div>
             <a
               className="carousel-control-prev"
@@ -154,5 +151,4 @@ const Customer = () => {
     </>
   );
 };
-
 export default Customer;
