@@ -44,7 +44,7 @@ const SideBar = () => {
                 <BookmarkBorderIcon className=" mr-3"/>
                 My Saved Mess
               </li>
-              <li>
+              <li onClick={()=>window.location='settings'} style={{cursor:"pointer"}}>
                 <SettingsIcon className=" mr-2"/>
                 Settings
               </li>

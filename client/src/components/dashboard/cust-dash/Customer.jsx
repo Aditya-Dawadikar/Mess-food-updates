@@ -14,6 +14,7 @@ const Customer = () => {
   const [currentMenu, setCurrentMenu] = useState([]);
 
   useEffect(() => {
+    if (!localStorage.getItem("token")) window.location = "/login/customer";
     setLoading(true);
     axios
       .get(base_url + "/api/mess/all")
@@ -21,7 +22,7 @@ const Customer = () => {
         console.log(res.data);
         // console.log(res.data.Mess);
         setState(res.data.Mess);
-        
+
         // alert("CUSTOMER DASHBOARD LOADED SUCCESFULLY");
         //we can also add toast ...
       })
@@ -40,7 +41,6 @@ const Customer = () => {
       .catch((err) => {
         console.log(`${err}:some error while fetching current menu data`);
       });
-      
   }, []);
 
   return (

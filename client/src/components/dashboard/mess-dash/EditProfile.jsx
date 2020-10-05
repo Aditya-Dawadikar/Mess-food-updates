@@ -1,11 +1,21 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import messImg from "../../../imgs/food1_1.jpg";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import "./MessSettings.css";
 import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
+import axios from "axios";
 
 const EditProfile = () => {
+  const getId = localStorage.getItem("userIdMess");
+
+  const [mess, setMess] = useState({
+    messName: "",
+    ownerName: "",
+    email: "",
+    address: "",
+  });
+
   const [messImage, setMessImage] = useState({
     profileImg: messImg,
   });
@@ -24,6 +34,30 @@ const EditProfile = () => {
     reader.readAsDataURL(e.target.files[0]);
   };
 
+  const { messName, ownerName, email, address } = mess;
+
+  const changeEvent = (e) => {
+    const { name, value } = e.target;
+    setMess({ ...mess, [name]: value });
+  };
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:9000/api/mess/${getId}`)
+      .then((res) => {
+        console.log(res.data);
+        setMess({
+          messName: res.data.Mess[0].messDetails.messName,
+          ownerName: res.data.Mess[0].messDetails.ownerName,
+          address: res.data.Mess[0].messDetails.address,
+          email: res.data.Mess[0].email,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [getId]);
+
   return (
     <>
       <form style={{ width: "70%" }}>
@@ -35,11 +69,15 @@ const EditProfile = () => {
                 style={{ position: "absolute", borderRadius: "10px" }}
               >
                 <label className="image-upload" htmlFor="input">
-                  <div className="mess-img" onMouseEnter={()=>{
-                    setChangeimg(true)
-                  }} onMouseLeave={()=>{
-                    setChangeimg(!changeImg)
-                  }}>
+                  <div
+                    className="mess-img"
+                    onMouseEnter={() => {
+                      setChangeimg(true);
+                    }}
+                    onMouseLeave={() => {
+                      setChangeimg(!changeImg);
+                    }}
+                  >
                     <img
                       src={messImage.profileImg}
                       alt="mess-img"
@@ -60,29 +98,48 @@ const EditProfile = () => {
                   />
                 </label>
               </div>
-              { changeImg ? <div className="hover__icon" onChange={imageHandler} >
-                <AddPhotoAlternateIcon
-                  className="hover__img"
-                  style={{ height: "50px", width: "50px", filter: "invert(1)" }}
-                />
-                <h5 className="text-white" style={{ position: "initial" }}>
-                  Change Photo
-                </h5>
-              </div>
-              :null
-              }
-              
+              {changeImg ? (
+                <div className="hover__icon" onChange={imageHandler}>
+                  <AddPhotoAlternateIcon
+                    className="hover__img"
+                    style={{
+                      height: "50px",
+                      width: "50px",
+                      filter: "invert(1)",
+                    }}
+                  />
+                  <h5 className="text-white" style={{ position: "initial" }}>
+                    Change Photo
+                  </h5>
+                </div>
+              ) : null}
             </div>
           </div>
 
           <div className="form-row">
             <div className="form-group col-md-6">
               <label htmlFor="MessName">Mess Name</label>
-              <input type="text" className="form-control" id="MessName" />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Mess Name"
+                id="MessName"
+                name="messName"
+                value={messName}
+                onChange={(e) => changeEvent(e)}
+              />
             </div>
             <div className="form-group col-md-6">
               <label htmlFor="OwnerName">Owner Name</label>
-              <input type="text" className="form-control" id="OwnerName" />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Owner Name"
+                id="OwnerName"
+                name="ownerName"
+                value={ownerName}
+                onChange={(e) => changeEvent(e)}
+              />
             </div>
           </div>
           <div className="form-row">
@@ -93,6 +150,9 @@ const EditProfile = () => {
                 className="form-control"
                 id="inputEmail4"
                 placeholder="abc@gmail.com"
+                name="email"
+                value={email}
+                onChange={(e) => changeEvent(e)}
               />
             </div>
             <div className="form-group col-md-6">
@@ -121,6 +181,9 @@ const EditProfile = () => {
               className="form-control"
               id="inputAddress"
               placeholder="Address..."
+              name="address"
+              value={address}
+              onChange={(e) => changeEvent(e)}
               style={{ height: "100px" }}
             />
           </div>

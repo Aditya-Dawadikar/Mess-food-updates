@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
@@ -7,10 +7,17 @@ import SignUpImg from "../SignUpImg";
 import axios from "axios";
 
 const SignUp = () => {
+  const initialState = localStorage.getItem('tokenMess');
+  const [messToken, setMessToken]=useState(initialState);
   const [mess, setUser] = useState({
     password: "",
     email: "",
   });
+
+  useEffect(()=>{
+    if(messToken)
+    window.location = "/mess/dashboard"
+  },[messToken])
 
   const inputEvent = (e) => {
     const { name, value } = e.target;
@@ -33,6 +40,9 @@ const SignUp = () => {
       })
       .then(function (response) {
         console.log(response);
+        localStorage.setItem('tokenMess',response.data.token)
+        localStorage.setItem('userIdMess',response.data.userId)
+        setMessToken(response.data);
         if (response.status === 200) window.location = "/mess/dashboard";
       })
       .catch(error=>{
