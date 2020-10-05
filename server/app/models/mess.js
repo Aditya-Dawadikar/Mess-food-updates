@@ -19,6 +19,7 @@ const menuSchema = {
 
 //reviews sub document
 const reviewsSchema = {
+    rating: Number,
     comment: {
         type: String
     },
@@ -28,7 +29,7 @@ const reviewsSchema = {
 }
 
 const subscriberSchema = {
-    customerId: mongoose.Types.ObjectId
+    subscriptionId: mongoose.Types.ObjectId
 }
 
 const messSchema = mongoose.Schema({

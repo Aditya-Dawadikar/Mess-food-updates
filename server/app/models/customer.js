@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
 
 const savedMessSchema = {
-    messId: mongoose.Schema.Types.ObjectId,
-    messName: String
+    subscriptionId: mongoose.Types.ObjectId
 }
 
 

@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 
-const saveMessController = require('../../controllers/modules/saveMess');
+const subscriptionController = require('../../controllers/modules/subscription');
 
 //save mess feature
-router.post('/save/:custId/:messId', saveMessController.subscribe);
+router.post('/subscribe/:custId/:messId', subscriptionController.subscribe);
 
-router.delete('/remove/:subId', saveMessController.unsubscribe);
+router.delete('/unsubscribe/:subId', subscriptionController.unsubscribe);
 
 
 module.exports = router;
