@@ -1,6 +1,4 @@
-const customer = require('../../models/customer');
 const Customer = require('../../models/customer')
-const Mess = require('../../models/mess')
 
 exports.getCustomerPage = (req, res) => {
     res.send("customer page");
@@ -89,56 +87,6 @@ exports.updateCustomerById = (req, res) => {
 }
 
 exports.deleteCustomerById = async(req, res) => {
-    //remove inconsistency
-    let savedMessArray = [];
-    await Customer.findById({ _id: req.params.id })
-        .then(doc => {
-            savedMessArray = doc.savedMess;
-        })
-        .catch(err => {
-            console.log("first");
-            console.log(err);
-            res.status(500).json({
-                message: "some error occured while fetching data",
-                error: err
-            });
-        })
-
-    //removing this subsciber from all mess
-    for (let i = 0; i < savedMessArray.length; i++) {
-        let mess = savedMessArray[i];
-        console.log(savedMessArray[i]);
-        let subscriberArray = [];
-        await Mess.findById({ _id: mess.messId })
-            .then(doc => {
-                subscriberArray = doc.subscribers;
-            })
-            .catch(err => {
-                console.log("second");
-                res.status(500).json({
-                    message: "some error occured while fetching data",
-                    error: err
-                });
-            })
-
-        let ind = subscriberArray.findIndex(customer => {
-            return String(customer.customerId) === String(req.param.id);
-        })
-        subscriberArray.splice(ind, 1);
-
-        await Mess.findByIdAndUpdate({ _id: mess.messId }, { subscribers: subscriberArray })
-            .then(doc => {
-                console.log(doc)
-            })
-            .catch(err => {
-                res.status(500).json({
-                    message: "some error occured while updating data",
-                    error: err
-                });
-            })
-    }
-    //end of remove inconsistency
-
     Customer.findByIdAndDelete({
         _id: req.params.id
     }).then(result => {
