@@ -6,6 +6,7 @@ const Account = () => {
     <>
       <div 
       onClick={()=>{window.location='settings'}}
+      style={{transform:"scale(2)"}}
       >
         <AccountCircleIcon style={{cursor:"pointer"}} />
       </div>
