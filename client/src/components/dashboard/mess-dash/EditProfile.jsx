@@ -70,6 +70,17 @@ const EditProfile = () => {
       .catch((err) => console.log(err + " error mila hai"));
   };
 
+  const onDelete=(e)=>{
+   e.preventDefault();
+   authAxiosMess
+      .delete(`http://localhost:9000/api/mess/delete/${getId}`)
+      .then((res) => {
+        alert("deleted...");
+        if (res.status === 200) window.location = "/signup/mess";
+      })
+      .catch((err) => console.log(err + " error mila hai delete karne par"));
+  }
+
   useEffect(() => {
     axios
       .get(`http://localhost:9000/api/mess/${getId}`)
@@ -142,6 +153,16 @@ const EditProfile = () => {
                   </h5>
                 </div>
               ) : null}
+            </div>
+            <div>
+              <button
+                type="submit"
+                className="btn btn-danger text-white"
+                style={{ width: "7rem",position:"absolute",right:"60px" }}
+                onClick={onDelete}
+              >
+                Delete
+              </button>
             </div>
           </div>
 
