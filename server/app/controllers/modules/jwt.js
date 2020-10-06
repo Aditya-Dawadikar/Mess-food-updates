@@ -27,5 +27,19 @@ module.exports = class Authorization {
         return token;
     }
 
+    //send forgot password token
+    createForgotPasswordToken(email, userId, role, time) {
+        const token = jwt.sign({
+                email: email,
+                userId: userId,
+                role: role
+            },
+            process.env.JWT_KEY, {
+                expiresIn: time
+            }
+        );
+        return token
+    }
+
     //verify token 
 }
