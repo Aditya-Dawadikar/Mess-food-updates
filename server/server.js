@@ -30,7 +30,6 @@ mongoose.connect(
     })
 
 //require routes handlers
-const indexRoutes = require('./app/routes/index');
 const loginRoutes = require('./app/routes/entry/login');
 const registerRoutes = require('./app/routes/entry/register');
 const customerRoutes = require('./app/routes/users/customer');
@@ -40,10 +39,9 @@ const currentMenuRoutes = require('./app/routes/modules/currentMenu');
 const menuRoutes = require('./app/routes/modules/menuList');
 const subscriptionRoutes = require('./app/routes/modules/subscription');
 //test routes handlers
-const testRoutes = require('./app/routes/index');
+//const testRoutes = require('./app/routes/index');
 
 //routes
-app.use('/', indexRoutes);
 app.use('/api/login', loginRoutes);
 app.use('/api/register', registerRoutes);
 app.use('/api/oauth', oauthRoutes);
@@ -53,7 +51,7 @@ app.use('/api/menu', menuRoutes);
 app.use('/api/currentmenu', currentMenuRoutes);
 app.use('/api/subscription', subscriptionRoutes);
 //test routes
-app.use('/emailtest', testRoutes);
+//app.use('/emailtest', testRoutes);
 
 app.listen(9000, () => {
     console.log("app running on port:" + 9000);

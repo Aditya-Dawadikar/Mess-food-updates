@@ -28,6 +28,12 @@ const reviewsSchema = {
     }
 }
 
+//posted menu sub document
+const postedMenuSchema = {
+    postId: mongoose.Types.ObjectId
+}
+
+//subscription sub document
 const subscriberSchema = {
     subscriptionId: mongoose.Types.ObjectId
 }
@@ -55,7 +61,8 @@ const messSchema = mongoose.Schema({
     MenuList: [menuSchema],
     Rating: Number,
     Reviews: [reviewsSchema],
-    subscribers: [subscriberSchema]
+    subscribers: [subscriberSchema],
+    postedMenu: [postedMenuSchema]
 });
 
 module.exports = mongoose.model('mess', messSchema);
