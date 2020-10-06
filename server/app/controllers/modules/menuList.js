@@ -89,9 +89,11 @@ exports.deleteMenuById = async(req, res) => {
     await Mess.findById({ _id: req.params.messid })
         .then(doc => {
             menuArray = doc.MenuList
-            postsArray = postedMenu
+            postsArray = doc.postedMenu
+            console.log(doc.postedMenu)
         })
         .catch(err => {
+            console.log("here")
             res.status(500).json({
                 message: "some error occured while removing data",
                 error: err
@@ -106,12 +108,18 @@ exports.deleteMenuById = async(req, res) => {
     menuArray.splice(ind, 1)
 
     //inconsistency removal
-    for (post in postsArray) {
-        removeDocFromCurrentMenuIfMenuFound(post.postId, req.params.menuid)
+    try{
+        for (let i=0;i<postsArray.length;i++) {
+           removeDocFromCurrentMenuIfMenuFound(postsArray[i].postId, req.params.menuid)
+        }
+    }catch(err){
+        console.log(err)
     }
 
+    
+
     //final update
-    Mess.findByIdAndUpdate({ _id: req.params.messid }, { MenuList: menuArray })
+    await Mess.findByIdAndUpdate({ _id: req.params.messid }, { MenuList: menuArray })
         .then(doc => {
             res.status(200).json({
                 message: "success",
@@ -125,13 +133,6 @@ exports.deleteMenuById = async(req, res) => {
             })
         })
 }
-
-/*
-On deletion of menu from menuArray
-1. find the menu in current menu list and delete it as well
-    a. remove the relation
-    b. delete from current menu collection
-*/
 
 async function removeDocFromCurrentMenuIfMenuFound(postId, menuId) {
     await CurrentMenu.findById({ _id: postId })
