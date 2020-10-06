@@ -19,7 +19,6 @@ exports.getMyMenus = async(req, res) => {
         })
 }
 
-//addNewMenu to the mess document
 exports.addNewMenu = async(req, res) => {
     let originalMenuList = [];
     let newMenu = req.body;
@@ -86,16 +85,11 @@ exports.updateMenuById = async(req, res) => {
 
 exports.deleteMenuById = async(req, res) => {
     let menuArray = []
-    await Mess.findById({
-        _id: req.params.messid
-    }).then(doc => {
-        menuArray = doc.MenuList
-    })
-
-    //remove inconsistency by deleting the redundent document from currentmenu collection
-    await CurrentMenu.findOneAndDelete({ messId: req.params.messid, menuId: req.params.menuid }, { useFindAndModify: false })
+    let postsArray = []
+    await Mess.findById({ _id: req.params.messid })
         .then(doc => {
-            console.log("inconsistency removed");
+            menuArray = doc.MenuList
+            postsArray = postedMenu
         })
         .catch(err => {
             res.status(500).json({
@@ -104,12 +98,19 @@ exports.deleteMenuById = async(req, res) => {
             })
         })
 
-    //remove the menu from mess owner collection
+
     let ind = menuArray.findIndex(menu => {
         console.log(menu._id)
         return String(menu._id) === String(req.params.menuid)
     })
     menuArray.splice(ind, 1)
+
+    //inconsistency removal
+    for (post in postsArray) {
+        removeDocFromCurrentMenuIfMenuFound(post.postId, req.params.menuid)
+    }
+
+    //final update
     Mess.findByIdAndUpdate({ _id: req.params.messid }, { MenuList: menuArray })
         .then(doc => {
             res.status(200).json({
@@ -122,5 +123,54 @@ exports.deleteMenuById = async(req, res) => {
                 message: "some error occured while updating data",
                 error: err
             })
+        })
+}
+
+/*
+On deletion of menu from menuArray
+1. find the menu in current menu list and delete it as well
+    a. remove the relation
+    b. delete from current menu collection
+*/
+
+async function removeDocFromCurrentMenuIfMenuFound(postId, menuId) {
+    await CurrentMenu.findById({ _id: postId })
+        .then(doc => {
+            if (String(doc.menuId) === String(menuId))
+                var messId = doc.messId
+            CurrentMenu.findByIdAndDelete({ _id: postId })
+                .then(doc => {
+                    console.log(doc);
+                    removePostFromMessDoc(postId, messId)
+                }).catch(err => {
+                    throw new Error(err)
+                })
+        })
+        .catch(err => {
+            throw new Error(err)
+        })
+}
+
+async function removePostFromMessDoc(postId, messId) {
+    let pMenu = []
+    await Mess.findById({ _id: messId })
+        .then(doc => {
+            pMenu = doc.postedMenu;
+        })
+        .catch(err => {
+            throw new Error(err)
+        })
+
+    let ind = pMenu.findIndex(post => {
+        return String(post.postId) === String(postId)
+    })
+    pMenu.splice(ind, 1);
+
+    await Mess.findByIdAndUpdate({ _id: messId }, { postedMenu: pMenu })
+        .then(doc => {
+            console.log(doc)
+        })
+        .catch(err => {
+            throw new Error(err)
         })
 }
