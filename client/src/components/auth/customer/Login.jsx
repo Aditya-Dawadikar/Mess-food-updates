@@ -45,7 +45,7 @@ const SignUp = () => {
         localStorage.setItem('userId',response.data.userId)
         setCustToken(response.data);
         // console.log(custToken);
-        if (response.status === 200) window.location = "/mess/dashboard";
+        if (response.status === 200) window.location = "/customer/dashboard";
       })
       .catch(error=>{
         console.log(error);

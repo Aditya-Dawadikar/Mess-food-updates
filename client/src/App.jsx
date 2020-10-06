@@ -13,6 +13,7 @@ import Settings from './components/dashboard/cust-dash/Settings';
 
 const App = () => {
   return (
+    <>
     <BrowserRouter>
       <Switch>
         <Route exact path="/" component={Login} />
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/mess/settings" component={MessSettings} />
       </Switch>
     </BrowserRouter>
+    </>
   );
 };
 
