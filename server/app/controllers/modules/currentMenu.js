@@ -84,6 +84,7 @@ exports.postNewMenu = (req, res) => {
     })
     menu.save()
         .then(doc => {
+            addCollectionIdToPostArray(req.body.messId,doc._id)
             res.status(200).json({
                 message: "success",
                 Menu: doc
@@ -94,6 +95,28 @@ exports.postNewMenu = (req, res) => {
                 error: err
             })
         })
+}
+
+async function addCollectionIdToPostArray(messId,postId){
+    let postArray=[]
+    await Mess.findById({_id:messId})
+    .then(doc => {
+        postArray=doc.postedMenu;
+    }).catch(err => {
+        throw new Error(err)
+    })
+
+    let postObject = {
+        postId : postId
+    }
+    postArray.push(postObject);
+
+    await Mess.findByIdAndUpdate({_id:messId},{postedMenu:postArray})
+    .then(doc => {
+        console.log(doc)
+    }).catch(err => {
+        throw new Error(err)
+    })
 }
 
 exports.updateCurrentMenuById = (req, res) => {
