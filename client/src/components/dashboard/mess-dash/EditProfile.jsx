@@ -161,7 +161,7 @@ const EditProfile = () => {
                 type={visible ? "text" : "password"}
                 className="form-control"
                 id="inputPassword4"
-                placeholder="password"
+                placeholder="*********"
                 autoComplete="off"
               />
               <span

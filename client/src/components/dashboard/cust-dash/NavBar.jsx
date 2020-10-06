@@ -5,25 +5,27 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Account from "../mess-dash/Account";
 
 const NavBar = () => {
-  const logout = () => {
+  function logout() {
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("tokenMess");
     localStorage.removeItem("userIdMess");
-  };
-  useEffect(() => {
-    // if (!localStorage.getItem("token")) window.location = "/login/customer";
-    if (!localStorage.getItem("tokenMess")) window.location = "/login/mess";
-  }, []);
+  }
+  // useEffect(() => {
+  //   if (!localStorage.getItem("token")) window.location = "/login/customer";
+  //   if (!localStorage.getItem("tokenMess")) window.location = "/login/mess";
+  // }, []);
   return (
     <>
       <nav className="navbar navbar-fixed-top mt-3">
         <BrowserRouter>
           <Switch>
-            <div className="text-warning">
-              <Route path="/customer/dashboard" component={SideBar} />
-              <Route path="/mess/dashboard" component={Account} />
-            </div>
+            <>
+              <div className="text-warning">
+                <Route path="/customer/dashboard" component={SideBar} />
+                <Route path="/mess/dashboard" component={Account} />
+              </div>
+            </>
           </Switch>
         </BrowserRouter>
         <form className="form-inline mx-auto" style={{ width: "435px" }}>
