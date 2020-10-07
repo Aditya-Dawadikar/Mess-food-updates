@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import axios from 'axios';
+import { authAxiosCust } from "../../../App";
 
 const EditProfile = () => {
     const id=localStorage.getItem("userId");
@@ -36,7 +37,7 @@ const EditProfile = () => {
     const handleSubmit = e => {
         console.log(details);
         e.preventDefault();
-        axios
+        authAxiosCust
            .patch(`http://localhost:9000/api/customer/update/${id}`,{
                 email: email,
                 name: name,
