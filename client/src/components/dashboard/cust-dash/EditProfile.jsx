@@ -51,6 +51,21 @@ const EditProfile = () => {
                console.log(err);
            })
     };
+ 
+    const handleDelete = e => {
+        e.preventDefault();
+        authAxiosCust
+           .delete(`http://localhost:9000/api/customer/delete/${id}`)
+           .then(res => {
+               alert('Account deleted successfully');
+               localStorage.clear();
+               window.location = '/login/customer';
+           })
+           .catch(err => {
+               alert('Some error occured during deletion :( Please try again later');
+               console.log(err);
+           })
+    };
 
     return (
       <div className="container" style={{width:"65%",marginTop:"50px"}}>
@@ -77,7 +92,7 @@ const EditProfile = () => {
             </div>
 
             <button type="submit" onClick={handleSubmit} className="btn bg-warning text-light">Save</button>
-            <button type="submit"  className="btn bg-danger text-light">Delete Account</button>
+            <button type="submit" onClick={handleDelete} className="btn bg-danger text-light">Delete Account</button>
         </form>
       </div>
     )
