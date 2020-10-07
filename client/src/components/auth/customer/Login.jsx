@@ -48,6 +48,7 @@ const SignUp = () => {
         if (response.status === 200) window.location = "/customer/dashboard";
       })
       .catch(error=>{
+        alert('Wrong username or password');
         console.log(error);
       });
   };
