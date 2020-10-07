@@ -15,13 +15,17 @@ import axios from "axios";
 const token = localStorage.getItem("tokenMess");
 const tokenCust = localStorage.getItem("token");
 
+axios.defaults.baseURL = "http://localhost:9000/";
+
 export const authAxiosMess = axios.create({
+  baseURL: "http://localhost:9000/",
   headers: {
     Authorization: `Bearer ${token}`,
   },
 });
 
 export const authAxiosCust = axios.create({
+  baseURL: "http://localhost:9000/",
   headers: {
     Authorization: `Bearer ${tokenCust}`,
   },

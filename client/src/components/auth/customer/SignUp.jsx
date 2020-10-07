@@ -31,7 +31,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log(user);
     axios
-      .post("http://localhost:9000/api/register/customer", {
+      .post("api/register/customer", {
         name: user.fullName,
         email: user.email,
         password: user.password,

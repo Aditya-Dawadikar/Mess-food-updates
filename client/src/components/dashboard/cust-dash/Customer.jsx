@@ -6,7 +6,6 @@ import CarouselCard from "./CarouselCard";
 import Loader from "react-loader-spinner";
 import axios from "axios";
 
-const base_url = "http://localhost:9000";
 
 const Customer = () => {
   const [state, setState] = useState([]);
@@ -17,7 +16,7 @@ const Customer = () => {
     if (!localStorage.getItem("token")) window.location = "/login/customer";
     setLoading(true);
     axios
-      .get(base_url + "/api/mess/all")
+      .get("api/mess/all")
       .then((res) => {
         console.log(res.data);
         // console.log(res.data.Mess);
@@ -31,7 +30,7 @@ const Customer = () => {
       });
 
     axios
-      .get(base_url + "/api/currentmenu/all")
+      .get("api/currentmenu/all")
       .then((res) => {
         console.log(res);
         console.log(res.data.availableMenus);

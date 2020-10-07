@@ -45,7 +45,7 @@ const EditProfile = () => {
     console.log(mess);
     e.preventDefault();
     authAxiosMess
-      .patch(`http://localhost:9000/api/mess/update/${getId}`, {
+      .patch(`api/mess/update/${getId}`, {
         email: mess.email,
         messDetails: {
           messName: mess.messName,
@@ -70,20 +70,10 @@ const EditProfile = () => {
       .catch((err) => console.log(err + " error mila hai"));
   };
 
-  const onDelete=(e)=>{
-   e.preventDefault();
-   authAxiosMess
-      .delete(`http://localhost:9000/api/mess/delete/${getId}`)
-      .then((res) => {
-        alert("deleted...");
-        if (res.status === 200) window.location = "/signup/mess";
-      })
-      .catch((err) => console.log(err + " error mila hai delete karne par"));
-  }
 
   useEffect(() => {
     axios
-      .get(`http://localhost:9000/api/mess/${getId}`)
+      .get(`api/mess/${getId}`)
       .then((res) => {
         console.log(res.data);
         setMess({
@@ -101,11 +91,12 @@ const EditProfile = () => {
   const handleDelete = e => {
     e.preventDefault();
     authAxiosMess
-       .delete(`http://localhost:9000/api/mess/delete/${getId}`)
+       .delete(`api/mess/delete/${getId}`)
        .then(res => {
            alert('Account deleted successfully');
-           localStorage.clear();
-           window.location = '/login/mess';
+           localStorage.removeItem("userIdMess");
+           localStorage.removeItem("tokenMess");
+           window.location = '/signup/mess';
        })
        .catch(err => {
           alert('Some error occured during deletion :( Please try again later');
@@ -168,16 +159,6 @@ const EditProfile = () => {
                   </h5>
                 </div>
               ) : null}
-            </div>
-            <div>
-              <button
-                type="submit"
-                className="btn btn-danger text-white"
-                style={{ width: "7rem",position:"absolute",right:"60px" }}
-                onClick={onDelete}
-              >
-                Delete
-              </button>
             </div>
           </div>
 
