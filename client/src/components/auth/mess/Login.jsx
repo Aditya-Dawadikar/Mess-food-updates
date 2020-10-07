@@ -34,7 +34,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log(mess);
     axios
-      .post("http://localhost:9000/api/login/mess", {
+      .post("api/login/mess", {
         email: mess.email,
         password: mess.password,
       })

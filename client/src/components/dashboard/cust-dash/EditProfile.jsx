@@ -13,7 +13,7 @@ const EditProfile = () => {
     
     useEffect(() => {
         axios
-          .get(`http://localhost:9000/api/customer/${id}`)
+          .get(`api/customer/${id}`)
           .then((res) => {
               console.log(res.data);
               setDetails({
@@ -38,7 +38,7 @@ const EditProfile = () => {
         console.log(details);
         e.preventDefault();
         authAxiosCust
-           .patch(`http://localhost:9000/api/customer/update/${id}`,{
+           .patch(`api/customer/update/${id}`,{
                 email: email,
                 name: name,
                 phone: phone
@@ -55,11 +55,12 @@ const EditProfile = () => {
     const handleDelete = e => {
         e.preventDefault();
         authAxiosCust
-           .delete(`http://localhost:9000/api/customer/delete/${id}`)
+           .delete(`api/customer/delete/${id}`)
            .then(res => {
                alert('Account deleted successfully');
-               localStorage.clear();
-               window.location = '/login/customer';
+               localStorage.removeItem("userId");
+               localStorage.removeItem("token");
+               window.location = '/signup/customer';
            })
            .catch(err => {
                alert('Some error occured during deletion :( Please try again later');

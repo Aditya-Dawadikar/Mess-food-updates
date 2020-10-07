@@ -40,7 +40,7 @@ const SignUp = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(mess);
-    axios.post('http://localhost:9000/api/register/mess',{
+    axios.post('api/register/mess',{
       "email": mess.email,
       "password": mess.password,
       "messDetails": {
