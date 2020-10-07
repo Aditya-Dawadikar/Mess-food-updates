@@ -98,9 +98,24 @@ const EditProfile = () => {
       });
   }, [getId]);
 
+  const handleDelete = e => {
+    e.preventDefault();
+    authAxiosMess
+       .delete(`http://localhost:9000/api/mess/delete/${getId}`)
+       .then(res => {
+           alert('Account deleted successfully');
+           localStorage.clear();
+           window.location = '/login/mess';
+       })
+       .catch(err => {
+          alert('Some error occured during deletion :( Please try again later');
+          console.log(err);
+       })
+ };
+
   return (
     <>
-      <form style={{ width: "70%" }}>
+      <form style={{ width: "70%" ,height:"100rem" }}>
         <div className="edit-profile ml-1 container">
           <div className="photo container mt-3" style={{ height: "15rem" }}>
             <div className="label">
@@ -245,6 +260,7 @@ const EditProfile = () => {
           >
             Save
           </button>
+          <button type="submit" onClick={handleDelete} className="btn bg-danger text-light">Delete Account</button>
         </div>
       </form>
     </>
