@@ -2,7 +2,6 @@
 const mongoose = require('mongoose');
 
 const OTPSchema = new mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
     otp: {
         type: Number,
         required: true
@@ -20,6 +19,8 @@ const OTPSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-})
+}, { timestamps: true })
+
+OTPSchema.index({ "createdAt": 1 }, { expireAfterSeconds: 60 * 5 });
 
 module.exports = mongoose.model('OTP', OTPSchema);

@@ -64,7 +64,7 @@ const SignUp = () => {
               <NavLink exact to="/signup/mess">SignUp</NavLink>
             </button>
           </h3>
-          <form onSubmit={onSubmit} autoComplete="off">
+          <form onSubmit={onSubmit} autoComplete="on">
             <div className="inputForm">
               <h1>
                 Login <FastfoodIcon />

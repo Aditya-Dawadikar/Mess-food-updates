@@ -21,7 +21,7 @@ const NavBar = () => {
         <BrowserRouter>
           <Switch>
             <>
-              <div className="text-warning">
+              <div className="text-warning" style={{padding:"15px"}}>
                 <Route path="/customer/dashboard" component={SideBar} />
                 <Route path="/mess/dashboard" component={Account} />
               </div>

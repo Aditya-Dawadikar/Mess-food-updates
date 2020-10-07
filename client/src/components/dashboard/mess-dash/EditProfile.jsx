@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import messImg from "../../../imgs/food1_1.jpg";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 import "./MessSettings.css";
-import { FaEye } from "react-icons/fa";
-import { FaEyeSlash } from "react-icons/fa";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
+import { authAxiosMess } from "../../../App";
 
 const EditProfile = () => {
   const getId = localStorage.getItem("userIdMess");
@@ -39,6 +39,35 @@ const EditProfile = () => {
   const changeEvent = (e) => {
     const { name, value } = e.target;
     setMess({ ...mess, [name]: value });
+  };
+
+  const onSubmit = (e) => {
+    console.log(mess);
+    e.preventDefault();
+    authAxiosMess
+      .patch(`http://localhost:9000/api/mess/update/${getId}`, {
+        email: mess.email,
+        messDetails: {
+          messName: mess.messName,
+          ownerName: mess.ownerName,
+          phone: 9999999999,
+          address: mess.address,
+        },
+        price: {
+          homeDelivery: {
+            available: true,
+            DeliveryCharge: null,
+          },
+          onVenue: {
+            available: true,
+          },
+        },
+      })
+      .then((res) => {
+        console.log(res);
+        alert("updated");
+      })
+      .catch((err) => console.log(err + " error mila hai"));
   };
 
   useEffect(() => {
@@ -161,7 +190,7 @@ const EditProfile = () => {
                 type={visible ? "text" : "password"}
                 className="form-control"
                 id="inputPassword4"
-                placeholder="*********"
+                placeholder="**********"
                 autoComplete="off"
               />
               <span
@@ -191,6 +220,7 @@ const EditProfile = () => {
             type="submit"
             className="btn btn-warning text-white d-block mx-auto"
             style={{ width: "7rem" }}
+            onClick={onSubmit}
           >
             Save
           </button>
