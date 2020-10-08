@@ -2,7 +2,7 @@ const Mess = require('../../models/mess');
 
 exports.getAllMess = (req, res) => {
     Mess.find()
-        .exec()
+        .select('messDetails Speciality -__v')
         .then(docs => {
             if (docs.length >= 1) {
                 res.status(200).json({
@@ -28,7 +28,7 @@ exports.getAllMess = (req, res) => {
 exports.getMessById = (req, res) => {
     id = req.params.id;
     Mess.find({ _id: id })
-        .exec()
+        .select('-password -__v')
         .then(doc => {
             res.status(200).json({
                 message: "success",

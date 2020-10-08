@@ -39,6 +39,9 @@ const oauthRoutes = require('./app/routes/entry/oauth');
 const currentMenuRoutes = require('./app/routes/modules/currentMenu');
 const menuRoutes = require('./app/routes/modules/menuList');
 const subscriptionRoutes = require('./app/routes/modules/subscription');
+const searchbarRoutes = require('./app/routes/modules/searchbar');
+const messFeatureRoutes = require('./app/routes/modules/messFeatures');
+const customerFeatureRoutes = require('./app/routes/modules/customerFeatures');
 //test routes handlers
 //const testRoutes = require('./app/routes/index');
 
@@ -52,6 +55,9 @@ app.use('/api/mess', messRoutes);
 app.use('/api/menu', menuRoutes);
 app.use('/api/currentmenu', currentMenuRoutes);
 app.use('/api/subscription', subscriptionRoutes);
+app.use('/api/search', searchbarRoutes);
+app.use('/api/mess/features', messFeatureRoutes);
+app.use('/api/customer/features', customerFeatureRoutes);
 //test routes
 //app.use('/emailtest', testRoutes);
 
