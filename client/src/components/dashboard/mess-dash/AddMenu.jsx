@@ -46,13 +46,11 @@ const AddMenu = () => {
       .post(`api/menu/new/${getId}`, menuData)
       .then((res) => {
         console.log(res);
-        console.log("added menu successfully");
+        alert("menu added successfully");
       })
       .catch((err) => console.log(err));
 
     console.log(menu);
-    console.log(menu.menuItem[0].title);
-    console.log(menu.menuItem.length);
   };
 
   return (
