@@ -5,13 +5,15 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import TaskListContextProvider from "./TaskListContext";
 import TaskList from "./TaskList";
 import TaskForm from "./TaskForm";
+import { authAxiosMess } from "../../../App";
 
 const AddMenu = () => {
+  const getId = localStorage.getItem("userIdMess");
   const [menu, setMenu] = useState({
     menuName: "",
     tag: "",
     price: "",
-    menuItem: "",
+    menuItem: [],
   });
 
   const addMenu = (e) => {
@@ -30,8 +32,27 @@ const AddMenu = () => {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault();
+    e.preventDefault();    
+    const menuData = {
+      menuItem: menu.menuItem.map((idx) => {
+       return ({itemName: idx.title})
+      }),
+      tag: menu.tag,
+      menuName: menu.menuName,
+      price: menu.price,
+    };
+
+    authAxiosMess
+      .post(`api/menu/new/${getId}`, menuData)
+      .then((res) => {
+        console.log(res);
+        console.log("added menu successfully");
+      })
+      .catch((err) => console.log(err));
+
     console.log(menu);
+    console.log(menu.menuItem[0].title);
+    console.log(menu.menuItem.length);
   };
 
   return (
