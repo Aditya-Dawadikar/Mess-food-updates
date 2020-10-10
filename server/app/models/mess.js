@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 //menu item sub document
 const menuItemSchema = {
     itemName: String,
-    quantity: String,
-    price: Number,
 }
 
 //menu subdocument

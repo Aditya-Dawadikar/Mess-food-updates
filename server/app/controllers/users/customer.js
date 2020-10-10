@@ -1,12 +1,8 @@
 const Customer = require('../../models/customer')
 
-exports.getCustomerPage = (req, res) => {
-    res.send("customer page");
-}
-
-exports.getAllCustomers = (req, res) => {
-    Customer.find()
-        .exec()
+exports.getAllCustomers = async(req, res) => {
+    await Customer.find()
+        .select('-password -savedMess -__v')
         .then(docs => {
             if (docs.length >= 1) {
                 res.status(200).json({
@@ -28,10 +24,10 @@ exports.getAllCustomers = (req, res) => {
         })
 }
 
-exports.getCustomerById = (req, res) => {
+exports.getCustomerById = async(req, res) => {
     Customer.findById({
             _id: req.params.id
-        }).exec()
+        }).select('-password -__v')
         .then(doc => {
             res.status(200).json({
                 messsage: "success",
@@ -46,7 +42,7 @@ exports.getCustomerById = (req, res) => {
         })
 }
 
-exports.getCustomerByEmail = (req, res) => {
+exports.getCustomerByEmail = async(req, res) => {
     Customer.find({
             email: req.body.email
         }).exec()
@@ -63,7 +59,7 @@ exports.getCustomerByEmail = (req, res) => {
         })
 }
 
-exports.updateCustomerById = (req, res) => {
+exports.updateCustomerById = async(req, res) => {
     var updateOps = req.body;
 
     for (const ops in updateOps) {

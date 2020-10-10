@@ -4,8 +4,6 @@ const customerAuth = require('../../controllers/auth/customerAuth');
 
 const customerController = require('../../controllers/users/customer');
 
-router.get('/', customerController.getCustomerPage);
-
 //get all customers
 router.get('/all', customerController.getAllCustomers);
 

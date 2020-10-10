@@ -2,7 +2,7 @@ const Mess = require('../../models/mess');
 
 exports.getAllMess = (req, res) => {
     Mess.find()
-        .exec()
+        .select('messDetails Speciality -__v')
         .then(docs => {
             if (docs.length >= 1) {
                 res.status(200).json({
@@ -28,7 +28,7 @@ exports.getAllMess = (req, res) => {
 exports.getMessById = (req, res) => {
     id = req.params.id;
     Mess.find({ _id: id })
-        .exec()
+        .select('-password -__v')
         .then(doc => {
             res.status(200).json({
                 message: "success",
@@ -103,28 +103,5 @@ exports.deleteMessById = async(req, res) => {
                 message: "some error occured while deleting data",
                 error: err
             });
-        })
-}
-
-exports.getMessByQuery = async(req, res) => {
-    await Mess.find( /*some code goes here */ )
-        .then(doc => {
-            if (doc.length === 1) {
-                res.status(200).json({
-                    message: "success",
-                    Mess: doc
-                });
-            } else {
-                res.status(400).json({
-                    message: "no mess found",
-                    Mess: null
-                });
-            }
-        })
-        .catch(err => {
-            res.status(500).json({
-                message: "some error occured while fetching data",
-                error: err
-            })
         })
 }
