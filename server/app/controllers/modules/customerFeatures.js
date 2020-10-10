@@ -15,7 +15,6 @@ exports.getMySavedMess = async(req, res) => {
                 error: err
             })
         })
-
     let subId = []
     for (let i = 0; i < subscriptionArray.length; i++) {
         subId.push(subscriptionArray[i].subscriptionId)
@@ -42,6 +41,10 @@ exports.getMySavedMess = async(req, res) => {
         .select('messDetails email')
         .then(doc => {
             console.log(doc)
+            res.status(200).json({
+                message: "success",
+                doc: doc
+            })
         })
         .catch(err => {
             res.status(500).json({

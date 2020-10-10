@@ -329,8 +329,68 @@ MenuList routes
 		2. failure
 
 ------------------------------------------------------
-Email routes (to be handled later)
+Searchbar routes
 
->> /api/notification
+Find mess by name
+>>/api/search/mess?mess=<mess_name>
+	Type: GET
+	Params: null
+	Query String: 
+		key: mess
+		value: <mess_name>
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
+
+------------------------------------------------------
+Subscription routes
+
+subscribe to a mess
+>>/api/subscription/subscribe/:custId/:messId
+	Type: POST
+	Params: custId,messId
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
+
+unsubscribe a mess
+>>/api/subscription/unsubscribe/:subId
+	Type: DELETE
+	Params: subId
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
+
+------------------------------------------------------
+Mess features
+
+get all subscibers for a mess
+>>/api/mess/features/subscribers/:messid
+	Type: GET
+	Params: messid
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
+
+------------------------------------------------------
+Customer features
+
+get all saved mess for a customer
+>>/api/customer/features/savedmess/:custId
+	Type: GET
+	Params: custid
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
 
 ------------------------------------------------------

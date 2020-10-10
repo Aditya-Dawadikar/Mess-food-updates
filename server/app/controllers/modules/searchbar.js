@@ -7,7 +7,7 @@ exports.searchMessByName = async(req, res) => {
         .then(docs => {
             res.status(200).json({
                 message: "success",
-                doc: doc
+                doc: docs
             })
         })
         .catch(err => {
