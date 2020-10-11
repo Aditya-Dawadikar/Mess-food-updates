@@ -7,7 +7,7 @@ const TaskListContextProvider = (props) => {
   // const initialState = JSON.parse(localStorage.getItem('tasks')) || [] //comment this statement
   
   const [editItem, setEditItem] = useState(null)
-  const [tasks, setTasks] = useState([]) //make it array
+  const [tasks, setTasks] = useState([]) 
  
   const { addList } = props;
   useEffect(() => {

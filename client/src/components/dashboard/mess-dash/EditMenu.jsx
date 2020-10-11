@@ -2,9 +2,8 @@ import React, { useEffect, useState } from "react";
 import "./MessSettings.css";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import TaskListContextProvider from "./TaskListContext";
-import TaskList from "./TaskList";
-import TaskForm from "./TaskForm";
+import TaskListContextProvider from "./EditTaskListContext";
+import EditTaskForm from "./EditTaskForm";
 import { authAxiosMess } from "../../../App";
 import { useParams } from "react-router-dom";
 
@@ -17,21 +16,6 @@ const EditMenu = () => {
     price: "",
     menuItem: [],
   });
-
-  useEffect(() => {
-    authAxiosMess
-      .get(`api/menu/${messId}/${menuId}`)
-      .then((res) => {
-        console.log(res);
-        setMenu({
-          menuName: res.data.menuName,
-          tag: res.data.tag[0],
-          price: res.data.price,
-          menuItem: res.data.menuItem,
-        });
-      })
-      .catch((err) => console.log(err));
-  }, []);
 
   const addMenu = (e) => {
     const { name, value } = e.target;
@@ -48,11 +32,31 @@ const EditMenu = () => {
     setMenu({ ...menu, menuItem: data });
   };
 
+  useEffect(() => {
+    authAxiosMess
+      .get(`api/menu/${messId}/${menuId}`)
+      .then((res) => {
+        // console.log(res);
+        setMenu({
+          menuName: res.data.menu.menuName,
+          tag: res.data.menu.tag[0],
+          price: res.data.menu.price,
+          menuItem: res.data.menu.menuItem,
+        });
+        // console.log(tasks);
+      })
+      .catch((err) => console.log(err));
+  }, [messId, menuId]);
+
+
+
   const onSubmit = (e) => {
     e.preventDefault();
+    console.log("updated MessList")
+    console.log(menu);
     const menuData = {
       menuItem: menu.menuItem.map((idx) => {
-        return { itemName: idx.title };
+        return { itemName: idx.itemName };
       }),
       tag: menu.tag,
       menuName: menu.menuName,
@@ -62,12 +66,12 @@ const EditMenu = () => {
     authAxiosMess
       .patch(`api/menu/update/${messId}/${menuId}`, menuData)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         alert("menu updated successfully");
       })
       .catch((err) => console.log(err));
 
-    console.log(menu);
+   
   };
   return (
     <div style={{ width: "70%" }} className="mt-4">
@@ -102,8 +106,7 @@ const EditMenu = () => {
 
             <div className="main">
               <TaskListContextProvider addList={addList}>
-                <TaskForm />
-                <TaskList />
+                <EditTaskForm />
               </TaskListContextProvider>
             </div>
           </div>

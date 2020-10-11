@@ -3,7 +3,6 @@ import "./MessSettings.css";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import TaskListContextProvider from "./TaskListContext";
-import TaskList from "./TaskList";
 import TaskForm from "./TaskForm";
 import { authAxiosMess } from "../../../App";
 
@@ -88,7 +87,7 @@ const AddMenu = () => {
               {/* <TaskListContextProvider > */}
               <TaskListContextProvider addList={addList}>
                 <TaskForm />
-                <TaskList />
+                {/* <TaskList /> */}
               </TaskListContextProvider>
             </div>
           </div>

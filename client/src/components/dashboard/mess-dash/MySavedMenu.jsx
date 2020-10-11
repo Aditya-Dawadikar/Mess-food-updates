@@ -32,11 +32,6 @@ const MySavedMenu = () => {
       );
   };
 
-  const editMenuList = () => {
-    //edit MenuList Logic....
-    //need get request api of /api/mess/:messid/:mmenuid
-  };
-
   const deleteMenuList = (id) => {
     authAxiosMess
       .delete(`api/menu/delete/${getId}/${id}`)
@@ -87,7 +82,6 @@ const MySavedMenu = () => {
                       />
                       {/* <FiberManualRecordIcon/> */}
                     </ul>
-                    {/* Aloo Sabji, Roti, Dal Rice, Papad, Pickle, Taak */}
                   </li>
                   <li
                     className="font-weight-bold"
