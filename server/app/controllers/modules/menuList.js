@@ -2,13 +2,36 @@ const Mess = require('../../models/mess');
 const CurrentMenu = require('../../models/currentMenus');
 
 exports.getMyMenus = async(req, res) => {
-    Mess.findById({
+    await Mess.findById({
             _id: req.params.messid
         }).exec()
         .then(doc => {
             res.status(200).json({
                 messsage: "success",
                 Mess: doc.MenuList
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "some error occured while fetching data",
+                error: err
+            })
+        })
+}
+
+exports.getMenuById = async(req, res) => {
+    await Mess.findById({
+            _id: req.params.messid
+        }).select('MenuList')
+        .then(doc => {
+            let menuArray = doc.MenuList;
+            let index = menuArray.findIndex(menu => {
+                return String(menu._id) === String(req.params.menuid);
+            })
+
+            res.status(200).json({
+                message: "success",
+                menu: menuArray[index]
             })
         })
         .catch(err => {
@@ -108,15 +131,15 @@ exports.deleteMenuById = async(req, res) => {
     menuArray.splice(ind, 1)
 
     //inconsistency removal
-    try{
-        for (let i=0;i<postsArray.length;i++) {
-           removeDocFromCurrentMenuIfMenuFound(postsArray[i].postId, req.params.menuid)
+    try {
+        for (let i = 0; i < postsArray.length; i++) {
+            removeDocFromCurrentMenuIfMenuFound(postsArray[i].postId, req.params.menuid)
         }
-    }catch(err){
+    } catch (err) {
         console.log(err)
     }
 
-    
+
 
     //final update
     await Mess.findByIdAndUpdate({ _id: req.params.messid }, { MenuList: menuArray })

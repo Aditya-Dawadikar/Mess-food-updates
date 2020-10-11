@@ -2,7 +2,7 @@ const Mess = require('../../models/mess');
 
 exports.getAllMess = (req, res) => {
     Mess.find()
-        .select('messDetails Speciality -__v')
+        .select('messDetails Speciality')
         .then(docs => {
             if (docs.length >= 1) {
                 res.status(200).json({
