@@ -1,16 +1,16 @@
 import React, { useState, useContext, useEffect } from "react";
-import { TaskListContext } from "./TaskListContext";
+import { EditTaskListContext } from "./EditTaskListContext";
 import AddCircleIcon from "@material-ui/icons/AddCircle";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import ClearAllIcon from "@material-ui/icons/ClearAll";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 
-const TaskForm = () => {
+const EditTaskForm = () => {
   const { addTask, clearList, editTask, editItem } = useContext(
-    TaskListContext
+    EditTaskListContext
   );
-  const { tasks, removeTask, findItem } = useContext(TaskListContext);
+  const { tasks, removeTask, findItem } = useContext(EditTaskListContext);
   const [title, setTitle] = useState("");
 
   const handleSubmit = (e) => {
@@ -19,7 +19,7 @@ const TaskForm = () => {
       addTask(title);
       setTitle("");
     } else {
-      editTask(title, editItem.id);
+      editTask(title, editItem._id);
     }
   };
 
@@ -29,7 +29,7 @@ const TaskForm = () => {
 
   useEffect(() => {
     if (editItem) {
-      setTitle(editItem.title);
+      setTitle(editItem.itemName);
       console.log(editItem);
     } else {
       setTitle("");
@@ -67,18 +67,18 @@ const TaskForm = () => {
           <ul className="list">
             {tasks.map((task) => {
               return (
-                <li className="list-item" key={task.id}>
-                  <span>{task.title} </span>
+                <li className="list-item" key={task._id}>
+                  <span>{task.itemName} </span>
                   <div>
                     <button
                       className="btn-edit task-btn mr-3"
-                      onClick={() => findItem(task.id)}
+                      onClick={() => findItem(task._id)}
                     >
                       <EditIcon style={{ color: "#FFB800" }} />
                     </button>
                     <button
                       className="btn-delete task-btn mr-3"
-                      onClick={() => removeTask(task.id)}
+                      onClick={() => removeTask(task._id)}
                     >
                       <DeleteIcon style={{ color: "#FFB800" }} />
                     </button>
@@ -95,4 +95,4 @@ const TaskForm = () => {
   );
 };
 
-export default TaskForm;
+export default EditTaskForm;

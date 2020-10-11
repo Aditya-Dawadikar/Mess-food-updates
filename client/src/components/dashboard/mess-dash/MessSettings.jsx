@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
 import EditProfile from "./EditProfile";
 import MySavedMenu from "./MySavedMenu";
 import AddMenu from "./AddMenu";
+import EditMenu from "./EditMenu";
 import LeftSideList from "./LeftSideList";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
@@ -41,6 +42,7 @@ const MessSettings = () => {
                 component={MySavedMenu}
               />
               <Route path="/mess/settings/addmenu" component={AddMenu} />
+              <Route path="/mess/settings/editmenu/:menuId" component={EditMenu} />
             </div>
           </>
         </Switch>
