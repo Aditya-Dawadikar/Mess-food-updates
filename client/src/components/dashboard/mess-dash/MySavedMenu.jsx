@@ -5,7 +5,8 @@ import StarsIcon from "@material-ui/icons/Stars";
 import { authAxiosMess } from "../../../App";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Loader from "react-loader-spinner";
-import { Link } from "react-router-dom";
+// import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
+// import { Link } from "react-router-dom";
 
 const MySavedMenu = () => {
   const getId = localStorage.getItem("userIdMess");
@@ -14,7 +15,7 @@ const MySavedMenu = () => {
 
   useEffect(() => {
     getMenuList();
-  }, []);
+  }, [getId]);
 
   const getMenuList = () => {
     setLoading(true);
@@ -33,6 +34,7 @@ const MySavedMenu = () => {
 
   const editMenuList = () => {
     //edit MenuList Logic....
+    //need get request api of /api/mess/:messid/:mmenuid
   };
 
   const deleteMenuList = (id) => {
@@ -83,6 +85,7 @@ const MySavedMenu = () => {
                         src="https://img.icons8.com/color/20/000000/vegetarian-food-symbol.png"
                         alt="veg"
                       />
+                      {/* <FiberManualRecordIcon/> */}
                     </ul>
                     {/* Aloo Sabji, Roti, Dal Rice, Papad, Pickle, Taak */}
                   </li>
@@ -101,7 +104,7 @@ const MySavedMenu = () => {
                   <li>
                     <EditIcon
                       style={{ color: "#FFB800", cursor: "pointer" }}
-                      onClick={() => editMenuList(item._id)}
+                      onClick={() => (window.location = `editmenu/${item._id}`)}
                     />
                   </li>
                   <li className="mr-3">
