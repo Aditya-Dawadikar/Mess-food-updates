@@ -6,11 +6,14 @@ import CarouselCard from "./CarouselCard";
 import Loader from "react-loader-spinner";
 import axios from "axios";
 
-
 const Customer = () => {
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentMenu, setCurrentMenu] = useState([]);
+
+  const searchMess = (data) => {
+    setState(data);
+  };
 
   useEffect(() => {
     if (!localStorage.getItem("token")) window.location = "/login/customer";
@@ -18,10 +21,9 @@ const Customer = () => {
     axios
       .get("api/mess/all")
       .then((res) => {
-        console.log(res.data);
         // console.log(res.data.Mess);
         setState(res.data.Mess);
-
+        // setLoading(false);
         // alert("CUSTOMER DASHBOARD LOADED SUCCESFULLY");
         //we can also add toast ...
       })
@@ -29,7 +31,7 @@ const Customer = () => {
         console.log(`${err}:some error while fetching mess-all data`);
       });
 
-    axios
+      axios
       .get("api/currentmenu/all")
       .then((res) => {
         console.log(res);
@@ -44,7 +46,7 @@ const Customer = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar searchMess={searchMess} />
 
       <header className=" mt-3">
         <div className="container">
@@ -54,7 +56,7 @@ const Customer = () => {
             data-ride="carousel"
           >
             <div className="carousel-inner">
-              {currentMenu.splice(0, 1).map((messInfo) => {
+              {currentMenu.slice(0, 1).map((messInfo) => {
                 return (
                   <div className="carousel-item active" key={messInfo.menu._id}>
                     <CarouselCard
@@ -68,7 +70,7 @@ const Customer = () => {
                 );
               })}
 
-              {currentMenu.slice(1).map((messInfo) => {
+              {currentMenu.slice(2).map((messInfo) => {
                 return (
                   <div className="carousel-item" key={messInfo.menu._id}>
                     <CarouselCard
@@ -131,7 +133,7 @@ const Customer = () => {
                     }}
                   />
                 ) : (
-                  state.map((item, index) => {
+                  state.map((item) => {
                     return (
                       <MessCard
                         key={item._id}
