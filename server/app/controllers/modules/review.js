@@ -13,7 +13,13 @@ exports.getAllReviews = (req, res) => {
 
 //controllers to handle rating
 exports.addReview = (req, res) => {
-
+    /*
+        rating:Number,
+        comment: String
+        timestamp
+        customer
+        mess
+    */
 }
 
 exports.updateRating = (req, res) => {

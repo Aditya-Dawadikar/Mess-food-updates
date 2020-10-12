@@ -53,7 +53,7 @@ const messSchema = mongoose.Schema({
     MenuList: [menuSchema],
     Rating: Number,
     Reviews: {
-        count: Number,
+        sum: Number,
         reviewers: [reviewsSchema]
     },
     subscribers: [subscriberSchema],
