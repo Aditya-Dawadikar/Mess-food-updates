@@ -98,7 +98,7 @@ const AddMenu = () => {
               name="price"
               className="form-control"
               id="SetPrice"
-              placeholder="70 INR"
+              placeholder="Price"
               onChange={addMenu}
               value={menu.price}
             />

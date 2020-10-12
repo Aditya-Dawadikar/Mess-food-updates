@@ -68,6 +68,7 @@ const EditMenu = () => {
       .then((res) => {
         // console.log(res);
         alert("menu updated successfully");
+        window.location="/mess/settings/mysavedmenu";
       })
       .catch((err) => console.log(err));
 
@@ -117,7 +118,7 @@ const EditMenu = () => {
               name="price"
               className="form-control"
               id="SetPrice"
-              placeholder="70 INR"
+              placeholder="Price"
               onChange={addMenu}
               value={menu.price}
             />
