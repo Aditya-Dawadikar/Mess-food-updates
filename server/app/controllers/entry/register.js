@@ -99,6 +99,9 @@ exports.messRegister = (req, res) => {
                         } else {
                             //create new customer with hashed password
                             const messPassword = result;
+                            const reviewsObjectZero = {
+
+                            }
                             const mess = new Mess({
                                 _id: new mongoose.Types.ObjectId,
                                 email: req.body.email,
@@ -121,7 +124,10 @@ exports.messRegister = (req, res) => {
                                 Speciality: [],
                                 MenuList: [],
                                 Rating: 0,
-                                Reviews: []
+                                Reviews: {
+                                    sum: 0,
+                                    reviewers: []
+                                }
                             });
                             //save new customer in the collection "customers"
                             mess.save()

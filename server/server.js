@@ -43,6 +43,7 @@ const subscriptionRoutes = require('./app/routes/modules/subscription');
 const searchbarRoutes = require('./app/routes/modules/searchbar');
 const messFeatureRoutes = require('./app/routes/modules/messFeatures');
 const customerFeatureRoutes = require('./app/routes/modules/customerFeatures');
+const ratingRoutes = require('./app/routes/modules/review');
 //test routes handlers
 //const testRoutes = require('./app/routes/index');
 
@@ -59,6 +60,7 @@ app.use('/api/subscription', subscriptionRoutes);
 app.use('/api/search', searchbarRoutes);
 app.use('/api/mess/features', messFeatureRoutes);
 app.use('/api/customer/features', customerFeatureRoutes);
+app.use('/api/rating', ratingRoutes);
 //test routes
 //app.use('/emailtest', testRoutes);
 

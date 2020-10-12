@@ -17,13 +17,7 @@ const menuSchema = {
 
 //reviews sub document
 const reviewsSchema = {
-    rating: Number,
-    comment: {
-        type: String
-    },
-    time: {
-        type: Date
-    }
+    reviewId: mongoose.Types.ObjectId
 }
 
 //posted menu sub document
@@ -58,7 +52,10 @@ const messSchema = mongoose.Schema({
     Speciality: [{ type: String }],
     MenuList: [menuSchema],
     Rating: Number,
-    Reviews: [reviewsSchema],
+    Reviews: {
+        sum: Number,
+        reviewers: [reviewsSchema]
+    },
     subscribers: [subscriberSchema],
     postedMenu: [postedMenuSchema]
 });
