@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MessSettings.css";
 import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
 import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
-import TaskListContextProvider from "./TaskListContext";
-import TaskForm from "./TaskForm";
+import TaskListContextProvider from "./EditTaskListContext";
+import EditTaskForm from "./EditTaskForm";
 import { authAxiosMess } from "../../../App";
+import { useParams } from "react-router-dom";
 
-const AddMenu = () => {
-  const getId = localStorage.getItem("userIdMess");
+const EditMenu = () => {
+  const { menuId } = useParams();
+  const messId = localStorage.getItem("userIdMess");
   const [menu, setMenu] = useState({
     menuName: "",
     tag: "",
@@ -30,11 +32,31 @@ const AddMenu = () => {
     setMenu({ ...menu, menuItem: data });
   };
 
+  useEffect(() => {
+    authAxiosMess
+      .get(`api/menu/${messId}/${menuId}`)
+      .then((res) => {
+        // console.log(res);
+        setMenu({
+          menuName: res.data.menu.menuName,
+          tag: res.data.menu.tag[0],
+          price: res.data.menu.price,
+          menuItem: res.data.menu.menuItem,
+        });
+        // console.log(tasks);
+      })
+      .catch((err) => console.log(err));
+  }, [messId, menuId]);
+
+
+
   const onSubmit = (e) => {
-    e.preventDefault();    
+    e.preventDefault();
+    console.log("updated MessList")
+    console.log(menu);
     const menuData = {
       menuItem: menu.menuItem.map((idx) => {
-       return ({itemName: idx.title})
+        return { itemName: idx.itemName };
       }),
       tag: menu.tag,
       menuName: menu.menuName,
@@ -42,16 +64,15 @@ const AddMenu = () => {
     };
 
     authAxiosMess
-      .post(`api/menu/new/${getId}`, menuData)
+      .patch(`api/menu/update/${messId}/${menuId}`, menuData)
       .then((res) => {
-        console.log(res);
-        alert("menu added successfully");
+        // console.log(res);
+        alert("menu updated successfully");
       })
       .catch((err) => console.log(err));
 
-    console.log(menu);
+   
   };
-
   return (
     <div style={{ width: "70%" }} className="mt-4">
       <div className="edit-profile ml-1 container">
@@ -84,10 +105,8 @@ const AddMenu = () => {
             <label htmlFor="AddItems">Add Items</label>
 
             <div className="main">
-              {/* <TaskListContextProvider > */}
               <TaskListContextProvider addList={addList}>
-                <TaskForm />
-                {/* <TaskList /> */}
+                <EditTaskForm />
               </TaskListContextProvider>
             </div>
           </div>
@@ -128,11 +147,11 @@ const AddMenu = () => {
           style={{ width: "7rem" }}
           onClick={onSubmit}
         >
-          Save
+          Update
         </button>
       </div>
     </div>
   );
 };
 
-export default AddMenu;
+export default EditMenu;
