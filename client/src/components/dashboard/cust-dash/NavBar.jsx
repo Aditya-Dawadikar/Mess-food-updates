@@ -7,25 +7,27 @@ import { authAxiosCust } from "../../../App";
 
 const NavBar = ({ searchMess }) => {
   const [mess, setMess] = useState([]);
-  const [query, setQuery] = useState('');
+  const [query, setQuery] = useState("");
 
   const onSubmit = (e) => {
     e.preventDefault();
     searchMess(mess);
     setQuery("");
   };
-  const handleChange=(e)=>{
+  const handleChange = (e) => {
     setQuery(e.target.value);
-    authAxiosCust.get(`api/search/mess?mess=${e.target.value}`)
-    .then((res) => {
-      console.log(res.data.doc);
-      setMess(res.data.doc);
-      searchMess(res.data.doc);
-    })
-    .catch(err=>console.log(err));
-  }
+    authAxiosCust
+      .get(`api/search/mess?mess=${e.target.value}`)
+      .then((res) => {
+        console.log(res.data.doc);
+        setMess(res.data.doc);
+        searchMess(res.data.doc);
+      })
+      .catch((err) => console.log(err));
+  };
 
   function logout() {
+    //remove tokens and userId...
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
     localStorage.removeItem("tokenMess");
