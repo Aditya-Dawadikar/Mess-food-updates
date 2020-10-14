@@ -49,7 +49,7 @@ const MessCard = (props) => {
                 </span>
               </div>
               <div className="d-flex justify-content-between" style={{alignItems:"center"}}>
-              <NavLink to='/customer/mess-details'>
+              <NavLink to={`/customer/mess-details/${props.messId}`}>
                 <button type="button" className="btn btn-warning text-white " style={{ width:"8rem" }}> 
                 View
                 </button>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import NavBar from "../cust-dash/NavBar"; 
+import NavBar from "../cust-dash/NavBar";
 import MessCard from "../cust-dash/MessCard";
 import CarouselCard from "../cust-dash/CarouselCard";
 import Loader from "react-loader-spinner";
@@ -11,6 +11,10 @@ const Mess = () => {
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentMenu, setCurrentMenu] = useState([]);
+
+  const searchMess = (data) => {
+    setState(data);
+  };
 
   useEffect(() => {
     if (!localStorage.getItem("tokenMess")) window.location = "/login/mess";
@@ -44,7 +48,7 @@ const Mess = () => {
 
   return (
     <>
-      <NavBar />
+      <NavBar searchMess={searchMess} />
 
       <header className=" mt-3">
         <div className="container">
@@ -54,7 +58,7 @@ const Mess = () => {
             data-ride="carousel"
           >
             <div className="carousel-inner">
-              {currentMenu.splice(0, 1).map((messInfo) => {
+              {currentMenu.slice(0, 1).map((messInfo) => {
                 return (
                   <div className="carousel-item active" key={messInfo.menu._id}>
                     <CarouselCard
@@ -68,7 +72,7 @@ const Mess = () => {
                 );
               })}
 
-              {currentMenu.slice(1).map((messInfo) => {
+              {currentMenu.slice(2).map((messInfo) => {
                 return (
                   <div className="carousel-item" key={messInfo.menu._id}>
                     <CarouselCard
@@ -130,7 +134,7 @@ const Mess = () => {
                       alignItems: "center",
                     }}
                   />
-                ) : (
+                ) : state.length ? (
                   state.map((item, index) => {
                     return (
                       <MessCard
@@ -141,6 +145,8 @@ const Mess = () => {
                       />
                     );
                   })
+                ) : (
+                  <div>Sorry ..mess not found</div>
                 )}
               </div>
             </div>

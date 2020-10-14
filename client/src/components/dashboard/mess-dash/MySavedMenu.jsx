@@ -5,6 +5,7 @@ import StarsIcon from "@material-ui/icons/Stars";
 import { authAxiosMess } from "../../../App";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Loader from "react-loader-spinner";
+import { toast } from "react-toastify";
 // import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 // import { Link } from "react-router-dom";
 
@@ -35,7 +36,10 @@ const MySavedMenu = () => {
   const deleteMenuList = (id) => {
     authAxiosMess
       .delete(`api/menu/delete/${getId}/${id}`)
-      .then((res) => getMenuList())
+      .then((res) => {
+        getMenuList();
+        toast.warning("menu list updated")
+      })
       .catch((err) => console.log(err));
   };
 

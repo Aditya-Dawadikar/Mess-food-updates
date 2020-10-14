@@ -11,6 +11,7 @@ import MessDetails from "./components/dashboard/cust-dash/MessDetails";
 import MessSettings from "./components/dashboard/mess-dash/MessSettings";
 import Settings from "./components/dashboard/cust-dash/Settings";
 import axios from "axios";
+import { ToastContainer } from "react-toastify";
 
 const token = localStorage.getItem("tokenMess");
 const tokenCust = localStorage.getItem("token");
@@ -34,6 +35,7 @@ export const authAxiosCust = axios.create({
 const App = () => {
   return (
     <>
+     <ToastContainer/>
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Login} />
@@ -47,7 +49,7 @@ const App = () => {
           {/* dashboard routes */}
           <Route path="/customer/dashboard" component={CustDashboard} />
           <Route path="/mess/dashboard" component={MessDashboard} />
-          <Route path="/customer/mess-details" component={MessDetails} />
+          <Route path="/customer/mess-details/:messId" component={MessDetails} />
 
           {/* Mess and customer Settings Routes */}
           <Route path="/customer/settings" component={Settings} />

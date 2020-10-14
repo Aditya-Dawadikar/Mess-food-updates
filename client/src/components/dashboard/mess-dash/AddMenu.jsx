@@ -5,6 +5,7 @@ import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import TaskListContextProvider from "./TaskListContext";
 import TaskForm from "./TaskForm";
 import { authAxiosMess } from "../../../App";
+import { toast } from "react-toastify";
 
 const AddMenu = () => {
   const getId = localStorage.getItem("userIdMess");
@@ -31,10 +32,10 @@ const AddMenu = () => {
   };
 
   const onSubmit = (e) => {
-    e.preventDefault();    
+    e.preventDefault();
     const menuData = {
       menuItem: menu.menuItem.map((idx) => {
-       return ({itemName: idx.title})
+        return { itemName: idx.title };
       }),
       tag: menu.tag,
       menuName: menu.menuName,
@@ -45,9 +46,13 @@ const AddMenu = () => {
       .post(`api/menu/new/${getId}`, menuData)
       .then((res) => {
         console.log(res);
-        alert("menu added successfully");
+        toast.success("menu added successfully");
+        // window.location = "/mess/settings/mysavedmenu";
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err)
+        toast.error("something went wrong!!!");
+      });
 
     console.log(menu);
   };
