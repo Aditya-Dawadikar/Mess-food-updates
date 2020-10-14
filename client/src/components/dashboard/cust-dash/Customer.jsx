@@ -4,6 +4,7 @@ import MessCard from "./MessCard";
 import CarouselCard from "./CarouselCard";
 // import MessCardData from "./MessCardData";
 import Loader from "react-loader-spinner";
+import Fade from "react-reveal/Fade";
 import axios from "axios";
 
 const Customer = () => {
@@ -34,7 +35,7 @@ const Customer = () => {
       axios
       .get("api/currentmenu/all")
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         console.log(res.data.availableMenus);
         setCurrentMenu(res.data.availableMenus);
         setLoading(false);
@@ -70,7 +71,7 @@ const Customer = () => {
                 );
               })}
 
-              {currentMenu.slice(2).map((messInfo) => {
+              {currentMenu.slice(1).map((messInfo) => {
                 return (
                   <div className="carousel-item" key={messInfo.menu._id}>
                     <CarouselCard
@@ -116,7 +117,7 @@ const Customer = () => {
       </header>
 
       <div className="my-5">
-        <div className="container-fluid">
+        <div className="container-fluid d-flex">
           <div className="row">
             <div className="col-10 mx-auto">
               <div className="row justify-content-center ">
@@ -135,12 +136,15 @@ const Customer = () => {
                 ) : (
                   state.map((item) => {
                     return (
+                      /* <Fade bottom key={item._id}> */
                       <MessCard
                         key={item._id}
                         messImg={item.messDetails.messImg}
                         messName={item.messDetails.messName}
                         messAdd={item.messDetails.address}
+                        messId={item._id}
                       />
+                      /* </Fade> */
                     );
                   })
                 )}
@@ -149,6 +153,7 @@ const Customer = () => {
           </div>
         </div>
       </div>
+      
     </>
   );
 };
