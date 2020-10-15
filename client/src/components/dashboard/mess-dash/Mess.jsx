@@ -72,7 +72,7 @@ const Mess = () => {
                 );
               })}
 
-              {currentMenu.slice(2).map((messInfo) => {
+              {currentMenu.slice(1).map((messInfo) => {
                 return (
                   <div className="carousel-item" key={messInfo.menu._id}>
                     <CarouselCard
@@ -80,6 +80,7 @@ const Mess = () => {
                       menuName={messInfo.menu.menuName}
                       price={messInfo.menu.price}
                       mess={messInfo.messDetails.messName}
+                      address={messInfo.messDetails.address}
                     />
                   </div>
                 );

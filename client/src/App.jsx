@@ -38,6 +38,7 @@ const App = () => {
      <ToastContainer/>
       <BrowserRouter>
         <Switch>
+        <>
           <Route exact path="/" component={Login} />
 
           {/* login and signup routes */}
@@ -54,6 +55,7 @@ const App = () => {
           {/* Mess and customer Settings Routes */}
           <Route path="/customer/settings" component={Settings} />
           <Route path="/mess/settings" component={MessSettings} />
+          </>
         </Switch>
       </BrowserRouter>
     </>

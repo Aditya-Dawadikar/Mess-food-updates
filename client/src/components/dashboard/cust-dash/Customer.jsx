@@ -36,7 +36,7 @@ const Customer = () => {
       .get("api/currentmenu/all")
       .then((res) => {
         // console.log(res);
-        console.log(res.data.availableMenus);
+        // console.log(res.data.availableMenus);
         setCurrentMenu(res.data.availableMenus);
         setLoading(false);
       })
@@ -79,6 +79,7 @@ const Customer = () => {
                       menuName={messInfo.menu.menuName}
                       price={messInfo.menu.price}
                       mess={messInfo.messDetails.messName}
+                      address={messInfo.messDetails.address}
                     />
                   </div>
                 );
