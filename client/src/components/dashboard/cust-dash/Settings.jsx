@@ -1,14 +1,14 @@
-import React from 'react';
-import {BrowserRouter,Switch,Route, NavLink} from 'react-router-dom';
-import LeftSide from './LeftSide';
-import EditProfile from './EditProfile';
-import SavedMess from './SavedMess';
+import React from "react";
+import { BrowserRouter, Switch, Route, NavLink } from "react-router-dom";
+import LeftSide from "./LeftSide";
+import EditProfile from "./EditProfile";
+import SavedMess from "./SavedMess";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 
 const Settings = () => {
-    return (
-        <>
-        <NavLink
+  return (
+    <>
+      <NavLink
         to="/customer/dashboard"
         style={{
           color: "white",
@@ -25,17 +25,22 @@ const Settings = () => {
           }}
         />
       </NavLink>
-        <BrowserRouter>
-            <Switch>
-                <div className="settings-container d-flex">
-                    <LeftSide/>
-                    <Route exact path="/customer/settings" component={EditProfile } />
-                    <Route path="/customer/settings/savedmess" component={SavedMess} />
-                </div>
-            </Switch>
-        </BrowserRouter>
-        </>
-    )
-}
+      <BrowserRouter>
+        <Switch>
+          <>
+            <div className="settings-container d-flex">
+              <LeftSide />
+              <Route exact path="/customer/settings" component={EditProfile} />
+              <Route
+                path="/customer/settings/savedmess"
+                component={SavedMess}
+              />
+            </div>
+          </>
+        </Switch>
+      </BrowserRouter>
+    </>
+  );
+};
 
-export default Settings
+export default Settings;

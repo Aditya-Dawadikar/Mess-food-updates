@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import DirectionsIcon from "@material-ui/icons/Directions";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import BookmarkIcon from "@material-ui/icons/Bookmark";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import { NavLink } from "react-router-dom";
 
 
 const MessCard = (props) => {
+  const [subscribe, setSubscribe] = useState(false);
   return (
     <>
       <div className="card mb-3 mr-3" style={{ maxWidth: "475px" , backgroundColor:"#FFF8DE"}}>
@@ -53,11 +55,20 @@ const MessCard = (props) => {
                 <button type="button" className="btn btn-warning text-white " style={{ width:"8rem" }}> 
                 View
                 </button>
-              </NavLink>  
-                <BookmarkBorderIcon
-                  className="d-flex mr-1"
-                  style={{ color: "#FFB800" ,transform:"scale(1.2)",cursor:"pointer" }}
-                />
+              </NavLink>
+                {subscribe === false ? (
+                  <BookmarkBorderIcon
+                    className="text-warning d-flex mr-1"
+                    style={{ transform: "scale(1.2)", cursor: "pointer" }}
+                    onClick={()=>setSubscribe(prev=>!prev)}
+                  />
+                ) : (
+                  <BookmarkIcon
+                    className="text-warning d-flex mr-1"
+                    style={{ transform: "scale(1.2)", cursor: "pointer" }}
+                    onClick={()=>setSubscribe(prev=>!prev)}
+                  />
+                )}
               </div>
             </div>
           </div>
