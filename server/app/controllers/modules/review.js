@@ -174,14 +174,112 @@ exports.removeReview = async(req, res) => {
 }
 
 //controllers to handle review
-exports.replyToComment = (req, res) => {
+exports.replyToComment = async(req, res) => {
+    let threadArray = []
+    await Reviews.findById({ _id: req.params.reviewId })
+        .then(doc => {
+            threadArray = doc.thread
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
 
+    let commentObject = {
+        comment: req.body.comment,
+        author: req.body.author,
+        timestamp: req.body.timestamp
+    }
+
+    threadArray.push(commentObject)
+
+    await Reviews.findByIdAndUpdate({ _id: req.params.reviewId }, { thread: threadArray })
+        .then(doc => {
+            res.status(200).json({
+                message: "success",
+                doc: doc
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
 }
 
-exports.updateComment = (req, res) => {
+exports.updateComment = async(req, res) => {
+    let threadArray = []
+    await Reviews.findById({ _id: req.params.reviewId })
+        .then(doc => {
+            threadArray = doc.thread
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
 
+    let index = threadArray.findIndex(comment => {
+        return String(comment._id) === String(req.params.commentId)
+    })
+
+    let commentObject = {
+        comment: req.body.comment,
+        author: req.body.author,
+        timestamp: req.body.timestamp
+    }
+
+    threadArray.splice(index, 1, commentObject);
+
+    await Reviews.findByIdAndUpdate({ _id: req.params.reviewId }, { thread: threadArray })
+        .then(doc => {
+            res.status(200).json({
+                message: "success",
+                doc: doc
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
 }
 
-exports.deleteComment = (req, res) => {
+exports.deleteComment = async(req, res) => {
+    let threadArray = []
+    await Reviews.findById({ _id: req.params.reviewId })
+        .then(doc => {
+            threadArray = doc.thread
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
 
+    let index = threadArray.findIndex(comment => {
+        return String(comment._id) === String(req.params.commentId)
+    })
+
+    threadArray.splice(index, 1);
+
+    await Reviews.findByIdAndUpdate({ _id: req.params.reviewId }, { thread: threadArray })
+        .then(doc => {
+            res.status(200).json({
+                message: "success",
+                doc: doc
+            })
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "internal server error",
+                error: err
+            })
+        })
 }

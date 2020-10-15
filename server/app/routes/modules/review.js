@@ -8,7 +8,7 @@ router.get('/all/:messId', reviewsController.getAllReviews);
 //routes for handling the rating
 router.post('/new/review/:custId/:messId', reviewsController.addReview);
 
-router.patch('/update/:reviewId', reviewsController.updateRating);
+//router.patch('/update/:reviewId', reviewsController.updateRating);
 
 router.delete('/delete/:reviewId', reviewsController.removeReview);
 
