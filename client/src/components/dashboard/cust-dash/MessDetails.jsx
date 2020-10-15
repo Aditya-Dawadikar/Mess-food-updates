@@ -8,7 +8,7 @@ import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import { NavLink, useParams } from "react-router-dom";
-import { authAxiosCust, authAxiosMess } from "../../../App";
+import { authAxiosCust } from "../../../App";
 import { toast } from "react-toastify";
 
 function MessDetails() {
