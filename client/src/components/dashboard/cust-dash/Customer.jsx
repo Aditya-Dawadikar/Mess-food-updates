@@ -4,7 +4,7 @@ import MessCard from "./MessCard";
 import CarouselCard from "./CarouselCard";
 // import MessCardData from "./MessCardData";
 import Loader from "react-loader-spinner";
-import Fade from "react-reveal/Fade";
+// import Fade from "react-reveal/Fade";
 import axios from "axios";
 
 const Customer = () => {
@@ -17,7 +17,6 @@ const Customer = () => {
   };
 
   useEffect(() => {
-    if (!localStorage.getItem("token")) window.location = "/login/customer";
     setLoading(true);
     axios
       .get("api/mess/all")
@@ -32,7 +31,7 @@ const Customer = () => {
         console.log(`${err}:some error while fetching mess-all data`);
       });
 
-      axios
+    axios
       .get("api/currentmenu/all")
       .then((res) => {
         // console.log(res);
@@ -47,6 +46,9 @@ const Customer = () => {
 
   return (
     <>
+      {!localStorage.getItem("token")
+        ? (window.location = "/login/customer")
+        : null}
       <NavBar searchMess={searchMess} />
 
       <header className=" mt-3">
@@ -154,7 +156,6 @@ const Customer = () => {
           </div>
         </div>
       </div>
-      
     </>
   );
 };

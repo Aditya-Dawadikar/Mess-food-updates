@@ -17,7 +17,7 @@ const Mess = () => {
   };
 
   useEffect(() => {
-    if (!localStorage.getItem("tokenMess")) window.location = "/login/mess";
+    if(!localStorage.getItem("tokenMess")) window.location = "/login/mess";
     setLoading(true);
     axios
       .get(base_url + "/api/mess/all")
@@ -45,6 +45,10 @@ const Mess = () => {
         console.log(`${err}:some error while fetching current menu data`);
       });
   }, []);
+
+  useEffect(()=>{
+   
+  },[localStorage.getItem("tokenMess")])
 
   return (
     <>

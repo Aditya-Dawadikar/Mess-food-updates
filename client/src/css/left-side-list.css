@@ -27,16 +27,16 @@
     /* padding: 0 1.5rem; */
 }
 .settings-container{
-    margin: 15px 40px;
+    margin: 15px 30px;
     /* margin-left: 40px; */
     
-    width: 94%;
-    height: 100vh;
+    width: 95%;
+    /* height: 100%; */
     background: #FFF8DE;
 }
 .left-list{
   width: 100%;
-  height: calc(100vh - 120px);
+  height: calc(100vh - 20px);
   color: #FFB800;
   list-style: none;
   /* border:2px solid blue; */
