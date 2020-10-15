@@ -162,14 +162,20 @@ li .account-icon{
 /*====== Customer-2nd-Page CSS ======*/
 
 .containerDetails{
-  margin-top: 5%;
+  /* margin-top: 5%; */
+  position: relative;
   margin-bottom: 10px;
   width: 100%;
-  height: 100vh;
+  height: calc(100vh - 40px);
   background: #FFF8DE;
   display: flex;
   align-items: center;
   padding: 0 1.5rem;
+}
+
+.containerDetails .mess-card{
+  position: absolute;
+  top: 5rem;
 }
 
 .mess-info h1{
@@ -186,7 +192,7 @@ li .account-icon{
   /* border: 1px solid #FEC200; */
   background-color: #ffffff;
 }
-.mess-menus li{
+.mess-menus li:nth-child(1){
   display: inline-block;
   width: 45%;
   padding-left: 15px;
@@ -201,12 +207,12 @@ li .account-icon{
   transform: scale(.5);
 }
 @media only screen and (min-width: 1000px) {
-  .mess-card{
+  /* .mess-card{
     margin-left: 100px;
-  }
+  } */
   .containerDetails{
     width: 90vw;
-    margin-left: 5rem;
+    margin: auto;
   }
   #mess-pic{
     height: 17rem;
