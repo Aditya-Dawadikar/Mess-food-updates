@@ -17,7 +17,7 @@ const Mess = () => {
   };
 
   useEffect(() => {
-    if (!localStorage.getItem("tokenMess")) window.location = "/login/mess";
+    if(!localStorage.getItem("tokenMess")) window.location = "/login/mess";
     setLoading(true);
     axios
       .get(base_url + "/api/mess/all")
@@ -46,6 +46,10 @@ const Mess = () => {
       });
   }, []);
 
+  useEffect(()=>{
+   
+  },[localStorage.getItem("tokenMess")])
+
   return (
     <>
       <NavBar searchMess={searchMess} />
@@ -72,7 +76,7 @@ const Mess = () => {
                 );
               })}
 
-              {currentMenu.slice(2).map((messInfo) => {
+              {currentMenu.slice(1).map((messInfo) => {
                 return (
                   <div className="carousel-item" key={messInfo.menu._id}>
                     <CarouselCard
@@ -80,6 +84,7 @@ const Mess = () => {
                       menuName={messInfo.menu.menuName}
                       price={messInfo.menu.price}
                       mess={messInfo.messDetails.messName}
+                      address={messInfo.messDetails.address}
                     />
                   </div>
                 );

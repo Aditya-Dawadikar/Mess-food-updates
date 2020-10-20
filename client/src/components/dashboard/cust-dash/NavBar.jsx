@@ -26,7 +26,7 @@ const NavBar = ({ searchMess }) => {
       .catch((err) => console.log(err));
   };
 
-  function logout() {
+  const logout=()=>{
     //remove tokens and userId...
     localStorage.removeItem("token");
     localStorage.removeItem("userId");
@@ -69,7 +69,7 @@ const NavBar = ({ searchMess }) => {
           </button>
           <button
             className="btn btn-warning text-white logout"
-            onClick={logout}
+            onClick={()=>logout()}
           >
             Logout
           </button>
