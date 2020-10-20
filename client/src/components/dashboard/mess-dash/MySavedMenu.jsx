@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "./MessSettings.css";
 import EditIcon from "@material-ui/icons/Edit";
 import StarsIcon from "@material-ui/icons/Stars";
+import StarsOutlinedIcon from '@material-ui/icons/StarsOutlined';
 import { authAxiosMess } from "../../../App";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Loader from "react-loader-spinner";
@@ -13,6 +14,8 @@ const MySavedMenu = () => {
   const getId = localStorage.getItem("userIdMess");
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [star,setStar] = useState(false);
+
 
   useEffect(() => {
     getMenuList();
@@ -23,6 +26,7 @@ const MySavedMenu = () => {
     authAxiosMess
       .get(`api/menu/all/${getId}`)
       .then((res) => {
+        console.log(getId);
         console.log(res);
         console.log(res.data);
         setMenu(res.data.Mess);
@@ -43,6 +47,36 @@ const MySavedMenu = () => {
       .catch((err) => console.log(err));
   };
 
+  const addCurrentMenu = (menuId) =>{
+    authAxiosMess
+      .post(`/api/currentmenu/new`,{
+        messId:getId,
+		    menuId:menuId
+      })
+      .then((res) => {
+        toast.info("Updated Current Menu")
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Error updating Current menu')
+      })
+
+      setStar((prev) => !prev);
+  }
+
+  const removeCurrentMenu = (menuId) => {
+    authAxiosMess
+      .delete(`/api/currentmenu/delete/${menuId}`)
+      .then((res) => {
+        toast.info("Removed Current Menu")
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error('Error removing Current menu')
+      })
+
+      setStar((prev) => !prev);
+  }
   return (
     <div className="mt-4" style={{ width: "70%" }}>
       {loading ? (
@@ -95,9 +129,16 @@ const MySavedMenu = () => {
                   </li>
                   <li>{item.tag[0]}</li>
                   <li>
-                    <StarsIcon
-                      style={{ color: "#FFB800", cursor: "pointer" }}
-                    />
+                    {star === false ? (
+                      <StarsOutlinedIcon
+                        style={{ color:'#FFB800', cursor: "pointer" }}
+                        onClick={() => addCurrentMenu(item._id)}
+                      /> ) : (
+                      <StarsIcon
+                        style={{ color:'#FFB800', cursor: "pointer" }}
+                        onClick={() => removeCurrentMenu(item._id)}
+                      /> )
+                    } 
                   </li>
                   <li>
                     <EditIcon
