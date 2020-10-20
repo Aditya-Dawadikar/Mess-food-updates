@@ -58,15 +58,15 @@ exports.getAllMenus = async(req, res) => {
     }
 }
 
-exports.getMenuById = (req, res) => {
-    CurrentMenu.findById({
+exports.getMenuById = async(req, res) => {
+    let messid = 0;
+    let menuid = 0;
+    await CurrentMenu.findById({
             _id: req.params.id
         }).exec()
         .then(doc => {
-            res.status(200).json({
-                message: "success",
-                CurrentMenu: doc
-            })
+            messid = doc.messId;
+            menuid = doc.menuId;
         }).catch(err => {
             res.status(500).json({
                 message: "some error occured while fetching data",
@@ -74,6 +74,30 @@ exports.getMenuById = (req, res) => {
             })
         })
 
+    let menuListArray = []
+    let messInfo = {}
+    await Mess.findById({ _id: messid })
+        .select('MenuList messDetails')
+        .then(doc => {
+            menuListArray = doc.MenuList
+            messInfo = doc.messDetails
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: "some error occured while fetching data",
+                error: err
+            })
+        })
+
+    let index = menuListArray.findIndex(menu => {
+        return String(menu._id) === String(menuid)
+    })
+
+    res.status(200).json({
+        message: "success",
+        messinfo: messInfo,
+        menu: menuListArray[index]
+    })
 }
 
 exports.postNewMenu = (req, res) => {
@@ -84,7 +108,7 @@ exports.postNewMenu = (req, res) => {
     })
     menu.save()
         .then(doc => {
-            addCollectionIdToPostArray(req.body.messId,doc._id)
+            addCollectionIdToPostArray(req.body.messId, doc._id)
             res.status(200).json({
                 message: "success",
                 Menu: doc
@@ -97,26 +121,26 @@ exports.postNewMenu = (req, res) => {
         })
 }
 
-async function addCollectionIdToPostArray(messId,postId){
-    let postArray=[]
-    await Mess.findById({_id:messId})
-    .then(doc => {
-        postArray=doc.postedMenu;
-    }).catch(err => {
-        throw new Error(err)
-    })
+async function addCollectionIdToPostArray(messId, postId) {
+    let postArray = []
+    await Mess.findById({ _id: messId })
+        .then(doc => {
+            postArray = doc.postedMenu;
+        }).catch(err => {
+            throw new Error(err)
+        })
 
     let postObject = {
-        postId : postId
+        postId: postId
     }
     postArray.push(postObject);
 
-    await Mess.findByIdAndUpdate({_id:messId},{postedMenu:postArray})
-    .then(doc => {
-        console.log(doc)
-    }).catch(err => {
-        throw new Error(err)
-    })
+    await Mess.findByIdAndUpdate({ _id: messId }, { postedMenu: postArray })
+        .then(doc => {
+            console.log(doc)
+        }).catch(err => {
+            throw new Error(err)
+        })
 }
 
 exports.updateCurrentMenuById = (req, res) => {
