@@ -3,9 +3,8 @@ import NavBar from "../cust-dash/NavBar";
 import MessCard from "../cust-dash/MessCard";
 import CarouselCard from "../cust-dash/CarouselCard";
 import Loader from "react-loader-spinner";
-import axios from "axios";
+import { authAxiosMess } from "../../../App";
 
-const base_url = "http://localhost:9000";
 
 const Mess = () => {
   const [state, setState] = useState([]);
@@ -16,14 +15,13 @@ const Mess = () => {
     setState(data);
   };
 
-  useEffect(() => {
-    if(!localStorage.getItem("tokenMess")) window.location = "/login/mess";
+  useEffect(() => {  
     setLoading(true);
-    axios
-      .get(base_url + "/api/mess/all")
+    authAxiosMess
+      .get("api/mess/all")
       .then((res) => {
-        console.log(res.data);
-        // console.log(res.data.Mess);
+        console.log(res);
+        console.log(res.data.Mess);
         setState(res.data.Mess);
 
         // alert("CUSTOMER DASHBOARD LOADED SUCCESFULLY");
@@ -33,8 +31,8 @@ const Mess = () => {
         console.log(`${err}:some error while fetching mess-all data`);
       });
 
-    axios
-      .get(base_url + "/api/currentmenu/all")
+    authAxiosMess
+      .get("/api/currentmenu/all")
       .then((res) => {
         console.log(res);
         console.log(res.data.availableMenus);
@@ -47,8 +45,8 @@ const Mess = () => {
   }, []);
 
   useEffect(()=>{
-   
-  },[localStorage.getItem("tokenMess")])
+    if(!localStorage.getItem("tokenMess")) window.location = "/login/mess";
+  },[])
 
   return (
     <>
