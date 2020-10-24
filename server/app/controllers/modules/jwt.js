@@ -13,18 +13,21 @@ module.exports = class Authorization {
                 expiresIn: time
             }
         );
-        /*
-            const refreshToken = jwt.sign({
-                    email: doc[0].Admin_email,
-                    role: "admin"
-                },
-                process.env.JWT_REFRESH_KEY, {
-                    expiresIn: 60 * 40
-                }
-            );
-        */
+        const refreshToken = jwt.sign({
+                email: email,
+                role: role
+            },
+            process.env.JWT_KEY, {
+                expiresIn: time * 2
+            }
+        );
 
-        return token;
+        let tokenObject = {
+            token: token,
+            refreshToken: refreshToken
+        }
+
+        return tokenObject;
     }
 
     //send forgot password token

@@ -97,10 +97,6 @@ exports.messLogin = (req, res) => {
                             message: "success",
                             userId: doc[0]._id,
                             token: token
-                                /*
-                                refreshToken: refreshToken,
-                                redirect: ""
-                                */
                         })
                     } else {
                         res.status(400).json({
