@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import DirectionsIcon from "@material-ui/icons/Directions";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-import { NavLink } from "react-router-dom";
+import { NavLink, Route } from "react-router-dom";
 import { authAxiosCust } from "../../../App";
 import { toast } from "react-toastify";
 
@@ -28,6 +28,7 @@ const MessCard = (props) => {
       }
     }
   }
+  //time complexity : length of array1 + length of array2
 
   const subscribeMess = () => {
     authAxiosCust
@@ -39,6 +40,16 @@ const MessCard = (props) => {
   };
 
   const unsubscribeMess = () => {
+
+    authAxiosCust
+      .get(`/api/mess/${props.messId}`)
+      .then((res) => {
+        console.log(res);
+        setMess(res.data.Mess[0].subscribers);
+        // console.log(res.data.Mess[0].subscribers);
+      })
+      .catch((err) => console.log(err));
+
     authAxiosCust
       .get(`api/customer/${custId}`)
       .then((res) => {
@@ -57,25 +68,33 @@ const MessCard = (props) => {
     setSubscribe((prev) => !prev);
   };
 
-  useEffect(() => {
-    authAxiosCust
-      .get(`api/customer/features/savedmess/${custId}`)
-      .then((res) => {
-        // console.log(res);
-        res.data.doc.find((val) => val._id === props.messId)
-          ? setSubscribe(true)
-          : setSubscribe(false);
-      })
-      .catch((err) => console.log(err));
+  const BookmarkedButton = () => {
 
     authAxiosCust
-      .get(`/api/mess/${props.messId}`)
-      .then((res) => {
-        // console.log(res.data.Mess[0].subscribers);
-        setMess(res.data.Mess[0].subscribers);
-      })
-      .catch((err) => console.log(err));
-  }, [custId]);
+        .get(`api/customer/features/savedmess/${custId}`)
+        .then((res) => {
+          // console.log(res);
+          res.data.doc.find((val) => val._id === props.messId)
+            ? setSubscribe(true)
+            : setSubscribe(false);
+        })
+        .catch((err) => console.log(err));
+
+    return subscribe === false ? (
+      <BookmarkBorderIcon
+        className="text-warning d-flex mr-1"
+        style={{ transform: "scale(1.2)", cursor: "pointer" }}
+        onClick={() => subscribeMess()}
+      />
+    ) : (
+      <BookmarkIcon
+        className="text-warning d-flex mr-1"
+        style={{ transform: "scale(1.2)", cursor: "pointer" }}
+        onClick={() => unsubscribeMess()}
+      />
+    );
+  };
+
   return (
     <>
       <div
@@ -138,19 +157,10 @@ const MessCard = (props) => {
                     View
                   </button>
                 </NavLink>
-                {subscribe === false ? (
-                  <BookmarkBorderIcon
-                    className="text-warning d-flex mr-1"
-                    style={{ transform: "scale(1.2)", cursor: "pointer" }}
-                    onClick={() => subscribeMess()}
-                  />
-                ) : (
-                  <BookmarkIcon
-                    className="text-warning d-flex mr-1"
-                    style={{ transform: "scale(1.2)", cursor: "pointer" }}
-                    onClick={() => unsubscribeMess()}
-                  />
-                )}
+                <Route
+                  path="/customer/dashboard"
+                  component={BookmarkedButton}
+                />
               </div>
             </div>
           </div>
