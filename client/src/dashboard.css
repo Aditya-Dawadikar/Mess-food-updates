@@ -55,6 +55,16 @@
 
 #customers tr:hover {background-color: #ddd;}
 
+.messCard{
+  border-radius: 10px;
+}
+.messCard:hover{
+  cursor: pointer;
+  transform: scale(1.03);
+  border: 0.5px solid #FFB800;
+  /* box-shadow: 0px 0px 15px 0px #FEC200; */
+}
+
 .price-tag h4 , h1{
   font-family: 'Righteous', cursive;
 }

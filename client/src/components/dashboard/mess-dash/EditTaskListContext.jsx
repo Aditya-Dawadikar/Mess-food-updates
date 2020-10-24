@@ -25,13 +25,13 @@ const TaskListContextProvider = (props) => {
   }, [messId, menuId]);
 
   useEffect(() => {
-    addList(tasks);
+    addList(tasks); // eslint-disable-next-line 
   }, [tasks]);
 
   // Add tasks
   const addTask = (itemName) => {
     setTasks([...tasks, { itemName: itemName, _id: uuid() }]);
-    addList(tasks);
+    addList(tasks); 
     console.log(tasks);
   };
 

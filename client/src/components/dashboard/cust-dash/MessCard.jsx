@@ -8,6 +8,7 @@ import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import { NavLink, Route } from "react-router-dom";
 import { authAxiosCust } from "../../../App";
 import { toast } from "react-toastify";
+import foodImage from "../../../imgs/food3_1.jpg";
 
 const MessCard = (props) => {
   const custId = localStorage.getItem("userId");
@@ -98,13 +99,13 @@ const MessCard = (props) => {
   return (
     <>
       <div
-        className="card mb-3 mr-3"
+        className="card mb-3 mr-3 messCard"
         style={{ maxWidth: "475px", backgroundColor: "#FFF8DE" }}
       >
         <div className="row no-gutters">
           <div className="col-md-4">
             <img
-              src={props.messImg}
+              src={foodImage}
               className="card-img pt-2 pl-2"
               style={{ height: "160px", borderRadius: "10px" }}
               alt="food1"
