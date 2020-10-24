@@ -65,6 +65,7 @@ const LeftSideList = () => {
               Add new menu
             </li>
           </NavLink>
+
         </div>
       </div>
     </>
