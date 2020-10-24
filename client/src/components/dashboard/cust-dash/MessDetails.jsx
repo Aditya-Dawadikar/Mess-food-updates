@@ -20,6 +20,7 @@ function MessDetails() {
     menuList: [],
     subscribers: [],
   });
+  
 
   const [subscribe, setSubscribe] = useState(false);
 
@@ -123,13 +124,14 @@ function MessDetails() {
                     style={{ transform: "scale(1.8)", cursor: "pointer" }}
                     onClick={() => subscribeMess(messId)}
                   />
-                ) : (
+                  ) : (
                   <BookmarkIcon
                     className="text-warning mx-3 my-2"
                     style={{ transform: "scale(1.8)", cursor: "pointer" }}
                     onClick={() => unsubscribeMess()}
                   />
-                )}
+                  )
+                }
               </div>
               <div className="starIcon" style={{ color: "#FFB800" }}>
                 <GradeRoundedIcon style={{ transform: "scale(1.5)" }} />

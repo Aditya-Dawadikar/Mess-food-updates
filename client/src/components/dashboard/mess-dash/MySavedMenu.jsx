@@ -7,6 +7,7 @@ import { authAxiosMess } from "../../../App";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
+
 // import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
 // import { Link } from "react-router-dom";
 
@@ -15,10 +16,23 @@ const MySavedMenu = () => {
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(false);
   const [star,setStar] = useState(false);
+  const [menusAdded,setMenusAdded] = useState([])
 
+  // const [currentMenu,setCurrentMenu] = useState([])
+
+  
 
   useEffect(() => {
     getMenuList();
+    console.log(menusAdded);
+    // authAxiosMess
+    //   .get(`api/mess/${getId}`)
+    //   .then((res) => {
+    //     setCurrentMenu(...res.data.Mess[0].postedMenu)
+    //    })
+    //    .catch(err => {
+    //      console.error(err)
+    //    })
   }, [getId]);
 
   const getMenuList = () => {
@@ -26,8 +40,8 @@ const MySavedMenu = () => {
     authAxiosMess
       .get(`api/menu/all/${getId}`)
       .then((res) => {
-        console.log(getId);
-        console.log(res);
+        // console.log(getId);
+        // console.log(res);
         console.log(res.data);
         setMenu(res.data.Mess);
         setLoading(false);
@@ -47,6 +61,15 @@ const MySavedMenu = () => {
       .catch((err) => console.log(err));
   };
 
+  const currentMenuExists = (id) => {
+    const menuExists = menusAdded.find(x => x === id)
+    if(menuExists){
+      return 1
+    }else{
+      return 0
+    }
+  }
+    
   const addCurrentMenu = (menuId) =>{
     authAxiosMess
       .post(`/api/currentmenu/new`,{
@@ -54,29 +77,31 @@ const MySavedMenu = () => {
 		    menuId:menuId
       })
       .then((res) => {
+        console.log(res.data.Menu.menuId);
+        setMenusAdded(...menusAdded,res.data.Menu.menuId);
         toast.info("Updated Current Menu")
+        
       })
       .catch((err) => {
         console.log(err);
         toast.error('Error updating Current menu')
       })
-
-      setStar((prev) => !prev);
   }
 
   const removeCurrentMenu = (menuId) => {
     authAxiosMess
       .delete(`/api/currentmenu/delete/${menuId}`)
       .then((res) => {
-        toast.info("Removed Current Menu")
+        console.log(res.data);
+        toast.info("Removed Current Menu");
       })
       .catch((err) => {
         console.log(err);
         toast.error('Error removing Current menu')
       })
-
-      setStar((prev) => !prev);
   }
+
+  
   return (
     <div className="mt-4" style={{ width: "70%" }}>
       {loading ? (
@@ -129,16 +154,16 @@ const MySavedMenu = () => {
                   </li>
                   <li>{item.tag[0]}</li>
                   <li>
-                    {star === false ? (
+                    {currentMenuExists(item._id) === 1 ?
+                      <StarsIcon 
+                        style={{ color:'#FFB800', cursor: "pointer" }} 
+                        onClick={() => removeCurrentMenu(item._id)} 
+                       /> :
                       <StarsOutlinedIcon
                         style={{ color:'#FFB800', cursor: "pointer" }}
                         onClick={() => addCurrentMenu(item._id)}
-                      /> ) : (
-                      <StarsIcon
-                        style={{ color:'#FFB800', cursor: "pointer" }}
-                        onClick={() => removeCurrentMenu(item._id)}
-                      /> )
-                    } 
+                      /> 
+                    }
                   </li>
                   <li>
                     <EditIcon
