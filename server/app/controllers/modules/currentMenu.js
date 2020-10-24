@@ -33,8 +33,17 @@ exports.getAllMenus = async(req, res) => {
                     let tempMenuArray = doc.MenuList;
                     for (let j = 0; j < tempMenuArray.length; j++) {
                         if (String(tempMenuArray[j]._id) === String(currentMessArray[i].menuId)) {
+                            let menuIdentificationObject = {
+                                postId: currentMessArray[i]._id,
+                                messId: currentMessArray[i].messId,
+                                menuId: currentMessArray[i].menuId,
+                                createdAt: currentMessArray[i].createdAt,
+                                updatedAt: currentMessArray[i].updatedAt
+                            }
+                            console.log(menuIdentificationObject)
                             menuObject = {
-                                identification: currentMessArray[i],
+                                //identification: currentMessArray[i],
+                                identification: menuIdentificationObject,
                                 messDetails: doc.messDetails,
                                 menu: tempMenuArray[j]
                             }
@@ -109,9 +118,16 @@ exports.postNewMenu = (req, res) => {
     menu.save()
         .then(doc => {
             addCollectionIdToPostArray(req.body.messId, doc._id)
+            let postObject = {
+                messId: doc.messId,
+                menuId: doc.menuId,
+                postId: doc._id,
+                createdAt: doc.createdAt,
+                updatedAt: doc.updatedAt,
+            }
             res.status(200).json({
                 message: "success",
-                Menu: doc
+                postInfo: postObject
             })
         }).catch(err => {
             res.status(500).json({
