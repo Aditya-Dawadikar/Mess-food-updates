@@ -45,7 +45,7 @@ const SavedMess = () => {
               key={idx._id}
             >
               <div className="row no-gutters">
-                <div className="col-md-4">
+                <div className="col-md-4" style={{ width: "40%" }}>
                   <img
                     src={img1}
                     className="card-img" //pt-2 pl-2
@@ -53,8 +53,8 @@ const SavedMess = () => {
                     alt="food1"
                   />
                 </div>
-                <div className="col-md-8">
-                  <div className="card-body ml-4">
+                <div className="col-md-8" style={{ width: "60%" }}>
+                  <div className="card-body ml-4" style={{ width: "80%" }}>
                     <h5 className="card-title" style={{ color: "#FFB800" }}>
                       {idx.messDetails.messName}
                       <VerifiedUserIcon className="ml-2 text-success" />

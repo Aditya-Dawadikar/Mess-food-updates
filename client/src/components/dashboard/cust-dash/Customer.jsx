@@ -6,6 +6,7 @@ import CarouselCard from "./CarouselCard";
 import Loader from "react-loader-spinner";
 // import Fade from "react-reveal/Fade";
 import axios from "axios";
+import { authAxiosCust } from "../../../App";
 
 const Customer = () => {
   const [state, setState] = useState([]);
@@ -31,10 +32,10 @@ const Customer = () => {
         console.log(`${err}:some error while fetching mess-all data`);
       });
 
-    axios
+      authAxiosCust
       .get("api/currentmenu/all")
       .then((res) => {
-        // console.log(res);
+        console.log(res);
         // console.log(res.data.availableMenus);
         setCurrentMenu(res.data.availableMenus);
         setLoading(false);
@@ -72,6 +73,7 @@ const Customer = () => {
                           price={messInfo.menu.price}
                           mess={messInfo.messDetails.messName}
                           address={messInfo.messDetails.address}
+                          messId={messInfo.identification.messId}
                         />
                       </div>
                     );
@@ -86,6 +88,7 @@ const Customer = () => {
                           price={messInfo.menu.price}
                           mess={messInfo.messDetails.messName}
                           address={messInfo.messDetails.address}
+                          messId={messInfo.identification.messId}
                         />
                       </div>
                     );
