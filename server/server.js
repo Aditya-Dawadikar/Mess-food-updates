@@ -33,6 +33,7 @@ mongoose.connect(
 //require routes handlers
 const loginRoutes = require('./app/routes/entry/login');
 const registerRoutes = require('./app/routes/entry/register');
+const refreshTokenRoutes = require('./app/routes/entry/refreshToken');
 const forgotPasswordRoutes = require('./app/routes/entry/forgotPassword')
 const customerRoutes = require('./app/routes/users/customer');
 const messRoutes = require('./app/routes/users/mess');
@@ -50,6 +51,7 @@ const ratingRoutes = require('./app/routes/modules/review');
 //routes
 app.use('/api/login', loginRoutes);
 app.use('/api/register', registerRoutes);
+app.use('/api/refresh', refreshTokenRoutes);
 app.use('/api/forgotpassword', forgotPasswordRoutes);
 app.use('/api/oauth', oauthRoutes);
 app.use('/api/customer', customerRoutes);

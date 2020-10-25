@@ -7,7 +7,8 @@ module.exports = class Authorization {
     createToken(email, role, time) {
         const token = jwt.sign({
                 email: email,
-                role: role
+                role: role,
+                refreshToken: false
             },
             process.env.JWT_KEY, {
                 expiresIn: time
@@ -15,7 +16,8 @@ module.exports = class Authorization {
         );
         const refreshToken = jwt.sign({
                 email: email,
-                role: role
+                role: role,
+                refreshToken: true
             },
             process.env.JWT_KEY, {
                 expiresIn: time * 2

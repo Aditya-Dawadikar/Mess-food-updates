@@ -75,6 +75,31 @@ Registration routes
 		2. Failure
 
 ------------------------------------------------------
+JWT routes
+
+>> /api/refresh/customer
+	Type: GET
+	Header: Authentication bearer token(refresh token)
+	Body: {
+		email:"geekdev127001@gmail.com",
+		userId:"5f75e2a92e26b29c502589c3"
+	}
+	Response: 
+		1. success , new token and refresh token
+		2. failure
+
+>> /api/refresh/mess
+	Type: GET
+	Header: Authentication bearer token(refresh token)
+	Body: {
+		email:"testuser01@gmail.com",
+		userId:"5f75e2a92e26b29c502589c3"
+	}
+	Response: 
+		1. success , new token and refresh token
+		2. failure
+
+------------------------------------------------------
 Customer routes
 
 >> /api/customer
