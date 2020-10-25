@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+// import '../../../sass/EditProfileCustomer.sass'
 import { authAxiosCust } from "../../../App";
 
 const EditProfile = () => {
@@ -70,9 +71,9 @@ const EditProfile = () => {
 
   return (
     <div className="container" style={{ width: "65%", marginTop: "50px" }}>
-      <form className="container">
+      <form className="container editCustForm">
         <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name" className="text-white">Name</label>
           <input
             type="text"
             name="name"

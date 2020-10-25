@@ -13,7 +13,7 @@ const TaskListContextProvider = (props) => {
   useEffect(() => {
     // localStorage.setItem('tasks', JSON.stringify(tasks)) //comment this statement
     // console.log(tasks);
-    addList(tasks);
+    addList(tasks); // eslint-disable-next-line 
   }, [tasks])
 
   

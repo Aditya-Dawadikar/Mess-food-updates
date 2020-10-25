@@ -41,7 +41,7 @@ const SignUp = () => {
       })
       .then(response => {
         console.log(response.data);
-        localStorage.setItem('token',response.data.token)
+        localStorage.setItem('token',response.data.token.token)
         localStorage.setItem('userId',response.data.userId)
         setCustToken(response.data);
         // console.log(custToken);

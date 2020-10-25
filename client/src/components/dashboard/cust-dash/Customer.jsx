@@ -135,7 +135,7 @@ const Customer = () => {
             <div className="container-fluid d-flex">
               <div className="row">
                 <div className="col-10 mx-auto">
-                  <div className="row justify-content-center ">
+                  <div className="row justify-content-center pt-2">
                     {loading ? (
                       <Loader
                         type="ThreeDots"

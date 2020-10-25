@@ -36,7 +36,7 @@ const NavBar = ({ searchMess }) => {
 
   return (
     <>
-      <nav className="navbar navbar-fixed-top mt-3">
+      <nav className="navbar navbar-fixed-top mt-3 navbar-expand-lg navbar-light bg-dark">
         <BrowserRouter>
           <Switch>
             <>

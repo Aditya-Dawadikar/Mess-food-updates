@@ -3,8 +3,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@600&display=swap");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
 @import url("https://fonts.googleapis.com/css2?family=Recursive:wght@500&display=swap");
-@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lora:wght@500&display=swap");
 
 *,
 ::after,
@@ -12,59 +12,62 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-   /* overflow-x: v; */
+  /* overflow-x: v; */
   overflow: hidden;
   font-family: "Recursive", sans-serif;
 }
 
-.Mess-Account{
-    margin: 20px 20px; 
-    width: calc(100% - 40px);
-    height: calc(100vh - 80px);
-    background: #FFF8DE;
-    border-radius:20px ;
-    /* border: 2px solid red; */
-    /* padding: 0 1.5rem; */
+.Mess-Account {
+  margin: 20px 20px;
+  width: calc(100% - 40px);
+  height: calc(100vh - 80px);
+  background: #fff8de;
+  border-radius: 20px;
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRItmSsjLxQ17L3C2u3WnThFYtlKXrW5P9Y3Q&usqp=CAU")
+    center center/cover no-repeat;
+  /* border: 2px solid red; */
+  /* padding: 0 1.5rem; */
 }
-.settings-container{
-    margin: 15px 30px;
-    /* margin-left: 40px; */
-    
-    width: 95%;
-    /* height: 100%; */
-    background: #FFF8DE;
+.settings-container {
+  margin: 15px 30px;
+  /* margin-left: 40px; */
+
+  width: 95%;
+  /* height: 100%; */
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRItmSsjLxQ17L3C2u3WnThFYtlKXrW5P9Y3Q&usqp=CAU")
+    center center/cover no-repeat;
+  /* background: #FFF8DE; */
 }
-.left-list{
+.left-list {
   width: 100%;
   height: calc(100vh - 20px);
-  color: #FFB800;
+  color: #ffb800;
   list-style: none;
   /* border:2px solid blue; */
-  
 }
 
-.left-list li{
+.left-list li {
   cursor: pointer;
 }
 
-.left-list li:hover{
+.left-list li:hover {
   background: rgba(255, 92, 0, 0.23);
   border-radius: 5px;
   color: #db9e04;
 }
 
-.left-list li .mess-account-icon{
- width: 30%;
- height: 75px;
+.left-list li .mess-account-icon {
+  width: 30%;
+  height: 75px;
 }
 
-.left-list a li{
+.left-list a li {
   text-align: left;
   height: 50px;
   font-size: 25px;
 }
 
- /* .left-list li:nth-child(1){
+/* .left-list li:nth-child(1){
   font-size: 30px;
  
 }
@@ -79,16 +82,15 @@
   font-size: 25px;
 } */
 
-.left-list a{
+.left-list a {
   text-decoration: none;
-  color: #FFB800;
+  color: #ffb800;
 }
 
-.page-switch-active li{
+.page-switch-active li {
   border-radius: 5px;
   background-color: rgba(255, 92, 0, 0.23);
   color: #c48f0c;
 }
 
-
- /* border:2px solid rgb(17, 180, 99);  */
+/* border:2px solid rgb(17, 180, 99);  */
