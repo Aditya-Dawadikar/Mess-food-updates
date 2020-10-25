@@ -2,46 +2,28 @@ import React, { useEffect, useState } from "react";
 import "./MessSettings.css";
 import EditIcon from "@material-ui/icons/Edit";
 import StarsIcon from "@material-ui/icons/Stars";
-import StarsOutlinedIcon from '@material-ui/icons/StarsOutlined';
+import StarsOutlinedIcon from "@material-ui/icons/StarsOutlined";
 import { authAxiosMess } from "../../../App";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
 
-// import FiberManualRecordIcon from '@material-ui/icons/FiberManualRecord';
-// import { Link } from "react-router-dom";
-
 const MySavedMenu = () => {
   const getId = localStorage.getItem("userIdMess");
   const [menu, setMenu] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [star,setStar] = useState(false);
-  const [menusAdded,setMenusAdded] = useState([])
-
-  // const [currentMenu,setCurrentMenu] = useState([])
-
-  
+  const [menusAdded, setMenusAdded] = useState([]);
 
   useEffect(() => {
     getMenuList();
-    console.log(menusAdded);
-    // authAxiosMess
-    //   .get(`api/mess/${getId}`)
-    //   .then((res) => {
-    //     setCurrentMenu(...res.data.Mess[0].postedMenu)
-    //    })
-    //    .catch(err => {
-    //      console.error(err)
-    //    })
   }, [getId]);
 
+  //Get menuList......
   const getMenuList = () => {
     setLoading(true);
     authAxiosMess
       .get(`api/menu/all/${getId}`)
       .then((res) => {
-        // console.log(getId);
-        // console.log(res);
         console.log(res.data);
         setMenu(res.data.Mess);
         setLoading(false);
@@ -51,57 +33,87 @@ const MySavedMenu = () => {
       );
   };
 
+  //Delete menuList......
+
   const deleteMenuList = (id) => {
     authAxiosMess
       .delete(`api/menu/delete/${getId}/${id}`)
       .then((res) => {
         getMenuList();
-        toast.warning("menu list updated")
+        toast.warning("menu list updated");
       })
       .catch((err) => console.log(err));
   };
 
-  const currentMenuExists = (id) => {
-    const menuExists = menusAdded.find(x => x === id)
-    if(menuExists){
-      return 1
-    }else{
-      return 0
-    }
-  }
-    
-  const addCurrentMenu = (menuId) =>{
+  useEffect(() => {
+    getCurrentMenuList();
+  }, []);
+
+  //get all Currentmenu List....
+
+  const getCurrentMenuList = () => {
     authAxiosMess
-      .post(`/api/currentmenu/new`,{
-        messId:getId,
-		    menuId:menuId
+      .get("/api/currentmenu/all")
+      .then((res) => {
+        console.log(res);
+        setMenusAdded(res.data.availableMenus);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
+  //Check if particular menu is currentMenu or not...
+
+  const currentMenuExists = (id) => {
+    return menusAdded.find((x) => x.identification.menuId === id) ? 1 : 0;
+  };
+
+  //Add currentMenu....
+
+  const addCurrentMenu = (menuId) => {
+    authAxiosMess
+      .post(`/api/currentmenu/new`, {
+        messId: getId,
+        menuId: menuId,
       })
       .then((res) => {
-        console.log(res.data.Menu.menuId);
-        setMenusAdded(...menusAdded,res.data.Menu.menuId);
-        toast.info("Updated Current Menu")
-        
+        console.log(res.data);
+        getCurrentMenuList();
+        toast.success("Updated Current Menu");
       })
       .catch((err) => {
         console.log(err);
-        toast.error('Error updating Current menu')
-      })
+        toast.error("Error updating Current menu");
+      });
+  };
+
+  //Delete CurrentMenu....
+
+  function findPostId(menu, menuId) {
+    for (let i = 0; i < menu.length; i++) {
+      if (menu[i].identification.menuId === menuId) {
+        return menu[i].identification.postId;
+      }
+    }
   }
 
   const removeCurrentMenu = (menuId) => {
+    const postId = findPostId(menusAdded, menuId);
+    // console.log(postId);
     authAxiosMess
-      .delete(`/api/currentmenu/delete/${menuId}`)
+      .delete(`/api/currentmenu/delete/${postId}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res);
+        getCurrentMenuList();
         toast.info("Removed Current Menu");
       })
       .catch((err) => {
         console.log(err);
-        toast.error('Error removing Current menu')
-      })
-  }
+        toast.error("Error removing Current menu");
+      });
+  };
 
-  
   return (
     <div className="mt-4" style={{ width: "70%" }}>
       {loading ? (
@@ -118,7 +130,7 @@ const MySavedMenu = () => {
         />
       ) : (
         <div className="edit-profile ml-1 container">
-          <div style={{ backgroundColor: "#FFF8DE" }}>
+          <div>
             {menu.map((item) => {
               return (
                 <ul
@@ -154,16 +166,17 @@ const MySavedMenu = () => {
                   </li>
                   <li>{item.tag[0]}</li>
                   <li>
-                    {currentMenuExists(item._id) === 1 ?
-                      <StarsIcon 
-                        style={{ color:'#FFB800', cursor: "pointer" }} 
-                        onClick={() => removeCurrentMenu(item._id)} 
-                       /> :
+                    {currentMenuExists(item._id) ? (
+                      <StarsIcon
+                        style={{ color: "#FFB800", cursor: "pointer" }}
+                        onClick={() => removeCurrentMenu(item._id)}
+                      />
+                    ) : (
                       <StarsOutlinedIcon
-                        style={{ color:'#FFB800', cursor: "pointer" }}
+                        style={{ color: "#FFB800", cursor: "pointer" }}
                         onClick={() => addCurrentMenu(item._id)}
-                      /> 
-                    }
+                      />
+                    )}
                   </li>
                   <li>
                     <EditIcon

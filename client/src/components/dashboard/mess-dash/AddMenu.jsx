@@ -62,7 +62,7 @@ const AddMenu = () => {
       <div className="edit-profile ml-1 container">
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="MenuName">Menu Name</label>
+            <label htmlFor="MenuName" className=" text-white">Menu Name</label>
             <input
               type="text"
               name="menuName"
@@ -74,7 +74,7 @@ const AddMenu = () => {
             />
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="Type">Type</label>
+            <label htmlFor="Type" className=" text-white">Type</label>
             <input
               type="text"
               name="tag"
@@ -86,7 +86,7 @@ const AddMenu = () => {
             />
           </div>
           <div className="form-group col-md-6 position-relative">
-            <label htmlFor="AddItems">Add Items</label>
+            <label htmlFor="AddItems" className=" text-white">Add Items</label>
 
             <div className="main">
               {/* <TaskListContextProvider > */}
@@ -97,7 +97,7 @@ const AddMenu = () => {
             </div>
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="SetPrice">Set Price</label>
+            <label htmlFor="SetPrice" className=" text-white">Set Price</label>
             <input
               type="number"
               name="price"

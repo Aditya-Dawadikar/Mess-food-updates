@@ -164,7 +164,7 @@ const EditProfile = () => {
 
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label htmlFor="MessName">Mess Name</label>
+              <label htmlFor="MessName" className=" text-white">Mess Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -176,7 +176,7 @@ const EditProfile = () => {
               />
             </div>
             <div className="form-group col-md-6">
-              <label htmlFor="OwnerName">Owner Name</label>
+              <label htmlFor="OwnerName" className=" text-white">Owner Name</label>
               <input
                 type="text"
                 className="form-control"
@@ -190,7 +190,7 @@ const EditProfile = () => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label htmlFor="inputEmail4">Email</label>
+              <label htmlFor="inputEmail4" className=" text-white">Email</label>
               <input
                 type="email"
                 className="form-control"
@@ -202,7 +202,7 @@ const EditProfile = () => {
               />
             </div>
             <div className="form-group col-md-6">
-              <label htmlFor="inputPassword4">Password</label>
+              <label htmlFor="inputPassword4" className=" text-white">Password</label>
               <input
                 type={visible ? "text" : "password"}
                 className="form-control"
@@ -221,7 +221,7 @@ const EditProfile = () => {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="inputAddress">Address</label>
+            <label htmlFor="inputAddress" className=" text-white">Address</label>
             <input
               type="text"
               className="form-control"

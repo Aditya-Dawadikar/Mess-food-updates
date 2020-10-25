@@ -40,7 +40,7 @@ const SignUp = () => {
       })
       .then(function (response) {
         console.log(response);
-        localStorage.setItem('tokenMess',response.data.token)
+        localStorage.setItem('tokenMess',response.data.token.token)
         localStorage.setItem('userIdMess',response.data.userId)
         setMessToken(response.data);
         if (response.status === 200) window.location = "/mess/dashboard";

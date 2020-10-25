@@ -23,6 +23,8 @@
   height: calc(100vh - 80px);
   background: #fff8de;
   border-radius: 20px;
+  background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRItmSsjLxQ17L3C2u3WnThFYtlKXrW5P9Y3Q&usqp=CAU")
+    center center/cover no-repeat;
   /* border: 2px solid red; */
   /* padding: 0 1.5rem; */
 }
