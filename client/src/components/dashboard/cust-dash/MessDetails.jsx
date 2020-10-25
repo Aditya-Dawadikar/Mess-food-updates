@@ -162,7 +162,7 @@ function MessDetails() {
                 <LocationOnIcon
                   style={{ color: "#FF4D00", transform: "scale(1.5)" }}
                 />
-                <span>{mess.address}</span>
+                <span className="ml-2">{mess.address}</span>
                 <p className="ml-4" style={{ marginTop: "5px" }}>
                   <span>5 km from Pccoe</span>
                   <DirectionsIcon style={{ color: "#FFB800" }} />

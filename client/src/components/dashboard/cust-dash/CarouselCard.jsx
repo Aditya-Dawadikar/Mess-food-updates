@@ -108,6 +108,9 @@ const CarouselCard = (props) => {
               type="button"
               className="btn btn-warning text-white w-50 mt-2"
               style={{ transform: "scale(1.3)" }}
+              onClick={() =>
+                (window.location = `/customer/mess-details/${props.messId}`)
+              }
             >
               View
             </button>

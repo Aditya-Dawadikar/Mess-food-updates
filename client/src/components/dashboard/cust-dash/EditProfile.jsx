@@ -87,7 +87,7 @@ const EditProfile = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="Email">Email address</label>
+          <label htmlFor="Email" className="text-white">Email address</label>
           <input
             type="email"
             name="email"
@@ -101,7 +101,7 @@ const EditProfile = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="Password">Password</label>
+          <label htmlFor="Password" className="text-white">Password</label>
           <input
             type="password"
             name="password"
@@ -113,7 +113,7 @@ const EditProfile = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="phoneno">Phone No</label>
+          <label htmlFor="phoneno" className="text-white">Phone No</label>
           <input
             type="tel"
             name="phone"
