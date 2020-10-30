@@ -4,11 +4,12 @@ import MessCard from "./MessCard";
 import CarouselCard from "./CarouselCard";
 // import MessCardData from "./MessCardData";
 import Loader from "react-loader-spinner";
+import { useHistory } from "react-router-dom";
 // import Fade from "react-reveal/Fade";
-import axios from "axios";
 import { authAxiosCust } from "../../../App";
 
 const Customer = () => {
+  let history = useHistory();
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentMenu, setCurrentMenu] = useState([]);
@@ -19,20 +20,18 @@ const Customer = () => {
 
   useEffect(() => {
     setLoading(true);
-    axios
+    authAxiosCust
       .get("api/mess/all")
       .then((res) => {
         // console.log(res.data.Mess);
         setState(res.data.Mess);
         // setLoading(false);
-        // alert("CUSTOMER DASHBOARD LOADED SUCCESFULLY");
-        //we can also add toast ...
       })
       .catch((err) => {
         console.log(`${err}:some error while fetching mess-all data`);
       });
 
-      authAxiosCust
+    authAxiosCust
       .get("api/currentmenu/all")
       .then((res) => {
         console.log(res);
@@ -48,7 +47,7 @@ const Customer = () => {
   return (
     <>
       {!localStorage.getItem("token") ? (
-        (window.location = "/login/customer")
+        (history.push("/login/customer"))
       ) : (
         <div>
           <NavBar searchMess={searchMess} />

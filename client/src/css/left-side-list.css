@@ -40,7 +40,7 @@
 }
 .left-list {
   width: 100%;
-  height: calc(100vh - 20px);
+  height: calc(100vh - 100px);
   color: #ffb800;
   list-style: none;
   /* border:2px solid blue; */
