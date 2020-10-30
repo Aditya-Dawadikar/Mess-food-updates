@@ -35,26 +35,29 @@ export const authAxiosCust = axios.create({
 const App = () => {
   return (
     <>
-     <ToastContainer/>
+      <ToastContainer />
       <BrowserRouter>
         <Switch>
-        <>
-          <Route exact path="/" component={Login} />
+          <>
+            <Route exact path="/" component={Login} />
 
-          {/* login and signup routes */}
-          <Route path="/signup/customer" component={SignUp} />
-          <Route path="/login/customer" component={Login} />
-          <Route path="/login/mess" component={LoginM} />
-          <Route path="/signup/mess" component={SignUpM} />
+            {/* login and signup routes */}
+            <Route path="/signup/customer" component={SignUp} />
+            <Route path="/login/customer" component={Login} />
+            <Route path="/login/mess" component={LoginM} />
+            <Route path="/signup/mess" component={SignUpM} />
 
-          {/* dashboard routes */}
-          <Route path="/customer/dashboard" component={CustDashboard} />
-          <Route path="/mess/dashboard" component={MessDashboard} />
-          <Route path="/customer/mess-details/:messId" component={MessDetails} />
+            {/* dashboard routes */}
+            <Route path="/customer/dashboard" component={CustDashboard} />
+            <Route path="/mess/dashboard" component={MessDashboard} />
+            <Route
+              path="/customer/mess-details/:messId"
+              component={MessDetails}
+            />
 
-          {/* Mess and customer Settings Routes */}
-          <Route path="/customer/settings" component={Settings} />
-          <Route path="/mess/settings" component={MessSettings} />
+            {/* Mess and customer Settings Routes */}
+            <Route path="/customer/settings" component={Settings} />
+            <Route path="/mess/settings" component={MessSettings} />
           </>
         </Switch>
       </BrowserRouter>

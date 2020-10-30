@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import { NavLink } from "react-router-dom";
 import SignUpImg from "../SignUpImg"
+import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
+import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
+import MailRoundedIcon from '@material-ui/icons/MailRounded';
+import PhoneIphoneRoundedIcon from '@material-ui/icons/PhoneIphoneRounded';
+import LockRoundedIcon from '@material-ui/icons/LockRounded';
+import RoomRoundedIcon from '@material-ui/icons/RoomRounded';
+import LocalShippingRoundedIcon from '@material-ui/icons/LocalShippingRounded';
+import LocalDiningRoundedIcon from '@material-ui/icons/LocalDiningRounded';
+import PaymentRoundedIcon from '@material-ui/icons/PaymentRounded';
 import axios from 'axios';
 
 
@@ -100,6 +109,15 @@ const SignUp = () => {
                 onChange={inputEvent}
                 value={mess.messDetails[0]}
               />
+              <HomeRoundedIcon
+                  style={{
+                    background: "transparent",
+                    color: "black",
+                    top: "1rem",
+                    left: "1rem",
+                    position: "absolute",
+                  }}
+                />
               <input
                 type="text"
                 placeholder="Enter Your Owner Name"
@@ -107,6 +125,15 @@ const SignUp = () => {
                 onChange={inputEvent}
                 value={mess.messDetails[1]}
               />
+              <PersonRoundedIcon
+                  style={{
+                    background: "transparent",
+                    color: "black",
+                    top: "4.7rem",
+                    left: "1rem",
+                    position: "absolute",
+                  }}
+                />
               <input
                 type="email"
                 placeholder="Enter Your EmailID"
@@ -114,6 +141,15 @@ const SignUp = () => {
                 onChange={inputEvent}
                 value={mess.email}
               />
+              <MailRoundedIcon
+                  style={{
+                    background: "transparent",
+                    color: "black",
+                    top: "8.4rem",
+                    left: "1rem",
+                    position: "absolute",
+                  }}
+                />
               <input
                 type="number"
                 placeholder="Enter Your Phone no."
@@ -121,6 +157,15 @@ const SignUp = () => {
                 onChange={inputEvent}
                 value={mess.messDetails[2]}
               />
+              <PhoneIphoneRoundedIcon
+                  style={{
+                    background: "transparent",
+                    color: "black",
+                    top: "12.1rem",
+                    left: "1rem",
+                    position: "absolute",
+                  }}
+                />
               <input
                 type="password"
                 placeholder="Enter password"
@@ -128,6 +173,15 @@ const SignUp = () => {
                 onChange={inputEvent}
                 value={mess.password}
               />
+              <LockRoundedIcon
+                  style={{
+                    background: "transparent",
+                    color: "black",
+                    top: "15.8rem",
+                    left: "1rem",
+                    position: "absolute",
+                  }}
+                />
               <input
                 type="text"
                 placeholder="Enter Your Mess Address"
@@ -135,6 +189,15 @@ const SignUp = () => {
                 onChange={inputEvent}
                 value={mess.messDetails[3]}
               />
+              <RoomRoundedIcon
+                  style={{
+                    background: "transparent",
+                    color: "black",
+                    top: "19.5rem",
+                    left: "1rem",
+                    position: "absolute",
+                  }}
+                />
               <input
                 type="text"
                 placeholder="Home Delivery True/False"
@@ -142,6 +205,15 @@ const SignUp = () => {
                 onChange={inputEvent}
                 value={mess.price.homeDelivery[0]}
               />
+              <LocalShippingRoundedIcon
+                  style={{
+                    background: "transparent",
+                    color: "black",
+                    top: "23.2rem",
+                    left: "1rem",
+                    position: "absolute",
+                  }}
+                />
               <input
                 type="text"
                 placeholder="On Venue Available True/False"
@@ -149,6 +221,15 @@ const SignUp = () => {
                 onChange={inputEvent}
                 value={mess.price.onVenue[0]}
               />
+              <LocalDiningRoundedIcon
+                  style={{
+                    background: "transparent",
+                    color: "black",
+                    top: "26.9rem",
+                    left: "1rem",
+                    position: "absolute",
+                  }}
+                />
                <input
                 type="number"
                 placeholder="Home Delivery Charge"
@@ -156,13 +237,22 @@ const SignUp = () => {
                 onChange={inputEvent}
                 value={mess.price.homeDelivery[1]}
               />
+              <PaymentRoundedIcon
+                  style={{
+                    background: "transparent",
+                    color: "black",
+                    top: "30.6rem",
+                    left: "1rem",
+                    position: "absolute",
+                  }}
+                />
               <button type="submit">SIGN UP</button>
             </div>
           </div>
         </form>
         <div className="switch-user">
-        <NavLink to='/login/customer' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Customer</button></NavLink>
-        <NavLink to='/login/mess' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Mess</button></NavLink>
+        <NavLink to='/signup/customer' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Customer</button></NavLink>
+        <NavLink to='/signup/mess' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Mess</button></NavLink>
         </div>
         </div>
       </div>        

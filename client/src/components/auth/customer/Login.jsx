@@ -5,11 +5,13 @@ import FastfoodIcon from "@material-ui/icons/Fastfood";
 import { NavLink } from "react-router-dom";
 import SignUpImg from "../SignUpImg";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
+  let history = useHistory();
   const initialState = localStorage.getItem('token');
   const [custToken, setCustToken]=useState(initialState);
-  const [mess, setUser] = useState({
+  const [user, setUser] = useState({
     password: "",
     email: "",
   });
@@ -33,19 +35,20 @@ const SignUp = () => {
   
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(mess);
+    console.log(user);
     axios
       .post("api/login/customer", {
-        email: mess.email,
-        password: mess.password,
+        email: user.email,
+        password: user.password,
       })
       .then(response => {
         console.log(response.data);
         localStorage.setItem('token',response.data.token.token)
+        localStorage.setItem('refreshToken',response.data.token.refreshToken);
         localStorage.setItem('userId',response.data.userId)
         setCustToken(response.data);
         // console.log(custToken);
-        if (response.status === 200) window.location = "/customer/dashboard";
+        if (response.status === 200) history.push("/customer/dashboard");
       })
       .catch(error=>{
         alert('Wrong username or password');
@@ -78,13 +81,13 @@ const SignUp = () => {
                   placeholder="Enter Your EmailID"
                   name="email"
                   onChange={inputEvent}
-                  value={mess.email}
+                  value={user.email}
                 />
                 <EmailOutlinedIcon
                   style={{
                     background: "transparent",
                     color: "black",
-                    top: "1.5rem",
+                    top: "1.7rem",
                     left: "1rem",
                     position: "absolute",
                   }}
@@ -94,7 +97,7 @@ const SignUp = () => {
                   placeholder="Enter Your password"
                   name="password"
                   onChange={inputEvent}
-                  value={mess.password}
+                  value={user.password}
                 />
                 <LockOutlinedIcon
                   style={{

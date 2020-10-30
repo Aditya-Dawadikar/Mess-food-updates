@@ -3,9 +3,11 @@ import NavBar from "../cust-dash/NavBar";
 import MessCard from "../cust-dash/MessCard";
 import CarouselCard from "../cust-dash/CarouselCard";
 import Loader from "react-loader-spinner";
+import { useHistory } from "react-router-dom";
 import { authAxiosMess } from "../../../App";
 
 const Mess = () => {
+  let history = useHistory();
   const [state, setState] = useState([]);
   const [loading, setLoading] = useState(false);
   const [currentMenu, setCurrentMenu] = useState([]);
@@ -47,7 +49,7 @@ const Mess = () => {
   return (
     <>
       {!localStorage.getItem("tokenMess") ? (
-        (window.location = "/login/mess")
+        (history.push("/login/mess"))
       ) : (
         <div>
           <NavBar searchMess={searchMess} />
