@@ -34,7 +34,7 @@ const Customer = () => {
     authAxiosCust
       .get("api/currentmenu/all")
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         // console.log(res.data.availableMenus);
         setCurrentMenu(res.data.availableMenus);
         setLoading(false);
@@ -52,7 +52,7 @@ const Customer = () => {
         <div>
           <NavBar searchMess={searchMess} />
 
-          <header className=" mt-3">
+          <header style={{marginTop:"120px"}}>
             <div className="container">
               <div
                 id="carouselExampleControls"
@@ -103,7 +103,6 @@ const Customer = () => {
                   <span
                     className="carousel-control-prev-icon"
                     style={{
-                      filter: "invert(1)",
                       width: "45px",
                       height: "26px",
                     }}
@@ -121,7 +120,6 @@ const Customer = () => {
                   <span
                     className="carousel-control-next-icon"
                     style={{
-                      filter: "invert(1)",
                       width: "45px",
                       height: "26px",
                     }}
