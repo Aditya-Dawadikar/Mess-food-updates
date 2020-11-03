@@ -130,70 +130,76 @@ const MySavedMenu = () => {
         />
       ) : (
         <div className="edit-profile ml-1 container">
-          <div>
-            {menu.map((item) => {
-              return (
-                <ul
-                  key={item._id}
-                  className="col sm-12 d-flex justify-content-between align-items-center bg-white"
-                  style={{
-                    borderRadius: "5px",
-                    height: "75px",
-                    borderLeft: "8px solid #FFB800",
-                  }}
-                >
-                  <li>
-                    <ul className="d-flex pl-0">
-                      {item.menuItem.map((idx) => {
-                        return (
-                          <li className="mr-2" key={idx._id}>
-                            {idx.itemName}
-                          </li>
-                        );
-                      })}
-                      <img
-                        src="https://img.icons8.com/color/20/000000/vegetarian-food-symbol.png"
-                        alt="veg"
-                      />
-                      {/* <FiberManualRecordIcon/> */}
-                    </ul>
-                  </li>
-                  <li
-                    className="font-weight-bold"
-                    style={{ color: "#FF5C00", letterSpacing: "2px" }}
+          <table className="w-100">
+            <tbody>
+              {menu.map((item) => {
+                return (
+                  <tr
+                    key={item._id}
+                    className="col sm-12 d-flex align-items-center bg-white menu-item-list mb-3"
+                    style={{
+                      borderRadius: "5px",
+                      height: "75px",
+                      borderLeft: "8px solid #FFB800",
+                    }}
                   >
-                    {item.price} INR
-                  </li>
-                  <li>{item.tag[0]}</li>
-                  <li>
-                    {currentMenuExists(item._id) ? (
-                      <StarsIcon
+                    <td className="justify-content-center" style={{width:"35%"}}>
+                      <ul className="d-flex pl-0">
+                        {item.menuItem.map((idx) => {
+                          return (
+                            <li className="mr-2" key={idx._id}>
+                              {idx.itemName}
+                            </li>
+                          );
+                        })}
+                        <img
+                          src="https://img.icons8.com/color/20/000000/vegetarian-food-symbol.png"
+                          alt="veg"
+                        />
+                        {/* <FiberManualRecordIcon/> */}
+                      </ul>
+                    </td>
+                    <td
+                      className="font-weight-bold"
+                      style={{ color: "#FF5C00", letterSpacing: "2px" ,width:"10%" , textAlign:"center" }}
+                    >
+                      {item.price} INR
+                    </td>
+                    <td style={{width:"20%" , textAlign:"center"}}>{item.tag[0]}</td>
+                    <td style={{width:"15%" , textAlign:"center"}}>
+                      {currentMenuExists(item._id) ? (
+                        <StarsIcon
+                          style={{ color: "#FFB800", cursor: "pointer" }}
+                          onClick={() => removeCurrentMenu(item._id)}
+                        />
+                      ) : (
+                        <StarsOutlinedIcon
+                          style={{ color: "#FFB800", cursor: "pointer" }}
+                          onClick={() => addCurrentMenu(item._id)}
+                        />
+                      )}
+                    </td>
+                    <td style={{width:"15%" , textAlign:"center"}}>
+                      <EditIcon
+                        className="icon_action"
                         style={{ color: "#FFB800", cursor: "pointer" }}
-                        onClick={() => removeCurrentMenu(item._id)}
+                        onClick={() =>
+                          (window.location = `editmenu/${item._id}`)
+                        }
                       />
-                    ) : (
-                      <StarsOutlinedIcon
+                    </td>
+                    <td className="mr-3">
+                      <DeleteIcon
+                        className="icon_action"
                         style={{ color: "#FFB800", cursor: "pointer" }}
-                        onClick={() => addCurrentMenu(item._id)}
+                        onClick={() => deleteMenuList(item._id)}
                       />
-                    )}
-                  </li>
-                  <li>
-                    <EditIcon
-                      style={{ color: "#FFB800", cursor: "pointer" }}
-                      onClick={() => (window.location = `editmenu/${item._id}`)}
-                    />
-                  </li>
-                  <li className="mr-3">
-                    <DeleteIcon
-                      style={{ color: "#FFB800", cursor: "pointer" }}
-                      onClick={() => deleteMenuList(item._id)}
-                    />
-                  </li>
-                </ul>
-              );
-            })}
-          </div>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
         </div>
       )}
     </div>

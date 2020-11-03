@@ -57,13 +57,13 @@ input[type=number]::-webkit-outer-spin-button {
   opacity: 1;
 }
 
-.spinner-button {
+/* .spinner-button {
   position: absolute;
   z-index: 2;
   cursor: pointer;
   height: 10px;
   line-height: 10px;
-}
+} */
 
 #inc-button {
   left: 26.5rem;
@@ -96,6 +96,19 @@ input[type=number]::-webkit-outer-spin-button {
   right: 25px;
   transform: scale(1.2);
 }
+
+
+/* ************My Saved Menu css************** */
+ .icon_action{
+  opacity: 0;
+}
+
+.menu-item-list:hover .icon_action{
+  opacity: 1;
+}
+
+/* .icon_aciton: */
+
 
 
 /* ************add menu list css************** */

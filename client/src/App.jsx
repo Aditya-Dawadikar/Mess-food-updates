@@ -10,13 +10,14 @@ import MessDashboard from "./components/dashboard/mess-dash/Mess.jsx";
 import MessDetails from "./components/dashboard/cust-dash/MessDetails";
 import MessSettings from "./components/dashboard/mess-dash/MessSettings";
 import Settings from "./components/dashboard/cust-dash/Settings";
+import Error from "./Error.jsx";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
 
 const token = localStorage.getItem("tokenMess");
 const tokenCust = localStorage.getItem("token");
-const refreshToken = localStorage.getItem("refreshToken");
-const CustId = localStorage.getItem("userId");
+// const refreshToken = localStorage.getItem("refreshToken");
+// const CustId = localStorage.getItem("userId");
 
 axios.defaults.baseURL = "http://localhost:9000/";
 
@@ -81,27 +82,29 @@ const App = () => {
       <ToastContainer />
       <BrowserRouter>
         <Switch>
-          <>
-            <Route exact path="/" component={Login} />
+          <Route exact path="/" component={Login} />
 
-            {/* login and signup routes */}
-            <Route path="/signup/customer" component={SignUp} />
-            <Route path="/login/customer" component={Login} />
-            <Route path="/login/mess" component={LoginM} />
-            <Route path="/signup/mess" component={SignUpM} />
+          {/* Login and Signup Routes */}
+          <Route exact path="/signup/customer" component={SignUp} />
+          <Route exact path="/login/customer" component={Login} />
+          <Route exact path="/login/mess" component={LoginM} />
+          <Route exact path="/signup/mess" component={SignUpM} />
 
-            {/* dashboard routes */}
-            <Route path="/customer/dashboard" component={CustDashboard} />
-            <Route path="/mess/dashboard" component={MessDashboard} />
-            <Route
-              path="/customer/mess-details/:messId"
-              component={MessDetails}
-            />
+          {/* DashBoard Routes */}
+          <Route exact path="/customer/dashboard" component={CustDashboard} />
+          <Route exact path="/mess/dashboard" component={MessDashboard} />
+          <Route
+            exact
+            path="/customer/mess-details/:messId"
+            component={MessDetails}
+          />
 
-            {/* Mess and customer Settings Routes */}
-            <Route path="/customer/settings" component={Settings} />
-            <Route path="/mess/settings" component={MessSettings} />
-          </>
+          {/* Mess and customer Settings Routes */}
+          <Route exact path="/customer/settings" component={Settings} />
+          <Route exact path="/mess/settings" component={MessSettings} />
+    
+          {/* Error Route*/}
+          <Route component={Error} />
         </Switch>
       </BrowserRouter>
     </>
