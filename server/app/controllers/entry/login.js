@@ -88,8 +88,8 @@ exports.messLogin = (req, res) => {
                     if (result === true) {
                         //create token
                         const role = "mess";
-                        //const time = 60 * 60 * 10;
-                        const time = 60;
+                        const time = 60 * 60 * 10;
+                        // const time = 60;
                         const jwt = new jwttoken();
                         const token = jwt.createToken(email, role, time);
 

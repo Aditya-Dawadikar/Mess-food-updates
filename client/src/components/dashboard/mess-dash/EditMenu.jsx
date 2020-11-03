@@ -31,6 +31,7 @@ const EditMenu = () => {
   };
 
   useEffect(() => {
+    console.log("edit menu page");
     authAxiosMess
       .get(`api/menu/${messId}/${menuId}`)
       .then((res) => {

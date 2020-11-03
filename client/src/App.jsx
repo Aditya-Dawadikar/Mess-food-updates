@@ -13,6 +13,7 @@ import Settings from "./components/dashboard/cust-dash/Settings";
 import Error from "./Error.jsx";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import SavedMess from "./components/dashboard/cust-dash/SavedMess";
 
 const token = localStorage.getItem("tokenMess");
 const tokenCust = localStorage.getItem("token");
@@ -102,7 +103,9 @@ const App = () => {
           {/* Mess and customer Settings Routes */}
           <Route exact path="/customer/settings" component={Settings} />
           <Route exact path="/mess/settings" component={MessSettings} />
-    
+          <Route path="/customer/settings/savedmess" component={Settings} />
+          <Route path="/mess/settings/editmenu/:menuId" component={MessSettings} />
+
           {/* Error Route*/}
           <Route component={Error} />
         </Switch>
