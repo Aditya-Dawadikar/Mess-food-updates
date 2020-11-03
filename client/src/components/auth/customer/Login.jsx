@@ -5,10 +5,8 @@ import FastfoodIcon from "@material-ui/icons/Fastfood";
 import { NavLink } from "react-router-dom";
 import SignUpImg from "../SignUpImg";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
-  let history = useHistory();
   const initialState = localStorage.getItem('token');
   const [custToken, setCustToken]=useState(initialState);
   const [user, setUser] = useState({
@@ -48,7 +46,7 @@ const SignUp = () => {
         localStorage.setItem('userId',response.data.userId)
         setCustToken(response.data);
         // console.log(custToken);
-        if (response.status === 200) history.push("/customer/dashboard");
+        if (response.status === 200) window.location = "/customer/dashboard" ;
       })
       .catch(error=>{
         alert('Wrong username or password');

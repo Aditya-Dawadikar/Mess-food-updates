@@ -17,9 +17,9 @@
 #root {
   content: "";
   position: absolute;
-  background: white;
+  /* background: white; */
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow-y: scroll;
   background: url("https://www.flavorofindia.com/wp-content/uploads/2014/07/photodune-6761938-food-background-on-dark-slate-m1.jpg") center center/cover no-repeat; 
   /* border: 2px solid rgb(5, 38, 223); */
@@ -263,7 +263,7 @@ form .inputForm h1 {
 
 /* input:hover {
   background-color: rgb(24, 20, 20);
-  color: #ffffff !important;
+  color: black !important;
   opacity: 0.3;
 } */
 .inputTag input::placeholder {
@@ -394,4 +394,50 @@ span{
     flex-direction: column;
     /* border: 2px solid rgb(80, 207, 30); */
   }
+}
+
+.Error-Page{
+  height: calc(100vh - 80px);
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  background-color: white;
+  letter-spacing: 5px;
+}
+
+.food-error{
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.Error_Number{
+  background: -webkit-linear-gradient(#871b00, #ffbf00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.food-error img{
+  width: 150px;
+  height: 150px;
+}
+.back_arrow{
+  background: white;
+  color: #871b00;
+  border: 2px solid #871b00;
+  box-shadow: 2px 0px 0px 2px;
+  border-radius: 50px;
+  outline: none;
+  width: 50px;
+  margin-bottom: 20px;
+}
+.back_arrow:hover{
+  color: #ffbf00;
+  border: 2px solid #ffbf00;
+  box-shadow: 2px 0px 0px 2px;
+}
+.back_arrow:focus{
+  outline: none;
 }

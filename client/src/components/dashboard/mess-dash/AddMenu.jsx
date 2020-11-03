@@ -1,7 +1,5 @@
 import React, { useState } from "react";
 import "./MessSettings.css";
-import ArrowDropUpIcon from "@material-ui/icons/ArrowDropUp";
-import ArrowDropDownIcon from "@material-ui/icons/ArrowDropDown";
 import TaskListContextProvider from "./TaskListContext";
 import TaskForm from "./TaskForm";
 import { authAxiosMess } from "../../../App";
@@ -107,24 +105,6 @@ const AddMenu = () => {
               onChange={addMenu}
               value={menu.price}
             />
-            <div
-              id="inc-button"
-              className="spinner-button"
-              style={{ width: "20px", height: "20px" }}
-            >
-              <ArrowDropUpIcon
-                style={{ cursor: "pointer", color: "#FFB800" }}
-              />
-            </div>
-            <div
-              id="dec-button"
-              className="spinner-button"
-              style={{ cursor: "pointer", width: "20px", height: "20px" }}
-            >
-              <ArrowDropDownIcon
-                style={{ cursor: "pointer", color: "#FFB800" }}
-              />
-            </div>
           </div>
         </div>
         <button
