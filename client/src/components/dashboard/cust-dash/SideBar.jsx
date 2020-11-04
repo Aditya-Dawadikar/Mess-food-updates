@@ -18,7 +18,7 @@ const SideBar = () => {
       .get(`api/customer/${getId}`)
       .then((res) => {
         setCust(res.data.Customer);
-        console.log(res.data.Customer);
+        // console.log(res.data.Customer);
       })
       .catch((err) => console.log(err));
   }, [getId]);

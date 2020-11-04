@@ -49,7 +49,7 @@ const Mess = () => {
   return (
     <>
       {!localStorage.getItem("tokenMess") ? (
-        (history.push("/login/mess"))
+        history.push("/login/mess")
       ) : (
         <div>
           <NavBar searchMess={searchMess} />

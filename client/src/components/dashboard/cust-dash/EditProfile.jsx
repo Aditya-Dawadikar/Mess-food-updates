@@ -16,7 +16,7 @@ const EditProfile = () => {
     axios
       .get(`api/customer/${id}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setDetails({
           name: res.data.Customer.name,
           email: res.data.Customer.email,
@@ -36,7 +36,7 @@ const EditProfile = () => {
   };
 
   const handleSubmit = (e) => {
-    console.log(details);
+    // console.log(details);
     e.preventDefault();
     authAxiosCust
       .patch(`api/customer/update/${id}`, {
@@ -45,7 +45,7 @@ const EditProfile = () => {
         phone: phone,
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         alert("Profile Updated Successfully");
       })
       .catch((err) => {
@@ -65,7 +65,7 @@ const EditProfile = () => {
       })
       .catch((err) => {
         alert("Some error occured during deletion :( Please try again later");
-        console.log(err);
+        // console.log(err);
       });
   };
 
@@ -73,7 +73,9 @@ const EditProfile = () => {
     <div className="container" style={{ width: "65%", marginTop: "50px" }}>
       <form className="container editCustForm">
         <div className="form-group">
-          <label htmlFor="name" className="text-white">Name</label>
+          <label htmlFor="name" className="text-white">
+            Name
+          </label>
           <input
             type="text"
             name="name"
@@ -87,7 +89,9 @@ const EditProfile = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="Email" className="text-white">Email address</label>
+          <label htmlFor="Email" className="text-white">
+            Email address
+          </label>
           <input
             type="email"
             name="email"
@@ -101,7 +105,9 @@ const EditProfile = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="Password" className="text-white">Password</label>
+          <label htmlFor="Password" className="text-white">
+            Password
+          </label>
           <input
             type="password"
             name="password"
@@ -113,7 +119,9 @@ const EditProfile = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="phoneno" className="text-white">Phone No</label>
+          <label htmlFor="phoneno" className="text-white">
+            Phone No
+          </label>
           <input
             type="tel"
             name="phone"
@@ -125,22 +133,22 @@ const EditProfile = () => {
             required
           />
         </div>
-         
-         <div className="d-flex mx-auto">
-        <button
-          type="submit"
-          onClick={handleSubmit}
-          className="btn bg-warning text-light mx-5"
-        >
-          Save
-        </button>
-        <button
-          type="submit"
-          onClick={handleDelete}
-          className="btn bg-danger text-light d-block  mx-2"
-        >
-          Delete Account
-        </button>
+
+        <div className="d-flex mx-auto">
+          <button
+            type="submit"
+            onClick={handleSubmit}
+            className="btn bg-warning text-light mx-5"
+          >
+            Save
+          </button>
+          <button
+            type="submit"
+            onClick={handleDelete}
+            className="btn bg-danger text-light d-block  mx-2"
+          >
+            Delete Account
+          </button>
         </div>
       </form>
     </div>

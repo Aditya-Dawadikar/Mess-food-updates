@@ -9,19 +9,19 @@
 }
 
 .photo #input[type="file"] {
-	display: none;
+  display: none;
 }
-.mess-img img{
+.mess-img img {
   object-fit: cover;
 }
 .mess-img:hover {
- cursor: pointer;
- background: black;
- border-radius: 10px;
- opacity: 0.8;
+  cursor: pointer;
+  background: black;
+  border-radius: 10px;
+  opacity: 0.8;
 }
 
-.label .hover__icon{
+.label .hover__icon {
   position: absolute;
   display: flex;
   flex-direction: column;
@@ -29,13 +29,12 @@
   top: 8rem;
   left: 37%;
   /* opacity: 0; */
-  }
+}
 
-  /* .label .hover__icon:hover{
+/* .label .hover__icon:hover{
     background: rgba(0, 0, 0, 0.5);
     opacity: 1;
   } */
-  
 
 .password-toogle-icon {
   position: absolute;
@@ -52,8 +51,8 @@ input::-webkit-inner-spin-button {
   margin: 0;
 } */
 
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button {  
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
   opacity: 1;
 }
 
@@ -86,30 +85,27 @@ input[type=number]::-webkit-outer-spin-button {
   cursor: pointer;
 } */
 
-.form-group input{
+.form-group input {
   height: 4rem;
 }
 
-.form-group .add-button{
+.form-group .add-button {
   position: absolute;
   top: 52px;
   right: 25px;
   transform: scale(1.2);
 }
 
-
 /* ************My Saved Menu css************** */
- .icon_action{
+.icon_action {
   opacity: 0;
 }
 
-.menu-item-list:hover .icon_action{
+.menu-item-list:hover .icon_action {
   opacity: 1;
 }
 
 /* .icon_aciton: */
-
-
 
 /* ************add menu list css************** */
 
@@ -151,7 +147,7 @@ input[type=number]::-webkit-outer-spin-button {
 
 /* Handle */
 .list::-webkit-scrollbar-thumb {
-  background: #FFB800;
+  background: #ffb800;
   border-radius: 10px;
 }
 
@@ -164,13 +160,13 @@ input[type=number]::-webkit-outer-spin-button {
   border: none;
   outline: 0;
 }
-.task-input:focus{
+.task-input:focus {
   border: 1px solid grey;
 }
 
 .add-task-btn {
   border: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   outline: none;
   cursor: pointer;
 }
@@ -187,7 +183,7 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 20px 0;
   padding-bottom: 5px;
   /* border: 2px solid red; */
-  border-left: 7px solid #FFB800;
+  border-left: 7px solid #ffb800;
   border-radius: 5px;
 }
 
@@ -212,15 +208,15 @@ input[type=number]::-webkit-outer-spin-button {
 
 .clear-btn {
   border: none;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   outline: none;
   transform: scale(1.2);
   cursor: pointer;
 }
-.clear-btn span{
-  font-family: 'Montserrat', sans-serif;
+.clear-btn span {
+  font-family: "Montserrat", sans-serif;
   letter-spacing: 1px;
-  color: #FFB800;
+  color: #ffb800;
 }
 
 .clear-btn span:hover {
@@ -228,7 +224,7 @@ input[type=number]::-webkit-outer-spin-button {
 }
 
 .no-tasks {
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   text-align: center;
   font-size: 18px;
   margin-top: 10px;

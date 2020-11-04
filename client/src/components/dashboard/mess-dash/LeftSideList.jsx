@@ -9,16 +9,15 @@ import "../../../css/left-side-list.css";
 const LeftSideList = () => {
   return (
     <>
-      <div
-        className="container-fluid d-flex"
-        style={{ width: "30%" }}
-      >
+      <div className="container-fluid d-flex" style={{ width: "30%" }}>
         <div
           className="left-list px-2 mt-4"
           style={{ borderRight: "7px solid #FFB800" }}
         >
           <li>
-            <div style={{ borderBottom: "7px solid #FFB800" ,fontSize:"25px"}}>
+            <div
+              style={{ borderBottom: "7px solid #FFB800", fontSize: "25px" }}
+            >
               <AccountCircleIcon className="mess-account-icon my-2" />
               My Account
             </div>
@@ -65,7 +64,6 @@ const LeftSideList = () => {
               Add new menu
             </li>
           </NavLink>
-
         </div>
       </div>
     </>

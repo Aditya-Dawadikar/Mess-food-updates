@@ -55,7 +55,7 @@ const MySavedMenu = () => {
     authAxiosMess
       .get("/api/currentmenu/all")
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setMenusAdded(res.data.availableMenus);
       })
       .catch((err) => {
@@ -78,12 +78,12 @@ const MySavedMenu = () => {
         menuId: menuId,
       })
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         getCurrentMenuList();
         toast.success("Updated Current Menu");
       })
       .catch((err) => {
-        console.log(err);
+        // console.log(err);
         toast.error("Error updating Current menu");
       });
   };
@@ -143,7 +143,10 @@ const MySavedMenu = () => {
                       borderLeft: "8px solid #FFB800",
                     }}
                   >
-                    <td className="justify-content-center" style={{width:"35%"}}>
+                    <td
+                      className="justify-content-center"
+                      style={{ width: "35%" }}
+                    >
                       <ul className="d-flex pl-0">
                         {item.menuItem.map((idx) => {
                           return (
@@ -161,12 +164,19 @@ const MySavedMenu = () => {
                     </td>
                     <td
                       className="font-weight-bold"
-                      style={{ color: "#FF5C00", letterSpacing: "2px" ,width:"10%" , textAlign:"center" }}
+                      style={{
+                        color: "#FF5C00",
+                        letterSpacing: "2px",
+                        width: "10%",
+                        textAlign: "center",
+                      }}
                     >
                       {item.price} INR
                     </td>
-                    <td style={{width:"20%" , textAlign:"center"}}>{item.tag[0]}</td>
-                    <td style={{width:"15%" , textAlign:"center"}}>
+                    <td style={{ width: "20%", textAlign: "center" }}>
+                      {item.tag[0]}
+                    </td>
+                    <td style={{ width: "15%", textAlign: "center" }}>
                       {currentMenuExists(item._id) ? (
                         <StarsIcon
                           style={{ color: "#FFB800", cursor: "pointer" }}
@@ -179,7 +189,7 @@ const MySavedMenu = () => {
                         />
                       )}
                     </td>
-                    <td style={{width:"15%" , textAlign:"center"}}>
+                    <td style={{ width: "15%", textAlign: "center" }}>
                       <EditIcon
                         className="icon_action"
                         style={{ color: "#FFB800", cursor: "pointer" }}
