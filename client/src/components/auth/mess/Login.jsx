@@ -39,7 +39,7 @@ const SignUp = () => {
         password: mess.password,
       })
       .then(function (response) {
-        console.log(response);
+        // console.log(response);
         localStorage.setItem('tokenMess',response.data.token.token)
         localStorage.setItem('refreshTokenMess',response.data.token.refreshToken);
         localStorage.setItem('userIdMess',response.data.userId)

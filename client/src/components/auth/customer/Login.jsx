@@ -40,7 +40,7 @@ const SignUp = () => {
         password: user.password,
       })
       .then(response => {
-        console.log(response.data);
+        // console.log(response.data);
         localStorage.setItem('token',response.data.token.token)
         localStorage.setItem('refreshToken',response.data.token.refreshToken);
         localStorage.setItem('userId',response.data.userId)
@@ -50,7 +50,7 @@ const SignUp = () => {
       })
       .catch(error=>{
         alert('Wrong username or password');
-        console.log(error);
+        // console.log(error);
       });
   };
 

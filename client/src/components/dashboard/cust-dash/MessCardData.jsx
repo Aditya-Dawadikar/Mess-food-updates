@@ -4,22 +4,22 @@ import img3 from "../../../imgs/food4_1.webp";
 import img4 from "../../../imgs/food5_1.jpg";
 
 const MessCardData = [
-//   {
-//     messName: "Surya Mess",
-//     messImg: img1,
-//   },
-//   {
-//     messName: "Santo Mess",
-//     messImg: img2,
-//   },
-//   {
-//     messName: "Sai Sidhi Mess",
-//     messImg: img3,
-//   },
-//   {
-//     messName: "Pluto Mess",
-//     messImg: img4,
-//   },
+  //   {
+  //     messName: "Surya Mess",
+  //     messImg: img1,
+  //   },
+  //   {
+  //     messName: "Santo Mess",
+  //     messImg: img2,
+  //   },
+  //   {
+  //     messName: "Sai Sidhi Mess",
+  //     messImg: img3,
+  //   },
+  //   {
+  //     messName: "Pluto Mess",
+  //     messImg: img4,
+  //   },
 
   {
     messDetails: {

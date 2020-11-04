@@ -38,7 +38,7 @@ const SignUp = () => {
         phone: user.phone,
       })
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         alert("sign Up successfully");
         if (response.status === 200) window.location = "/login/customer";
       })

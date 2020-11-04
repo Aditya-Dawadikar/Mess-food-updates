@@ -41,7 +41,6 @@ const MessCard = (props) => {
   };
 
   const unsubscribeMess = () => {
-
     authAxiosCust
       .get(`/api/mess/${props.messId}`)
       .then((res) => {
@@ -54,12 +53,12 @@ const MessCard = (props) => {
     authAxiosCust
       .get(`api/customer/${custId}`)
       .then((res) => {
-        console.log(res.data.Customer.savedMess);
+        // console.log(res.data.Customer.savedMess);
         const subId = findSubscriptionId(res.data.Customer.savedMess, mess);
         authAxiosCust
           .delete(`api/subscription/unsubscribe/${subId.subscriptionId}`)
           .then((res) => {
-            console.log(res);
+            // console.log(res);
             toast.success("Unbookmarked");
           })
           .catch(() => toast.error("something went wrong"));
@@ -70,16 +69,15 @@ const MessCard = (props) => {
   };
 
   const BookmarkedButton = () => {
-
     authAxiosCust
-        .get(`api/customer/features/savedmess/${custId}`)
-        .then((res) => {
-          // console.log(res);
-          res.data.doc.find((val) => val._id === props.messId)
-            ? setSubscribe(true)
-            : setSubscribe(false);
-        })
-        .catch((err) => console.log(err));
+      .get(`api/customer/features/savedmess/${custId}`)
+      .then((res) => {
+        // console.log(res);
+        res.data.doc.find((val) => val._id === props.messId)
+          ? setSubscribe(true)
+          : setSubscribe(false);
+      })
+      .catch((err) => console.log(err));
 
     return subscribe === false ? (
       <BookmarkBorderIcon

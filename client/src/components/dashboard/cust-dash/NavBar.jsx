@@ -20,7 +20,7 @@ const NavBar = ({ searchMess }) => {
     authAxiosCust
       .get(`api/search/mess?mess=${e.target.value}`)
       .then((res) => {
-        console.log(res.data.doc);
+        // console.log(res.data.doc);
         setMess(res.data.doc);
         searchMess(res.data.doc);
       })
@@ -34,6 +34,7 @@ const NavBar = ({ searchMess }) => {
     localStorage.removeItem("tokenMess");
     localStorage.removeItem("userIdMess");
     localStorage.removeItem("refreshToken");
+    localStorage.removeItem("refreshTokenMess");
     history.push('/login/customer');
   };
 

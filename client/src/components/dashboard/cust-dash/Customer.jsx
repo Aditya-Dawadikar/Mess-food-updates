@@ -47,12 +47,12 @@ const Customer = () => {
   return (
     <>
       {!localStorage.getItem("token") ? (
-        (history.push("/login/customer"))
+        history.push("/login/customer")
       ) : (
         <div>
           <NavBar searchMess={searchMess} />
 
-          <header style={{marginTop:"120px"}}>
+          <header style={{ marginTop: "120px" }}>
             <div className="container">
               <div
                 id="carouselExampleControls"

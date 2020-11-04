@@ -7,11 +7,12 @@ import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
-import { NavLink, useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { authAxiosCust } from "../../../App";
 import { toast } from "react-toastify";
 
 function MessDetails() {
+  let history = useHistory();
   const { messId } = useParams();
   const custId = localStorage.getItem("userId");
   const [mess, setMess] = useState({
@@ -20,24 +21,23 @@ function MessDetails() {
     menuList: [],
     subscribers: [],
   });
-  
 
   const [subscribe, setSubscribe] = useState(false);
 
-  function findSubscriptionId(arr1, arr2) { 
-    let obj = {}; 
-      for (let i = 0; i < arr1.length; i++) { 
-        if(!obj[arr1[i]]) { 
-          const element = arr1[i]; 
-          obj[element] = element; 
-        } 
-      } 
-      for (let j = 0; j < arr2.length ; j++) { 
-      if(obj[arr2[j]]) { 
-        return obj[arr2[j]]; 
-      } 
+  function findSubscriptionId(arr1, arr2) {
+    let obj = {};
+    for (let i = 0; i < arr1.length; i++) {
+      if (!obj[arr1[i]]) {
+        const element = arr1[i];
+        obj[element] = element;
+      }
     }
-  } 
+    for (let j = 0; j < arr2.length; j++) {
+      if (obj[arr2[j]]) {
+        return obj[arr2[j]];
+      }
+    }
+  }
 
   const subscribeMess = (messid) => {
     authAxiosCust
@@ -53,12 +53,15 @@ function MessDetails() {
       .get(`api/customer/${custId}`)
       .then((res) => {
         console.log(res.data.Customer.savedMess);
-        const subId = findSubscriptionId(res.data.Customer.savedMess, mess.subscribers )
+        const subId = findSubscriptionId(
+          res.data.Customer.savedMess,
+          mess.subscribers
+        );
         authAxiosCust
           .delete(`api/subscription/unsubscribe/${subId.subscriptionId}`)
           .then((res) => {
             console.log(res);
-            toast.success("Unbookmarked")
+            toast.success("Unbookmarked");
           })
           .catch(() => toast.error("something went wrong"));
       })
@@ -68,7 +71,6 @@ function MessDetails() {
   };
 
   useEffect(() => {
-
     authAxiosCust
       .get(`api/customer/features/savedmess/${custId}`)
       .then((res) => {
@@ -95,15 +97,16 @@ function MessDetails() {
 
   return (
     <>
-      <NavLink
+      {/* <NavLink
         to="/customer/dashboard"
         style={{ color: "white", textDecoration: "none" }}
-      >
-        <ArrowBackIcon
-          className="mt-4 ml-4"
-          style={{ transform: "scale(1.5)", color: "#FFB800" }}
-        />
-      </NavLink>
+      > */}
+      <ArrowBackIcon
+        className="mt-4 ml-4"
+        style={{ transform: "scale(1.5)", color: "#FFB800", cursor:"pointer" }}
+        onClick={() => history.goBack()}
+      />
+      {/* </NavLink> */}
       <div className="containerDetails">
         <div className="card mess-card mr-4">
           <div className="row">
@@ -124,14 +127,13 @@ function MessDetails() {
                     style={{ transform: "scale(1.8)", cursor: "pointer" }}
                     onClick={() => subscribeMess(messId)}
                   />
-                  ) : (
+                ) : (
                   <BookmarkIcon
                     className="text-warning mx-3 my-2"
                     style={{ transform: "scale(1.8)", cursor: "pointer" }}
                     onClick={() => unsubscribeMess()}
                   />
-                  )
-                }
+                )}
               </div>
               <div className="starIcon" style={{ color: "#FFB800" }}>
                 <GradeRoundedIcon style={{ transform: "scale(1.5)" }} />

@@ -12,7 +12,7 @@ const TaskListContextProvider = (props) => {
   const [tasks, setTasks] = useState([]);
 
   const { addList } = props;
-  
+
   useEffect(() => {
     authAxiosMess
       .get(`api/menu/${messId}/${menuId}`)
@@ -25,14 +25,14 @@ const TaskListContextProvider = (props) => {
   }, [messId, menuId]);
 
   useEffect(() => {
-    addList(tasks); // eslint-disable-next-line 
+    addList(tasks); // eslint-disable-next-line
   }, [tasks]);
 
   // Add tasks
   const addTask = (itemName) => {
     setTasks([...tasks, { itemName: itemName, _id: uuid() }]);
-    addList(tasks); 
-    console.log(tasks);
+    addList(tasks);
+    // console.log(tasks);
   };
 
   // Remove tasks
@@ -57,7 +57,7 @@ const TaskListContextProvider = (props) => {
       task._id === _id ? { itemName, _id: _id } : task
     );
 
-    console.log(newTasks);
+    // console.log(newTasks);
     setTasks(newTasks);
     setEditItem(null);
   };

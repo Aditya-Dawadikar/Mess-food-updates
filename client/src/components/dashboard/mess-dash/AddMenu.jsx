@@ -43,12 +43,12 @@ const AddMenu = () => {
     authAxiosMess
       .post(`api/menu/new/${getId}`, menuData)
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         toast.success("menu added successfully");
         // window.location = "/mess/settings/mysavedmenu";
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
         toast.error("something went wrong!!!");
       });
 
@@ -60,7 +60,9 @@ const AddMenu = () => {
       <div className="edit-profile ml-1 container">
         <div className="form-row">
           <div className="form-group col-md-6">
-            <label htmlFor="MenuName" className=" text-white">Menu Name</label>
+            <label htmlFor="MenuName" className=" text-white">
+              Menu Name
+            </label>
             <input
               type="text"
               name="menuName"
@@ -72,7 +74,9 @@ const AddMenu = () => {
             />
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="Type" className=" text-white">Type</label>
+            <label htmlFor="Type" className=" text-white">
+              Type
+            </label>
             <input
               type="text"
               name="tag"
@@ -84,7 +88,9 @@ const AddMenu = () => {
             />
           </div>
           <div className="form-group col-md-6 position-relative">
-            <label htmlFor="AddItems" className=" text-white">Add Items</label>
+            <label htmlFor="AddItems" className=" text-white">
+              Add Items
+            </label>
 
             <div className="main">
               {/* <TaskListContextProvider > */}
@@ -95,7 +101,9 @@ const AddMenu = () => {
             </div>
           </div>
           <div className="form-group col-md-6">
-            <label htmlFor="SetPrice" className=" text-white">Set Price</label>
+            <label htmlFor="SetPrice" className=" text-white">
+              Set Price
+            </label>
             <input
               type="number"
               name="price"

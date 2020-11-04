@@ -47,11 +47,9 @@ const EditMenu = () => {
       .catch((err) => console.log(err));
   }, [messId, menuId]);
 
-
-
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log("updated MessList")
+    console.log("updated MessList");
     console.log(menu);
     const menuData = {
       menuItem: menu.menuItem.map((idx) => {
@@ -67,11 +65,9 @@ const EditMenu = () => {
       .then((res) => {
         // console.log(res);
         alert("menu updated successfully");
-        window.location="/mess/settings/mysavedmenu";
+        window.location = "/mess/settings/mysavedmenu";
       })
       .catch((err) => console.log(err));
-
-   
   };
   return (
     <div style={{ width: "70%" }} className="mt-4">

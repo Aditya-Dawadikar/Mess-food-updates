@@ -2,7 +2,7 @@ import React from "react";
 import SignUp from "./components/auth/customer/SignUp";
 import Login from "./components/auth/customer/Login";
 // import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import LoginM from "./components/auth/mess/Login";
 import SignUpM from "./components/auth/mess/Signup";
 import CustDashboard from "./components/dashboard/cust-dash/Customer.jsx";
@@ -13,7 +13,6 @@ import Settings from "./components/dashboard/cust-dash/Settings";
 import Error from "./Error.jsx";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
-import SavedMess from "./components/dashboard/cust-dash/SavedMess";
 
 const token = localStorage.getItem("tokenMess");
 const tokenCust = localStorage.getItem("token");
@@ -42,9 +41,9 @@ authAxiosCust.interceptors.response.use(
   },
   (error) => {
     const originalRequest = error.config;
-    console.log(originalRequest);
+    // console.log(originalRequest);
     if (error.response.status === 401 && !originalRequest._retry) {
-      console.log("expired");
+      // console.log("expired");
       localStorage.removeItem("token");
       localStorage.removeItem("userId");
       localStorage.removeItem("tokenMess");
@@ -83,6 +82,7 @@ const App = () => {
       <ToastContainer />
       <BrowserRouter>
         <Switch>
+          <Redirect exact from="/" to="/login/customer" />
           <Route exact path="/" component={Login} />
 
           {/* Login and Signup Routes */}
@@ -104,7 +104,10 @@ const App = () => {
           <Route exact path="/customer/settings" component={Settings} />
           <Route exact path="/mess/settings" component={MessSettings} />
           <Route path="/customer/settings/savedmess" component={Settings} />
-          <Route path="/mess/settings/editmenu/:menuId" component={MessSettings} />
+          <Route
+            path="/mess/settings/editmenu/:menuId"
+            component={MessSettings}
+          />
 
           {/* Error Route*/}
           <Route component={Error} />

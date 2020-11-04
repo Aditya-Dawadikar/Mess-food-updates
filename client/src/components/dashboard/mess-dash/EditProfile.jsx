@@ -42,7 +42,7 @@ const EditProfile = () => {
   };
 
   const onSubmit = (e) => {
-    console.log(mess);
+    // console.log(mess);
     e.preventDefault();
     authAxiosMess
       .patch(`api/mess/update/${getId}`, {
@@ -64,18 +64,17 @@ const EditProfile = () => {
         },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         alert("updated");
       })
       .catch((err) => console.log(err + " error mila hai"));
   };
 
-
   useEffect(() => {
     axios
       .get(`api/mess/${getId}`)
       .then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         setMess({
           messName: res.data.Mess[0].messDetails.messName,
           ownerName: res.data.Mess[0].messDetails.ownerName,
@@ -88,25 +87,25 @@ const EditProfile = () => {
       });
   }, [getId]);
 
-  const handleDelete = e => {
+  const handleDelete = (e) => {
     e.preventDefault();
     authAxiosMess
-       .delete(`api/mess/delete/${getId}`)
-       .then(res => {
-           alert('Account deleted successfully');
-           localStorage.removeItem("userIdMess");
-           localStorage.removeItem("tokenMess");
-           window.location = '/signup/mess';
-       })
-       .catch(err => {
-          alert('Some error occured during deletion :( Please try again later');
-          console.log(err);
-       })
- };
+      .delete(`api/mess/delete/${getId}`)
+      .then((res) => {
+        alert("Account deleted successfully");
+        localStorage.removeItem("userIdMess");
+        localStorage.removeItem("tokenMess");
+        window.location = "/signup/mess";
+      })
+      .catch((err) => {
+        alert("Some error occured during deletion :( Please try again later");
+        console.log(err);
+      });
+  };
 
   return (
     <>
-      <form style={{ width: "70%" ,height:"100rem" }}>
+      <form style={{ width: "70%", height: "100rem" }}>
         <div className="edit-profile ml-1 container">
           <div className="photo container mt-3" style={{ height: "15rem" }}>
             <div className="label">
@@ -164,7 +163,9 @@ const EditProfile = () => {
 
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label htmlFor="MessName" className=" text-white">Mess Name</label>
+              <label htmlFor="MessName" className=" text-white">
+                Mess Name
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -176,7 +177,9 @@ const EditProfile = () => {
               />
             </div>
             <div className="form-group col-md-6">
-              <label htmlFor="OwnerName" className=" text-white">Owner Name</label>
+              <label htmlFor="OwnerName" className=" text-white">
+                Owner Name
+              </label>
               <input
                 type="text"
                 className="form-control"
@@ -190,7 +193,9 @@ const EditProfile = () => {
           </div>
           <div className="form-row">
             <div className="form-group col-md-6">
-              <label htmlFor="inputEmail4" className=" text-white">Email</label>
+              <label htmlFor="inputEmail4" className=" text-white">
+                Email
+              </label>
               <input
                 type="email"
                 className="form-control"
@@ -202,7 +207,9 @@ const EditProfile = () => {
               />
             </div>
             <div className="form-group col-md-6">
-              <label htmlFor="inputPassword4" className=" text-white">Password</label>
+              <label htmlFor="inputPassword4" className=" text-white">
+                Password
+              </label>
               <input
                 type={visible ? "text" : "password"}
                 className="form-control"
@@ -221,7 +228,9 @@ const EditProfile = () => {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="inputAddress" className=" text-white">Address</label>
+            <label htmlFor="inputAddress" className=" text-white">
+              Address
+            </label>
             <input
               type="text"
               className="form-control"
@@ -241,7 +250,13 @@ const EditProfile = () => {
           >
             Save
           </button>
-          <button type="submit" onClick={handleDelete} className="btn bg-danger text-light">Delete Account</button>
+          <button
+            type="submit"
+            onClick={handleDelete}
+            className="btn bg-danger text-light"
+          >
+            Delete Account
+          </button>
         </div>
       </form>
     </>
