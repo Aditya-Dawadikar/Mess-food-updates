@@ -3,6 +3,7 @@ const Customer = require('../../models/customer');
 const Otp = require('../../models/otp');
 const bcrypt = require('bcrypt');
 const jwtToken = require('../modules/jwt');
+const Notifier = require('../modules/notifier');
 
 function createRandomPassword() {
     return Math.floor(Math.random() * 100000)
@@ -45,6 +46,15 @@ exports.sendOtp = async(req, res) => {
 
     otp.save()
         .then(doc => {
+            let object = {
+                userId: userId,
+                otp: randomNumber
+            }
+            try {
+                Notifier.requestOtp(object, req.body.email)
+            } catch (err) {
+                throw err
+            }
             res.status(200).json({
                 message: "success",
                 otp: doc
@@ -100,6 +110,11 @@ exports.setNewMessPassword = async(req, res) => {
         if (result) {
             Mess.findOneAndUpdate({ email: req.body.email }, { password: result })
                 .then(doc => {
+                    try {
+                        Notifier.successfullPasswordReset(req.body.email);
+                    } catch (err) {
+                        throw err
+                    }
                     res.status(200).json({
                         message: "successfully password reset",
                         doc: doc
@@ -124,6 +139,11 @@ exports.setNewCustomerPassword = async(req, res) => {
         if (result) {
             Customer.findOneAndUpdate({ email: req.body.email }, { password: result })
                 .then(doc => {
+                    try {
+                        Notifier.successfullPasswordReset(req.body.email);
+                    } catch (err) {
+                        throw err
+                    }
                     res.status(200).json({
                         message: "successfully password reset",
                         doc: doc

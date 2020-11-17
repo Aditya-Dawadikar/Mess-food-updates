@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 
 const Customer = require('../../models/customer');
 const Mess = require('../../models/mess');
-const Notification = require('../modules/smtp');
+const Notifier = require('../modules/notifier');
 
 exports.getRegisterPage = (req, res) => {
     res.send("register page");
@@ -43,15 +43,18 @@ exports.customerRegister = (req, res) => {
                             //save new customer in the collection "customers"
                             customer.save()
                                 .then(doc => {
-                                    // const notifier = new Notification();
-                                    // const message = "we are glad that you have choosen us to help you find your favourite food!!!";
-                                    // notifier.successEmailOnRegistration(req.body.email, message);
+                                    try {
+                                        Notifier.successfulCustomerRegistration(req.body.email)
+                                    } catch (err) {
+                                        throw err
+                                    }
                                     res.status(200).json({
                                         message: "success",
                                         customer: doc
                                     });
                                 })
                                 .catch(err => {
+                                    console.log(err)
                                     res.status(500).json({
                                         message: "some error occured while storing new customer",
                                         error: "internal server error"
@@ -76,7 +79,6 @@ exports.customerRegister = (req, res) => {
 
 //mess registration
 exports.messRegister = (req, res) => {
-
     var availabilityFlag = false;
 
     //check if the customer already exists
@@ -133,7 +135,11 @@ exports.messRegister = (req, res) => {
                             mess.save()
                                 .then(doc => {
                                     console.log(doc);
-                                    //Notification.successful_registration(req.body.email);
+                                    try {
+                                        Notifier.successfulMessRegistration(req.body.email)
+                                    } catch (err) {
+                                        throw err
+                                    }
                                     res.status(200).json({
                                         message: "success",
                                         mess: doc

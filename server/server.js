@@ -2,10 +2,8 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
-var multer = require('multer');
 var cors = require('cors');
 var logger = require('morgan');
-var passport = require('passport');
 var dotenv = require('dotenv');
 dotenv.config();
 
@@ -45,8 +43,6 @@ const searchbarRoutes = require('./app/routes/modules/searchbar');
 const messFeatureRoutes = require('./app/routes/modules/messFeatures');
 const customerFeatureRoutes = require('./app/routes/modules/customerFeatures');
 const ratingRoutes = require('./app/routes/modules/review');
-//test routes handlers
-//const testRoutes = require('./app/routes/index');
 
 //routes
 app.use('/api/login', loginRoutes);
@@ -63,8 +59,7 @@ app.use('/api/search', searchbarRoutes);
 app.use('/api/mess/features', messFeatureRoutes);
 app.use('/api/customer/features', customerFeatureRoutes);
 app.use('/api/rating', ratingRoutes);
-//test routes
-//app.use('/emailtest', testRoutes);
+
 
 app.listen(9000, () => {
     console.log("app running on port:" + 9000);
