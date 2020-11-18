@@ -75,6 +75,57 @@ Registration routes
 		2. Failure
 
 ------------------------------------------------------
+Forgot password mechanism
+
+step1. request for OTP
+step2. receive OTP email
+step3. verify OTP
+step4. receive temporary token 
+step5. set new password
+step6. receive confirmation email
+
+>> /api/forgotpassword/otp
+	Type: GET
+	Body: {
+			"role":"customer",
+			"email":"geekdev127001@gmail.com"
+		}
+	Response: 
+		1. OTP via email(OTP in response is also available but only for testing)
+		2. failure
+
+>> /api/forgotpassword/verify
+	Type: POST
+	Body: {
+			"otp":"46664"
+		}
+	Response: 
+		1. success, temporary token that must be used only for password reset
+		2. failure
+
+>> /api/forgotpassword/password/customer
+	Type: POST
+	Header: Authentication bearer token
+	Body: {
+			"email":"geekdev127001@gmail.com",
+			"password":"12345"
+		}
+	Response: 
+		1. successful password reset email, redirect to login page
+		2. failure
+
+>> /api/forgotpassword/password/mess
+	Type: POST
+	Header: Authentication bearer token
+	Body: {
+			"email":"geekdev127001@gmail.com",
+			"password":"12345"
+		}
+	Response: 
+		1. successful password reset email, redirect to login page
+		2. failure
+		
+------------------------------------------------------
 JWT routes
 
 >> /api/refresh/customer
