@@ -2,19 +2,41 @@ import React, { useState, useEffect } from "react";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
+import CancelIcon from '@material-ui/icons/Cancel';
 import { NavLink } from "react-router-dom";
 import SignUpImg from "../SignUpImg";
+import Modal from "react-modal";
 import axios from "axios";
+import ForgetPassword from "../ForgetPassword";
+import Zoom from "react-reveal";
 
 const SignUp = () => {
+
+  const customStyles = {
+    content : {
+      top                   : '50%',
+      left                  : '50%',
+      right                 : 'auto',
+      bottom                : 'auto',
+      marginRight           : '-50%',
+      width                 : '60%',
+      height                : '70%',
+      transform             : 'translate(-50%, -50%)',
+      border                : "0.5px solid black"
+      //give shadow...
+    }
+  };
+
   const initialState = localStorage.getItem('token');
   const [custToken, setCustToken]=useState(initialState);
+  const [modalIsOpen,setIsOpen] = useState(false);
   const [user, setUser] = useState({
     password: "",
     email: "",
   });
 
   useEffect(()=>{
+    // Modal.setAppElement('body');
     if(custToken)
     window.location = "/customer/dashboard"
   },[custToken])
@@ -53,6 +75,13 @@ const SignUp = () => {
         // console.log(error);
       });
   };
+  
+  const openModal=()=>{
+    setIsOpen(true);
+  }
+  const closeModal=()=>{
+    setIsOpen(false);
+  }
 
   return (
     <>
@@ -106,7 +135,8 @@ const SignUp = () => {
                     position: "absolute",
                   }}
                 />
-                <button type="submit">LOGIN</button>
+                <button type="submit" className="mb-4">LOGIN</button>
+                <h6 className="forget mr-2 text-primary" onClick={openModal}>forget password</h6>
               </div>
             </div>
           </form>
@@ -115,6 +145,17 @@ const SignUp = () => {
           <NavLink to='/login/mess' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Mess</button></NavLink>
           </div>
         </div>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          style={customStyles}
+          ariaHideApp={false}
+        >
+          <Zoom>
+            <CancelIcon className="d-block" style={{cursor:"pointer"}} onClick={closeModal} />
+            <ForgetPassword/>
+          </Zoom>
+        </Modal>
       </div>
     </>
   );

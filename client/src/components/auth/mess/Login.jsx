@@ -103,7 +103,8 @@ const SignUp = () => {
                     position: "absolute",
                   }}
                 />
-                <button type="submit">LOGIN</button>
+                <button type="submit" className="mb-4">LOGIN</button>
+                <NavLink to='/cust' className="forget mr-2">forget password</NavLink>
               </div>
             </div>
           </form>
