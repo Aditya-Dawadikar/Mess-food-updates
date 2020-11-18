@@ -1,5 +1,5 @@
 import React from "react";
-import foodError from "./imgs/donut1.png";
+import foodError from "./imgs/donut1-removebg-preview.png";
 import { withRouter, useHistory } from "react-router-dom";
 import ArrowBackSharpIcon from "@material-ui/icons/ArrowBackSharp";
 
