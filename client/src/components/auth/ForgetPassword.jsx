@@ -1,20 +1,29 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { toast } from "react-toastify";
 
-const ForgetPassword = () => {
+const ForgetPassword = ({modal_action}) => {
   const [email, setEmail] = useState("");
-
+  let role = window.location.pathname.split('/')[2];
+  // let role = role_name[2];
+  console.log("role: "+role);
   const onSubmit = (e) => {
     e.preventDefault();
     // console.log("email :" + email);
+    modal_action(false);
     axios.post("api/forgotpassword/otp", {
-      "role": "customer",
+      "role": role,
       "email": email,
     })
     .then(res=>{
         console.log(res);
+        localStorage.setItem("otp",res.data.otp.otp);
+        modal_action(false);
     })
-    .catch(err=> console.log(err));
+    .catch(err => {
+      console.log(err);
+      toast.error("Your email id is not registered")
+    });
   };
 
   return (
