@@ -8,7 +8,10 @@ import SignUpImg from "../SignUpImg";
 import Modal from "react-modal";
 import axios from "axios";
 import ForgetPassword from "../ForgetPassword";
+import Otp from "../Otp";
+import ResetPassword from "../ResetPassword";
 import Zoom from "react-reveal";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
 
@@ -28,8 +31,11 @@ const SignUp = () => {
   };
 
   const initialState = localStorage.getItem('token');
-  const [custToken, setCustToken]=useState(initialState);
+  const custToken = initialState;
   const [modalIsOpen,setIsOpen] = useState(false);
+  const [modalIsOpen_2nd,setIsOpen_2nd] = useState(false);
+  const [modalIsOpen_3rd,setIsOpen_3rd] = useState(false);
+
   const [user, setUser] = useState({
     password: "",
     email: "",
@@ -62,25 +68,26 @@ const SignUp = () => {
         password: user.password,
       })
       .then(response => {
-        // console.log(response.data);
+        console.log(response.data);
         localStorage.setItem('token',response.data.token.token)
         localStorage.setItem('refreshToken',response.data.token.refreshToken);
         localStorage.setItem('userId',response.data.userId)
-        setCustToken(response.data);
         // console.log(custToken);
         if (response.status === 200) window.location = "/customer/dashboard" ;
       })
       .catch(error=>{
-        alert('Wrong username or password');
-        // console.log(error);
+        toast.error('Wrong username or password');
+        console.log(error);
       });
   };
-  
-  const openModal=()=>{
-    setIsOpen(true);
+
+  const modal_action=(action)=>{
+    setIsOpen(action);
+    setIsOpen_2nd(true);
   }
-  const closeModal=()=>{
-    setIsOpen(false);
+  const modal_action_otp=(action)=>{
+    setIsOpen_3rd(action);
+    // setIsOpen_2nd(true);
   }
 
   return (
@@ -136,7 +143,7 @@ const SignUp = () => {
                   }}
                 />
                 <button type="submit" className="mb-4">LOGIN</button>
-                <h6 className="forget mr-2 text-primary" onClick={openModal}>forget password</h6>
+                <h6 className="forget mr-2 text-primary" onClick={()=>setIsOpen(true)}>forget password</h6>
               </div>
             </div>
           </form>
@@ -147,13 +154,39 @@ const SignUp = () => {
         </div>
         <Modal
           isOpen={modalIsOpen}
-          onRequestClose={closeModal}
+          onRequestClose={modalIsOpen}
           style={customStyles}
           ariaHideApp={false}
         >
           <Zoom>
-            <CancelIcon className="d-block" style={{cursor:"pointer"}} onClick={closeModal} />
-            <ForgetPassword/>
+            <CancelIcon className="d-block" style={{cursor:"pointer"}} onClick={()=>setIsOpen(false)} />
+            <ForgetPassword modal_action={modal_action}/>
+          </Zoom>
+        </Modal>
+        <Modal
+          isOpen={modalIsOpen_2nd}
+          onRequestClose={modalIsOpen_2nd}
+          style={customStyles}
+          ariaHideApp={false}>
+        <Zoom>
+            <CancelIcon className="d-block" style={{cursor:"pointer"}} onClick={()=>{
+              setIsOpen_2nd(false);
+              setIsOpen(true);
+            }} />
+            <Otp modal_action_otp={modal_action_otp}/>
+          </Zoom>
+        </Modal>
+        <Modal
+          isOpen={modalIsOpen_3rd}
+          onRequestClose={modalIsOpen_3rd}
+          style={customStyles}
+          ariaHideApp={false}>
+        <Zoom>
+            <CancelIcon className="d-block" style={{cursor:"pointer"}} onClick={()=>{
+              setIsOpen_3rd(false);
+              setIsOpen_2nd(true);
+              }} />
+            <ResetPassword/>
           </Zoom>
         </Modal>
       </div>
