@@ -25,8 +25,8 @@ const SignUp = () => {
       width                 : '60%',
       height                : '70%',
       transform             : 'translate(-50%, -50%)',
-      border                : "0.5px solid black"
-      //give shadow...
+      border                : "0.5px solid black",
+      boxShadow             : "0 3px 50px rgba(2, 2, 2, 5)"
     }
   };
 
@@ -142,7 +142,7 @@ const SignUp = () => {
                     position: "absolute",
                   }}
                 />
-                <button type="submit" className="mb-4">LOGIN</button>
+                <button type="submit" className="mb-5">LOGIN</button>
                 <h6 className="forget mr-2 text-primary" onClick={()=>setIsOpen(true)}>forget password</h6>
               </div>
             </div>
@@ -181,13 +181,13 @@ const SignUp = () => {
           onRequestClose={modalIsOpen_3rd}
           style={customStyles}
           ariaHideApp={false}>
-        <Zoom>
+         <Zoom>
             <CancelIcon className="d-block" style={{cursor:"pointer"}} onClick={()=>{
               setIsOpen_3rd(false);
               setIsOpen_2nd(true);
               }} />
             <ResetPassword/>
-          </Zoom>
+         </Zoom>
         </Modal>
       </div>
     </>

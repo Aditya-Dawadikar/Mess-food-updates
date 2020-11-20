@@ -7,14 +7,14 @@ const Otp = ({modal_action_otp}) => {
   const onSubmit = (e) => {
     e.preventDefault();
     // console.log("otp :" + otp);
-    modal_action_otp(true);
+    // modal_action_otp(true);
     axios.post("api/forgotpassword/verify", {
       "otp":otp
     })
     .then(res=>{
         console.log(res);
-        localStorage.setItem("otp",res.data.otp.otp);
-        modal_action_otp(false);
+        localStorage.setItem('reset_token',res.data.token);
+        modal_action_otp(true);
     })
     .catch(err => {
       console.log(err);
