@@ -3,6 +3,14 @@ import axios from "axios";
 import { toast } from "react-toastify";
 
 const ResetPassword = () => {
+  let token = localStorage.getItem("reset_token");
+  const resetAxios = axios.create({
+    baseURL: "http://localhost:9000/",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  let role = window.location.pathname.split("/")[2];
   const [reset, setReset] = useState({
     email: "",
     password: "",
@@ -21,17 +29,21 @@ const ResetPassword = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(reset);
-    axios.post("api/forgotpassword/password/customer", {
-      "email":"geekdev127001@gmail.com",
-      "password":"12345"
-    })
-    .then(res=>{
+    resetAxios
+      .post(`api/forgotpassword/password/${role}`, {
+        email: reset.email,
+        password: reset.password,
+      })
+      .then((res) => {
         console.log(res);
-    })
-    .catch(err => {
-      console.log(err);
-      toast.error("Error in reseting the password");
-    });
+        localStorage.removeItem("reset_token")
+        toast.success('Password Reset Successful')
+        window.location = `/login/${role}`;
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Check your email and password");
+      });
   };
 
   return (
@@ -44,6 +56,7 @@ const ResetPassword = () => {
             <div className="d-flex my-2 reset_section">
               <h6 className="ml-5">Email</h6>
               <input
+                required
                 type="email"
                 placeholder="Enter the email id"
                 name="email"
@@ -55,6 +68,7 @@ const ResetPassword = () => {
             <div className="d-flex my-3 reset_section">
               <h6 className="ml-5">Password</h6>
               <input
+                required
                 type="password"
                 placeholder="password"
                 name="password"
@@ -66,6 +80,7 @@ const ResetPassword = () => {
             <div className="d-flex my-2 reset_section">
               <h6 className="ml-5">Confirm Password</h6>
               <input
+                required
                 type="password"
                 placeholder="Confirm Password"
                 name="confirmPassword"
