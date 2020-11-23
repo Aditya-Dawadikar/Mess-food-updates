@@ -470,3 +470,68 @@ get all saved mess for a customer
 		2. failure
 
 ------------------------------------------------------
+Rating and review
+
+rate a mess
+>>/api/rating/new/review/:custId/:messId
+	Type: POST
+	Params: custId,messId
+	Header: Authentication bearer token
+	Body: {
+			"rating":0.8,
+			"comment":"good",
+			"timestamp":1602493580
+		}
+	Response:
+		1. success
+		2. failure
+
+remove a rating
+>>/api/rating/delete/:reviewId
+	Type: DELETE
+	Params: reviewId
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
+
+post new comment
+>>/api/rating/new/comment/:reviewId
+	Type: POST
+	Params: reviewId
+	Header: Authentication bearer token
+	Body: {
+			"comment":"thanks",
+			"author":"5f842174e0e7dd291c85e8c9",
+			"timestamp":1602751950
+		}
+	Response:
+		1. success
+		2. failure
+
+delete a comment
+>>/api/rating/remove/comment/:reviewId/:commentId
+	Type: POST
+	Params: reviewId,commentId
+	Header: Authentication bearer token
+	Body: null
+	Response:
+		1. success
+		2. failure
+
+update a comment
+>>/api/rating/update/comment/:reviewId/:commentId
+	Type: PATCH
+	Params: reviewId,commentId
+	Header: Authentication bearer token
+	Body: {
+			"comment":"thanks",
+			"author":"5f842174e0e7dd291c85e8c9",
+			"timestamp":1602751950
+		}
+	Response:
+		1. success
+		2. failure
+
+------------------------------------------------------
