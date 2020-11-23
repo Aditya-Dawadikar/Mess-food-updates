@@ -3,7 +3,7 @@ const router = express.Router();
 const forgotPasswordControllers = require('../../controllers/entry/forgotPassword');
 const forgotPasswordAuth = require('../../controllers/auth/forgotPasswordAuth');
 
-router.get('/otp', forgotPasswordControllers.sendOtp);
+router.post('/otp', forgotPasswordControllers.sendOtp);
 
 router.post('/verify', forgotPasswordControllers.verifyOtp);
 

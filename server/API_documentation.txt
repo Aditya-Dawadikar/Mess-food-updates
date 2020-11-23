@@ -85,7 +85,7 @@ step5. set new password
 step6. receive confirmation email
 
 >> /api/forgotpassword/otp
-	Type: GET
+	Type: POST
 	Body: {
 			"role":"customer",
 			"email":"geekdev127001@gmail.com"
