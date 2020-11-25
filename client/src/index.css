@@ -112,14 +112,14 @@ form .inputForm h1 {
   /* border: 2px solid rgb(247, 242, 242); */
 }
 
-.inputTag .forget{
+.inputTag .forget {
   position: absolute;
   right: 0;
   bottom: 0;
   cursor: pointer;
 }
 
-.switch{
+.switch {
   top: 1.5rem;
 }
 .switch button {
@@ -155,7 +155,7 @@ form .inputForm h1 {
 .switch-user .PageSwitcher__Item{
   /* background-color: #4C5D72; */
   width: 50%;
-  color: #9DA6B1;
+  color: #9da6b1;
   padding: 0px 25px;
   cursor: pointer;
   font-size: 1.9em;
@@ -403,7 +403,7 @@ span{
   }
 }
 
-.Error-Page{
+.Error-Page {
   height: calc(100vh - 80px);
   margin-top: 40px;
   display: flex;
@@ -421,17 +421,17 @@ justify-content: center;
 align-items: center;
 }
 
-.Error_Number{
+.Error_Number {
   background: -webkit-linear-gradient(#871b00, #ffbf00);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.food-error img{
+.food-error img {
   width: 150px;
   height: 150px;
 }
-.back_arrow{
+.back_arrow {
   background: white;
   color: #871b00;
   border: 2px solid #871b00;
@@ -441,16 +441,16 @@ align-items: center;
   width: 50px;
   margin-bottom: 20px;
 }
-.back_arrow:hover{
+.back_arrow:hover {
   color: #ffbf00;
   border: 2px solid #ffbf00;
   box-shadow: 2px 0px 0px 2px;
 }
-.back_arrow:focus{
+.back_arrow:focus {
   outline: none;
 }
 
-.forget_password{
+.forget_password {
   justify-content: center;
   align-items: center;
   text-align: center;
@@ -458,17 +458,17 @@ align-items: center;
   /* border: 2px solid blue; */
   height: 75%;
 }
-.forget_pass_content input{
+.forget_pass_content input {
   display: block;
   margin: auto;
   text-align: center;
   outline: none;
   width: 40%;
-  background-color: #FFF8DE;
+  background-color: #fff8de;
   border: none;
 }
 
-.forget_pass_content button{
+.forget_pass_content button {
   width: 15%;
   outline: none;
   border: none;
@@ -482,12 +482,12 @@ input[type="number"]::-webkit-outer-spin-button {
   opacity: 0;
 }
 
-.forget_pass_reset .reset_section{
+.forget_pass_reset .reset_section {
   justify-content: center;
   align-items: center;
 }
 
-.forget_pass_reset .reset_section h6{
+.forget_pass_reset .reset_section h6 {
   width: 20%;
   justify-content: center;
   align-items: center;
@@ -495,18 +495,18 @@ input[type="number"]::-webkit-outer-spin-button {
   margin-right: 20px;
 }
 
-.forget_pass_reset .reset_section input{
+.forget_pass_reset .reset_section input {
   display: block;
   width: 35%;
   justify-content: center;
   text-align: start;
   outline: none;
   padding-left: 20px;
-  background-color: #FFF8DE;
+  background-color: #fff8de;
   /* border-radius: 10px; */
   border: none;
 }
-.forget_pass_reset button{
+.forget_pass_reset button {
   width: 15%;
   outline: none;
   border: none;
@@ -514,3 +514,8 @@ input[type="number"]::-webkit-outer-spin-button {
   color: white;
   letter-spacing: 2px;
 }
+
+/* .stars .react-stars-wrapper-08686170898348542{
+  justify-content: center;
+  display: flex;
+} */

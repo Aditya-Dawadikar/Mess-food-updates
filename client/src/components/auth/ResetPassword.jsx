@@ -29,21 +29,23 @@ const ResetPassword = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(reset);
-    resetAxios
-      .post(`api/forgotpassword/password/${role}`, {
-        email: reset.email,
-        password: reset.password,
-      })
-      .then((res) => {
-        console.log(res);
-        localStorage.removeItem("reset_token")
-        toast.success('Password Reset Successful')
-        window.location = `/login/${role}`;
-      })
-      .catch((err) => {
-        console.log(err);
-        toast.error("Check your email and password");
-      });
+    if (reset.password === reset.confirmPassword) {
+      resetAxios
+        .post(`api/forgotpassword/password/${role}`, {
+          email: reset.email,
+          password: reset.password,
+        })
+        .then((res) => {
+          console.log(res);
+          localStorage.removeItem("reset_token");
+          toast.success("Password Reset Successful");
+          window.location = `/login/${role}`;
+        })
+        .catch((err) => {
+          console.log(err);
+          toast.error("Check your email and password");
+        });
+    } else toast.error("Password not match ,Please try again");
   };
 
   return (
