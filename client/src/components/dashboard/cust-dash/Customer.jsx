@@ -7,6 +7,7 @@ import Loader from "react-loader-spinner";
 import { useHistory } from "react-router-dom";
 // import Fade from "react-reveal/Fade";
 import { authAxiosCust } from "../../../App";
+import axios from "axios";
 
 const Customer = () => {
   let history = useHistory();
@@ -20,7 +21,7 @@ const Customer = () => {
 
   useEffect(() => {
     setLoading(true);
-    authAxiosCust
+    axios
       .get("api/mess/all")
       .then((res) => {
         // console.log(res.data.Mess);
