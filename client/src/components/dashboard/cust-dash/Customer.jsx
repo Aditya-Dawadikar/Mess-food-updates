@@ -52,7 +52,7 @@ const Customer = () => {
         <div>
           <NavBar searchMess={searchMess} />
 
-          <header style={{ marginTop: "120px" }}>
+          <header style={{ marginTop: "140px" }}>
             <div className="container">
               <div
                 id="carouselExampleControls"

@@ -6,15 +6,19 @@ import DirectionsIcon from "@material-ui/icons/Directions";
 import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
+import Fab from "@material-ui/core/Fab";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import { useParams, useHistory } from "react-router-dom";
 import { authAxiosCust } from "../../../App";
 import { toast } from "react-toastify";
+import CommentRating from "./CommentRating";
+import Zoom from "react-reveal";
 
 function MessDetails() {
   let history = useHistory();
   const { messId } = useParams();
   const custId = localStorage.getItem("userId");
+  const [toggle, setToggle] = useState(false);
   const [mess, setMess] = useState({
     messName: "",
     address: "",
@@ -84,7 +88,7 @@ function MessDetails() {
     authAxiosCust
       .get(`/api/mess/${messId}`)
       .then((res) => {
-        console.log(res.data.Mess[0].subscribers);
+        // console.log(res.data.Mess[0].subscribers);
         setMess({
           messName: res.data.Mess[0].messDetails.messName,
           menuList: res.data.Mess[0].MenuList,
@@ -103,7 +107,7 @@ function MessDetails() {
       > */}
       <ArrowBackIcon
         className="mt-4 ml-4"
-        style={{ transform: "scale(1.5)", color: "#FFB800", cursor:"pointer" }}
+        style={{ transform: "scale(1.5)", color: "#FFB800", cursor: "pointer" }}
         onClick={() => history.goBack()}
       />
       {/* </NavLink> */}
@@ -168,34 +172,66 @@ function MessDetails() {
                 <p className="ml-4" style={{ marginTop: "5px" }}>
                   <span>5 km from Pccoe</span>
                   <DirectionsIcon style={{ color: "#FFB800" }} />
+                  <Fab
+                    variant="extended"
+                    size="big"
+                    style={{
+                      position: "absolute",
+                      right: "100px",
+                      border: "none",
+                      outline: "none",
+                      width: "150px",
+                      backgroundColor: "#FFB800",
+                      letterSpacing: "3px",
+                    }}
+                    onClick={() => setToggle(!toggle)}
+                  >
+                    {toggle ? (
+                      <span className="text-white justify-content-center align-items-center">
+                        Reviews
+                      </span>
+                    ) : (
+                      <span className="text-white justify-content-center align-items-center">
+                        Menu
+                      </span>
+                    )}
+                  </Fab>
                 </p>
               </div>
             </div>
           </div>
+
           <div style={{ backgroundColor: "#FFF8DE" }}>
-            {mess.menuList.map((item) => {
-              return (
-                <ul className="col sm-12 mess-menus d-flex" key={item._id}>
-                  <li className="d-flex">
-                    {item.menuItem.map((idx) => {
-                      return (
-                        <h6 className="mr-2" key={idx._id}>
-                          {idx.itemName}
-                        </h6>
-                      );
-                    })}
-                    <img
-                      src="https://img.icons8.com/color/20/000000/vegetarian-food-symbol.png"
-                      alt="veg"
-                    />
-                  </li>
-                  <li style={{ color: "#FF5C00" }} className="font-weight-bold">
-                    {item.price} INR
-                  </li>
-                  <li>{item.tag[0]}</li>
-                </ul>
-              );
-            })}
+            {toggle &&
+              mess.menuList.map((item) => {
+                return (
+                  <Zoom>
+                    <ul className="col sm-12 mess-menus d-flex" key={item._id}>
+                      <li className="d-flex">
+                        {item.menuItem.map((idx) => {
+                          return (
+                            <h6 className="mr-2" key={idx._id}>
+                              {idx.itemName}
+                            </h6>
+                          );
+                        })}
+                        <img
+                          src="https://img.icons8.com/color/20/000000/vegetarian-food-symbol.png"
+                          alt="veg"
+                        />
+                      </li>
+                      <li
+                        style={{ color: "#FF5C00" }}
+                        className="font-weight-bold"
+                      >
+                        {item.price} INR
+                      </li>
+                      <li>{item.tag[0]}</li>
+                    </ul>
+                  </Zoom>
+                );
+              })}
+            {!toggle && <CommentRating />}
           </div>
         </div>
       </div>

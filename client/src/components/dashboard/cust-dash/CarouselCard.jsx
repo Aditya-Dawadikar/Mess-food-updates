@@ -10,7 +10,7 @@ const CarouselCard = (props) => {
   return (
     <>
       <div
-        className="card bg-light text-black"
+        className="card bg-light text-black carouselCard"
         style={{ height: "-webkit-fill-available", margin: "0 80px" }}
       >
         <img

@@ -21,6 +21,13 @@
 
 /* Start */
 
+.carouselCard{
+  transition: .9s ease-in-out;
+}
+.carouselCard:hover{
+  cursor: pointer;
+  transform: scale(1.03);  
+}
 .carousel-item{
   width: 100%;
   height: 300px;
@@ -56,7 +63,8 @@
 #customers tr:hover {background-color: #ddd;}
 
 .messCard{
-  border-radius: 10px;
+  border-radius: 10px;  
+  /* transition: .7s ease-in-out; */
 }
 .messCard:hover{
   cursor: pointer;
@@ -185,7 +193,7 @@ li .account-icon{
 
 .containerDetails .mess-card{
   position: absolute;
-  top: 5rem;
+  top: 2rem;
 }
 
 .mess-info h1{
@@ -216,6 +224,17 @@ li .account-icon{
 .veg{
   transform: scale(.5);
 }
+
+.comment_section{
+  /* padding: 20px 0px; */
+  border-left: 8px solid #FEC200;
+  margin-top: 10px;
+  background-color: #ffffff;
+  align-items: center;
+  /* text-align: center; */
+  width: 100%;
+}
+
 @media only screen and (min-width: 1000px) {
   /* .mess-card{
     margin-left: 100px;
