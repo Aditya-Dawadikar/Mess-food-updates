@@ -7,6 +7,8 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
 import {Card,Col,ListGroup,Row,Image} from 'react-bootstrap';
+import Fab from "@material-ui/core/Fab";
+import CommentRating from './CommentRating';
 
 
 const MenuCards = () => {
@@ -14,13 +16,18 @@ const MenuCards = () => {
     const [menu, setMenu] = useState([]);
     const [loading, setLoading] = useState(false);
     const [menusAdded, setMenusAdded] = useState([]);
+    const [toggle, setToggle] = useState(true);
 
     
 
     useEffect(() => {
         getMenuList();
     }, [getId]);
-
+    
+    const toggle_action=(data)=>{
+        setToggle(data);
+        console.log(data);
+    }
 
     //Get menuList......
     const getMenuList = () => {
@@ -122,8 +129,41 @@ const MenuCards = () => {
           <Row>
             <Col md={12}>
                 <ListGroup>
-                <ListGroup.Item>
-                    <h3 style={{textTransform:"capitalize"}}>Add,Edit,Delete Items in your Restaurant</h3>
+                <ListGroup.Item style={{
+                display:"flex",
+                position:"relative",
+                height:"5rem",
+                alignItems:"center"
+              }}>
+                    <h3 style={{
+                        textTransform:"capitalize" , 
+                        wordWrap:"break-word" ,
+                        maxWidth:"70%"
+                        }}>Add,Edit,Delete Items in your Restaurant</h3>
+                    <Fab
+                    variant="extended"
+                    size="big"
+                    style={{
+                      position:"absolute",
+                      right: "20px",
+                      border: "none",
+                      outline: "none",
+                      width: "10rem",
+                      backgroundColor: "#FFB800",
+                      letterSpacing: "3px",
+                    }}
+                    onClick={() => setToggle(!toggle)}
+                  >
+                    {toggle ? (
+                      <span className="text-white justify-content-center align-items-center">
+                        Reviews
+                      </span>
+                    ) : (
+                      <span className="text-white justify-content-center align-items-center">
+                        Menu
+                      </span>
+                    )}
+                  </Fab>
                 </ListGroup.Item>
                     
                 </ListGroup>
@@ -144,10 +184,10 @@ const MenuCards = () => {
             />
          ) : (   
           <Row>
-            {menu.map((item) => {
+            { toggle && menu.map((item) => {
             
             return (
-                <Col key={item._id} sm={12} md={6} lg={4} xl={4}>
+                    <Col key={item._id} sm={12} md={6} lg={4} xl={4}>
                     <Card className='my-3 p-3 rounded'>
                     <Card.Body>
                         
@@ -202,9 +242,12 @@ const MenuCards = () => {
                     </Card>
                 
                 </Col>
+                
+                
 
              );
             })}
+            {!toggle && <CommentRating toggle_action={toggle_action} />}
           </Row>   
           
         )}

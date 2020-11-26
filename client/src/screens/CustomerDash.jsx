@@ -34,7 +34,7 @@ const CustomerDash = () => {
       .get("api/currentmenu/all")
       .then((res) => {
         // console.log(res);
-        // console.log(res.data.availableMenus);
+        console.log(res.data.availableMenus);
         setCurrentMenu(res.data.availableMenus);
         setLoading(false);
       })
