@@ -11,22 +11,33 @@ import { useParams, useHistory } from "react-router-dom";
 import { authAxiosCust } from "../App";
 import { toast } from "react-toastify";
 import {Card,Col,ListGroup,Row,Image,Container,Button} from 'react-bootstrap';
+import Fab from "@material-ui/core/Fab";
+import Zoom from "react-reveal";
+import CommentRating from "./CommentRating";
+import { IoIosStar } from "react-icons/io";
 
 // Icons
 import DeleteIcon from "@material-ui/icons/Delete";
 import EditIcon from "@material-ui/icons/Edit";
 
 
+
 function MessDetails() {
   let history = useHistory();
   const { messId } = useParams();
   const custId = localStorage.getItem("userId");
+  const [toggle, setToggle] = useState(true);
   const [mess, setMess] = useState({
     messName: "",
     address: "",
     menuList: [],
     subscribers: [],
+    rating:0
   });
+  const toggle_action=(data)=>{
+    setToggle(data);
+    console.log(data);
+  }
 
   const [subscribe, setSubscribe] = useState(false);
 
@@ -44,6 +55,27 @@ function MessDetails() {
       }
     }
   }
+ //star = 3.5
+  const displayStar = (star) => {
+    // let new_rating = Math.round(star);
+    return (
+      <>
+        {[...Array(star)].map(() => {
+          return <IoIosStar fontSize={30} color="#FFB800" />;
+        })}
+      </>
+    );
+  };
+  const LeftdisplayStar = (star) => {
+    // let new_rating = Math.ceil(star)-1;
+    return (
+      <>
+        {[...Array(star)].map(() => {
+          return <IoIosStar fontSize={30} color="grey" />;
+        })}
+      </>
+    );
+  };
 
   const subscribeMess = (messid) => {
     authAxiosCust
@@ -90,12 +122,13 @@ function MessDetails() {
     authAxiosCust
       .get(`/api/mess/${messId}`)
       .then((res) => {
-        console.log(res.data.Mess[0].subscribers);
+        console.log(res.data.Mess[0]);
         setMess({
           messName: res.data.Mess[0].messDetails.messName,
           menuList: res.data.Mess[0].MenuList,
           address: res.data.Mess[0].messDetails.address,
           subscribers: res.data.Mess[0].subscribers,
+          rating : res.data.Mess[0].Rating
         });
       })
       .catch((err) => console.log(err));
@@ -186,11 +219,13 @@ function MessDetails() {
           <Col md={6}>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                 <h3>{mess.messName}</h3>
+                 <h3 style={{
+                  color:"#FFB800"
+                 }} >{mess.messName}</h3>
               </ListGroup.Item>
 
               <ListGroup.Item>
-                <GradeRoundedIcon style={{ transform: "scale(1.5)" }} />
+                {/* <GradeRoundedIcon style={{ transform: "scale(1.5)" }} />
                 <GradeRoundedIcon
                   style={{ transform: "scale(1.5)", marginLeft: "8px" }}
                 />
@@ -199,7 +234,9 @@ function MessDetails() {
                 />
                 <GradeRoundedIcon
                   style={{ transform: "scale(1.5)", marginLeft: "8px" }}
-                />
+                /> */}
+                {displayStar(Math.ceil(mess.rating))}
+                {LeftdisplayStar(5 - Math.ceil(mess.rating))}
               </ListGroup.Item>
 
               <ListGroup.Item>
@@ -225,13 +262,43 @@ function MessDetails() {
                       onClick={() => unsubscribeMess()}
                     />
             )}
+            
           </Col>
         </Row>
         <Row>
           <Col md={12}>
             <ListGroup>
-              <ListGroup.Item>
+              <ListGroup.Item style={{
+                display:"flex",
+                position:"relative",
+                height:"5rem",
+                alignItems:"center"
+              }}>
                 <h3>Available Menu's</h3>
+                <Fab
+                    variant="extended"
+                    size="big"
+                    style={{
+                      position:"absolute",
+                      right: "20px",
+                      border: "none",
+                      outline: "none",
+                      width: "150px",
+                      backgroundColor: "#FFB800",
+                      letterSpacing: "3px",
+                    }}
+                    onClick={() => setToggle(!toggle)}
+                  >
+                    {toggle ? (
+                      <span className="text-white justify-content-center align-items-center">
+                        Reviews
+                      </span>
+                    ) : (
+                      <span className="text-white justify-content-center align-items-center">
+                        Menu
+                      </span>
+                    )}
+                  </Fab>
               </ListGroup.Item>
                 
             </ListGroup>
@@ -240,10 +307,11 @@ function MessDetails() {
         </Row>
                
         <Row>
-          {mess.menuList.map((item) => {
+          { toggle && mess.menuList.map((item) => {
             
               return (
               <Col key={item._id} sm={12} md={6} lg={4} xl={4}>
+              <Zoom>
                 <Card className='my-3 p-3 rounded'>
                   <Card.Body>
                       
@@ -279,10 +347,11 @@ function MessDetails() {
                       </Card.Text>
                   </Card.Body>
                 </Card>
-              
+                </Zoom>
               </Col>
             );
           })}
+          {!toggle && <CommentRating toggle_action={toggle_action} />}
         </Row>
           {/* </div> */}
         {/* </div>

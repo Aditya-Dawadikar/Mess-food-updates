@@ -5,6 +5,9 @@ import {Container} from 'react-bootstrap';
 
 
 const MessDashboard = () => {
+    if( !localStorage.getItem('tokenMess')){
+        window.location="/login/mess"
+    }
     return (
         <Container style={{marginTop:"2rem"}}>  
             <MessInfo />

@@ -12,7 +12,7 @@ router.post('/new/review/:custId/:messId', customerAuth, reviewsController.addRe
 
 //router.patch('/update/:reviewId', reviewsController.updateRating);
 
-router.delete('/delete/:reviewId', customerAuth, reviewsController.removeReview);
+router.delete('/delete/:reviewId', messAuth, reviewsController.removeReview);
 
 //routes for handling the comments
 router.post('/new/comment/:reviewId', messAuth, reviewsController.replyToComment);

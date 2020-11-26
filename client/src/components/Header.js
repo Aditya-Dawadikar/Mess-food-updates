@@ -6,15 +6,14 @@ const Header = () => {
 
     const logout=()=>{
         //remove tokens and userId...
-        if(localStorage.getItem("userIdMess")){
-            window.location='/login/customer';
-        }
         localStorage.removeItem("token");
         localStorage.removeItem("userId");
         localStorage.removeItem("tokenMess");
         localStorage.removeItem("userIdMess");
         localStorage.removeItem("refreshToken");
         localStorage.removeItem("refreshTokenMess");
+        window.location="/login/customer"
+        
         window.location.reload(false)
       };
 
