@@ -10,13 +10,16 @@ function calculateOverAllrating(oldrating, count) {
 }
 
 exports.getAllReviews = async(req, res) => {
+    //extract review Id
+    let reviewArray = []
+    let messName = ""
     await Mess.findById({ _id: req.params.messId })
-        .select('Reviews')
+        .select('Reviews messDetails')
         .then(doc => {
-            res.status(200).json({
-                message: "success",
-                doc: doc
-            })
+            messName = doc.messDetails.messName
+            for (let i = 0; i < doc.Reviews.reviewers.length; i++) {
+                reviewArray.push(doc.Reviews.reviewers[i].reviewId)
+            }
         })
         .catch(err => {
             console.log(err)
@@ -25,6 +28,48 @@ exports.getAllReviews = async(req, res) => {
                 error: "internal server error"
             });
         });
+    //extract reviews from review collection
+    await Reviews.find({ _id: { $in: reviewArray } })
+        .then(async doc => {
+            let reviewDetailsArray = []
+            for (let i = 0; i < doc.length; i++) {
+                /*let messName = await Mess.findById(doc[i].messId)
+                    .select('messDetails')
+                    .then(doc => {
+                        return doc.messDetails.messName
+                    }).catch(err => {
+                        throw err
+                    })*/
+                let customerName = await Customer.findById(doc[i].customerId)
+                    .then(doc => {
+                        return doc.name
+                    }).catch(err => {
+                        throw err
+                    })
+                let reviewObject = {}
+                reviewObject = {
+                    _id: doc[i]._id,
+                    messId: doc[i].messId,
+                    messName: messName,
+                    customerId: doc[i].customerId,
+                    customerName: customerName,
+                    rating: doc[i].rating,
+                    thread: doc[i].thread
+                }
+                reviewDetailsArray.push(reviewObject)
+            }
+            res.status(200).json({
+                message: "success",
+                reviews: reviewDetailsArray
+            })
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({
+                message: "some error occured while fetching data",
+                error: "internal server error"
+            });
+        })
 }
 
 //controllers to handle rating

@@ -1,18 +1,25 @@
 import React from "react";
-import SignUp from "./components/auth/customer/SignUp";
-import Login from "./components/auth/customer/Login";
+import SignUp from "./auth/customer/SignUp";
+import Login from "./auth/customer/Login";
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import LoginM from "./components/auth/mess/Login";
-import SignUpM from "./components/auth/mess/Signup";
-import CustDashboard from "./components/dashboard/cust-dash/Customer.jsx";
-import MessDashboard from "./components/dashboard/mess-dash/Mess.jsx";
-import MessDetails from "./components/dashboard/cust-dash/MessDetails";
-import MessSettings from "./components/dashboard/mess-dash/MessSettings";
-import Settings from "./components/dashboard/cust-dash/Settings";
+import LoginM from "./auth/mess/Login";
+import SignUpM from "./auth/mess/Signup";
+import CustDashboard from "./screens/CustomerDash";
+import MessDashboard from "./screens/MessDashboard";
+import MessDetails from "./components/MessDetails";
 import Error from "./Error.jsx";
 import axios from "axios";
 import { ToastContainer } from "react-toastify";
+import Footer from "./components/Footer";
+import Header from './components/Header';
+import EditProfile from "./customer/EditProfile";
+import EditMessProf from "./mess/EditProfile";
+import SavedMess from "./customer/SavedMess";
+import EditMenu from "./mess/EditMenu";
+import AddMenu from "./mess/AddMenu";
+
+
 
 const token = localStorage.getItem("tokenMess");
 const tokenCust = localStorage.getItem("token");
@@ -81,38 +88,41 @@ const App = () => {
     <>
       <ToastContainer />
       <BrowserRouter>
-        <Switch>
-          <Redirect exact from="/" to="/login/customer" />
-          <Route exact path="/" component={Login} />
+        <Header />
+          <Switch>
+            <Redirect exact from="/" to="/login/customer" />
+            <Route exact path="/" component={Login} />
 
-          {/* Login and Signup Routes */}
-          <Route exact path="/signup/customer" component={SignUp} />
-          <Route exact path="/login/customer" component={Login} />
-          <Route exact path="/login/mess" component={LoginM} />
-          <Route exact path="/signup/mess" component={SignUpM} />
+            {/* Login and Signup Routes */}
+            <Route exact path="/signup/customer" component={SignUp} />
+            <Route exact path="/login/customer" component={Login} />
+            <Route exact path="/login/mess" component={LoginM} />
+            <Route exact path="/signup/mess" component={SignUpM} />
 
-          {/* DashBoard Routes */}
-          <Route exact path="/customer/dashboard" component={CustDashboard} />
-          <Route exact path="/mess/dashboard" component={MessDashboard} />
-          <Route
-            exact
-            path="/customer/mess-details/:messId"
-            component={MessDetails}
-          />
+            {/* DashBoard Routes */}
+            <Route exact path="/customer/dashboard" component={CustDashboard} />
+            <Route exact path="/mess/:messId" component={MessDashboard} />
+            <Route
+              exact
+              path="/customer/mess-details/:messId"
+              component={MessDetails}
+            />
 
-          {/* Mess and customer Settings Routes */}
-          <Route exact path="/customer/settings" component={Settings} />
-          <Route exact path="/mess/settings" component={MessSettings} />
-          <Route path="/customer/settings/savedmess" component={Settings} />
-          <Route
-            path="/mess/settings/editmenu/:menuId"
-            component={MessSettings}
-          />
+            {/* Mess and customer Settings Routes */}
+            <Route exact path="/customer/profile" component={EditProfile} />
+            <Route path="/customer/savedmess" component={SavedMess} />
+            <Route path="/mess/menus/addmenu" component={AddMenu} />
+            <Route path="/mess/profile/edit" component={EditMessProf} />
+            <Route
+              path="/mess/editmenu/:menuId"
+              component={EditMenu}
+            />
 
-          {/* Error Route*/}
-          <Route component={Error} />
-        </Switch>
-      </BrowserRouter>
+            {/* Error Route*/}
+            <Route component={Error} />
+          </Switch>
+        </BrowserRouter>
+      <Footer /> 
     </>
   );
 };
