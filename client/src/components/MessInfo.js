@@ -5,6 +5,7 @@ import {Col,ListGroup,Row,Image} from 'react-bootstrap';
 //icons
 import food1 from "../imgs/food1.jpg";
 import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
+import { IoIosStar } from "react-icons/io";
 
 const MessInfo = () => {
     const { messId } = useParams();
@@ -14,6 +15,7 @@ const MessInfo = () => {
         address: "",
         menuList: [],
         subscribers: [],
+        Rating: 0
       });
 
 
@@ -21,16 +23,36 @@ const MessInfo = () => {
         authAxiosMess
         .get(`/api/mess/${messId}`)
         .then((res) => {
-          console.log(res.data.Mess[0].subscribers);
+          console.log(res.data.Mess[0]);
           setMess({
             messName: res.data.Mess[0].messDetails.messName,
             menuList: res.data.Mess[0].MenuList,
             address: res.data.Mess[0].messDetails.address,
             subscribers: res.data.Mess[0].subscribers,
+            Rating: res.data.Mess[0].Rating
           });
         })
         .catch((err) => console.log(err));
     }, [messId]);
+
+    const displayStar = (star) => {
+        return (
+          <>
+            {[...Array(star)].map(() => {
+              return <IoIosStar fontSize={30} color="#FFB800" />;
+            })}
+          </>
+        );
+      };
+      const LeftdisplayStar = (star) => {
+        return (
+          <>
+            {[...Array(star)].map(() => {
+              return <IoIosStar fontSize={30} color="grey" />;
+            })}
+          </>
+        );
+      };
 
     return(
         <Row style={{marginBottom:"2rem"}}>
@@ -40,20 +62,12 @@ const MessInfo = () => {
             <Col md={6}>
                 <ListGroup variant='flush'>
                 <ListGroup.Item>
-                    <h3 style={{color:"#FFB800"}}>{mess.messName}</h3>
+                    <h3>{mess.messName}</h3>
                 </ListGroup.Item>
 
                 <ListGroup.Item>
-                    <GradeRoundedIcon style={{ transform: "scale(1.5)" }} />
-                    <GradeRoundedIcon
-                    style={{ transform: "scale(1.5)", marginLeft: "8px" }}
-                    />
-                    <GradeRoundedIcon
-                    style={{ transform: "scale(1.5)", marginLeft: "8px" }}
-                    />
-                    <GradeRoundedIcon
-                    style={{ transform: "scale(1.5)", marginLeft: "8px" }}
-                    />
+                  {displayStar(Math.ceil(mess.Rating))}
+                  {LeftdisplayStar(5 - Math.ceil(mess.Rating))}
                 </ListGroup.Item>
 
                 <ListGroup.Item>

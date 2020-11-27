@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 // import '../../../sass/EditProfileCustomer.sass'
 import { authAxiosCust } from "../App";
+import { toast } from "react-toastify";
 
 const EditProfile = () => {
   const id = localStorage.getItem("userId");
@@ -46,7 +47,7 @@ const EditProfile = () => {
       })
       .then((res) => {
         // console.log(res);
-        alert("Profile Updated Successfully");
+        toast.success("Profile Updated Successfully");
       })
       .catch((err) => {
         console.log(err);
@@ -58,7 +59,7 @@ const EditProfile = () => {
     authAxiosCust
       .delete(`api/customer/delete/${id}`)
       .then((res) => {
-        alert("Account deleted successfully");
+        toast.success("Account deleted successfully");
         localStorage.removeItem("userId");
         localStorage.removeItem("token");
         window.location = "/signup/customer";

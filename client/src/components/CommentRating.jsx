@@ -153,7 +153,7 @@ const CommentRating = ({ toggle_action }) => {
             border: "none",
             outline: "none",
             margin: "20px 20px",
-            width: "10%",
+            width: "8rem",
           }}
           onClick={() => setIsOpen(true)}
         >

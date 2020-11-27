@@ -11,6 +11,7 @@ import Otp from "../Otp";
 import ResetPassword from "../ResetPassword";
 import Zoom from "react-reveal";
 import { Container, Form, Col, Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
 
@@ -75,6 +76,7 @@ const SignUp = () => {
       })
       .catch(error=>{
         console.log(error);
+        toast.error("wrong Username or Password")
       });
   };
 

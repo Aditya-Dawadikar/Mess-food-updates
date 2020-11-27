@@ -5,7 +5,7 @@ import CarouselCard from "../components/CarouselCard";
 import Loader from "react-loader-spinner";
 import { useHistory } from "react-router-dom";
 import { authAxiosCust } from "../App";
-import { Col} from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
 
 const CustomerDash = () => {
   let history = useHistory();

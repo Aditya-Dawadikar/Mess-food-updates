@@ -99,7 +99,7 @@ function MessDetails() {
           .delete(`api/subscription/unsubscribe/${subId.subscriptionId}`)
           .then((res) => {
             console.log(res);
-            toast.success("Unbookmarked");
+            toast.success("Unsubscribe");
           })
           .catch(() => toast.error("something went wrong"));
       })
@@ -219,9 +219,7 @@ function MessDetails() {
           <Col md={6}>
             <ListGroup variant='flush'>
               <ListGroup.Item>
-                 <h3 style={{
-                  color:"#FFB800"
-                 }} >{mess.messName}</h3>
+                 <h3>{mess.messName}</h3>
               </ListGroup.Item>
 
               <ListGroup.Item>

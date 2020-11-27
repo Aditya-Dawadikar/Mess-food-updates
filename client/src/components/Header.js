@@ -1,4 +1,5 @@
 import React from 'react';
+import { useEffect } from 'react';
 import {Navbar,Nav,Container} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
 
@@ -23,9 +24,14 @@ const Header = () => {
             <Container>
                 {localStorage.getItem('userId') && localStorage.getItem('token') ? (
                 <>
-                    <LinkContainer to = '/customer/dashboard'>
-                        <Navbar.Brand className="">Khana Khazanaa</Navbar.Brand>
-                    </LinkContainer>
+                    <LinkContainer to={`/customer/dashboard`}  style={{
+                            color:"white",
+                            display:"flex",
+                            width:"10rem",
+                            fontSize:"15px"
+                            }}>
+                        <Nav.Link>Khana Khazana</Nav.Link>
+                        </LinkContainer>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                             <Nav className="ml-auto">
@@ -45,7 +51,15 @@ const Header = () => {
                     localStorage.getItem('userIdMess') && localStorage.getItem('tokenMess') ? (
                     <>
                         
-                        <Navbar.Brand>Khana Khazanaa</Navbar.Brand>
+                        
+                        <LinkContainer to={`/mess/${localStorage.getItem('userIdMess')}`}  style={{
+                            color:"white",
+                            display:"flex",
+                            width:"10rem",
+                            fontSize:"15px"
+                            }}>
+                        <Nav.Link>Khana Khazana</Nav.Link>
+                        </LinkContainer>
                            
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
@@ -61,8 +75,13 @@ const Header = () => {
                     </>
                     ) : (
                     <>
-                        <LinkContainer to = '/'>
-                            <Navbar.Brand className="">Khana Khazanaa</Navbar.Brand>
+                    <LinkContainer to="/"  style={{
+                            color:"white",
+                            display:"flex",
+                            width:"10rem",
+                            fontSize:"15px"
+                            }}>
+                        <Nav.Link>Khana Khazana</Nav.Link>
                         </LinkContainer>
                          <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">

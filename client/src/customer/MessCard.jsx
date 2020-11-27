@@ -7,7 +7,7 @@ import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 // import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
 // import { NavLink, Route } from "react-router-dom";
 import { authAxiosCust } from "../App";
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 import foodImage from "../imgs/food3_1.jpg";
 import { Card } from 'react-bootstrap'
 import {Link} from 'react-router-dom';
@@ -66,7 +66,10 @@ const MessCard = (props) => {
 
   return (
     <>
-      <Card className='my-3 p-3 rounded'>
+      <Card className='my-3 p-3 rounded' style={{
+        // boxShadow : "1px 1px 4px rgba(2, 2, 2, 2)",
+        boxShadow : "rgb(2, 2, 2) 0px 0px 4px"
+      }}>
         <Link to={`/customer/mess-details/${props.messId}`} >
             <Card.Img src={foodImage} variant='top'/>
         </Link>
