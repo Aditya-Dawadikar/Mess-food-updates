@@ -5,6 +5,7 @@ import EditTaskForm from "./EditTaskForm";
 import { authAxiosMess } from "../App";
 import { useParams } from "react-router-dom";
 import { Container,Button } from "react-bootstrap";
+import {toast} from "react-toastify"
 
 const EditMenu = () => {
   const { menuId } = useParams();
@@ -65,8 +66,8 @@ const EditMenu = () => {
       .patch(`api/menu/update/${messId}/${menuId}`, menuData)
       .then((res) => {
         // console.log(res);
-        alert("menu updated successfully");
-        window.location = "/mess/settings/mysavedmenu";
+        toast.success("menu updated successfully");
+        window.location = `/mess/${messId}`;
       })
       .catch((err) => console.log(err));
   };

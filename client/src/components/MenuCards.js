@@ -91,11 +91,11 @@ const MenuCards = () => {
         .then((res) => {
             // console.log(res.data);
             getCurrentMenuList();
-            toast.success("Updated Current Menu");
+            toast.success("Updated Today's Menu");
         })
         .catch((err) => {
             // console.log(err);
-            toast.error("Error updating Current menu");
+            toast.error("Error updating Today's menu");
         });
     };
 
@@ -226,7 +226,7 @@ const MenuCards = () => {
                                     />
                                 )}
                                 <EditIcon 
-                                    style={{  color: "#FFB800" ,marginLeft:"4rem",cursor:"pointer"}} 
+                                    style={{  color: "green" ,marginLeft:"4rem",cursor:"pointer"}} 
                                     // className="icon_action"
                                     onClick={() =>
                                     (window.location = `editmenu/${item._id}`)
@@ -259,7 +259,7 @@ const MenuCards = () => {
                 style={{ width: "20rem",marginBottom:"5rem" }}
                 onClick={() => window.location='/mess/menus/addmenu'}
             >
-                Add New Item
+                Add New Menu
             </button>
             
         </div>

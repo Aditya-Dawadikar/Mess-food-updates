@@ -154,7 +154,7 @@ const SignUp = () => {
           
             <Form.Group as={Col} >
               <Form.Label>Name</Form.Label>
-              <Form.Control type="email" name="fullName" placeholder="Enter Your Name" onChange={inputEvent} value={user.fullName} required/>
+              <Form.Control type="text" name="fullName" placeholder="Enter Your Name" onChange={inputEvent} value={user.fullName} required/>
             </Form.Group>
             <Form.Group as={Col} >
               <Form.Label>Mobile Number</Form.Label>
