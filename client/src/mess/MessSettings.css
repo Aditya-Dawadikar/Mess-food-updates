@@ -38,7 +38,7 @@
 
 .password-toogle-icon {
   position: absolute;
-  top: 55px;
+  top: 3rem;
   right: 25px;
   transform: scale(1.7);
   z-index: 2;

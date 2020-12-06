@@ -144,6 +144,7 @@ const EditProfile = () => {
                     name="image-upload"
                     id="input"
                     onChange={imageHandler}
+                    className="mt-2"
                   />
                 </label>
               </div>
@@ -154,7 +155,7 @@ const EditProfile = () => {
                     style={{
                       height: "50px",
                       width: "50px",
-                      filter: "invert(1)",
+                      // filter: "invert(1)",
                     }}
                   />
                   <h5 className="text-white" style={{ position: "initial" }}>

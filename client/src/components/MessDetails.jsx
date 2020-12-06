@@ -281,7 +281,7 @@ function MessDetails() {
                       right: "20px",
                       border: "none",
                       outline: "none",
-                      width: "150px",
+                      width: "10rem",
                       backgroundColor: "#FFB800",
                       letterSpacing: "3px",
                     }}

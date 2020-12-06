@@ -12,6 +12,7 @@ import { NavLink } from "react-router-dom";
 // import PaymentRoundedIcon from '@material-ui/icons/PaymentRounded';
 import axios from 'axios';
 import { Container,Form,Col,Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 
 const SignUp = () => {
@@ -49,7 +50,10 @@ const SignUp = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(mess);
-    axios.post('api/register/mess',{
+    if(mess.phone.length != 10) toast.error("Invalid Mobile Number");
+    else if(mess.password.length < 5) toast.error("Password must contain atleast 5 characters");
+    else {
+     axios.post('api/register/mess',{
       "email": mess.email,
       "password": mess.password,
       "messDetails": {
@@ -77,8 +81,7 @@ const SignUp = () => {
     .catch( (error) => {
         console.log(error)
     })  
-    
-  
+    }
   };
 
   return (
@@ -125,13 +128,13 @@ const SignUp = () => {
 
         <Form.Group controlId="formGridAddress1">
           <Form.Label>Mess Address</Form.Label>
-          <Form.Control placeholder="Enter Mess Address" name="address" onChange={inputEvent} value={mess.messDetails[3]} required/>
+          <Form.Control type="text" placeholder="Enter Mess Address" name="address" onChange={inputEvent} value={mess.messDetails[3]} required/>
         </Form.Group>
 
         <Form.Row>
           <Form.Group as={Col} >
             <Form.Label>Mobile no</Form.Label>
-            <Form.Control type="text" name="phone" placeholder="Enter Mobile no." onChange={inputEvent}   value={mess.messDetails[2]} required/>
+            <Form.Control type="number" name="phone" placeholder="Enter Mobile no." onChange={inputEvent}   value={mess.messDetails[2]} required/>
           </Form.Group>
 
           <Form.Group as={Col}>
@@ -148,7 +151,7 @@ const SignUp = () => {
 
           <Form.Group as={Col}>
             <Form.Label>Home Delivery Charge</Form.Label>
-            <Form.Control type="text" name="deliveryCharge" placeholder="Delivery charge" onChange={inputEvent}  value={mess.price.homeDelivery[1]} required/>
+            <Form.Control type="number" name="deliveryCharge" placeholder="Delivery charge" onChange={inputEvent}  value={mess.price.homeDelivery[1]} required/>
           </Form.Group>
         </Form.Row>
 
