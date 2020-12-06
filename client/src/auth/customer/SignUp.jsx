@@ -3,6 +3,7 @@ import FastfoodIcon from "@material-ui/icons/Fastfood";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { Container,Form,Col,Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [user, setState] = useState({
@@ -26,7 +27,10 @@ const SignUp = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(user);
-    axios
+    if(user.phone.length != 10) toast.error("Invalid Mobile Number");
+    else if(user.password.length < 5) toast.error("Password must contain atleast 5 characters");
+    else  {
+      axios
       .post("api/register/customer", {
         name: user.fullName,
         email: user.email,
@@ -41,6 +45,8 @@ const SignUp = () => {
       .catch((error) => {
         console.log(error);
       });
+    }
+    
   };
 
   return (
@@ -158,7 +164,7 @@ const SignUp = () => {
             </Form.Group>
             <Form.Group as={Col} >
               <Form.Label>Mobile Number</Form.Label>
-              <Form.Control type="text" name="phone" placeholder="Enter Mobile No." onChange={inputEvent} value={user.phone} required/>
+              <Form.Control type="number" name="phone" placeholder="Enter Mobile No." onChange={inputEvent} value={user.phone} required/>
             </Form.Group>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Email</Form.Label>

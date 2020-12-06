@@ -15,6 +15,11 @@ import { Container,Form,Col,Button } from "react-bootstrap";
 
 const SignUp = () => {
 
+  if(localStorage.getItem('token'))
+  window.location="/customer/dashboard"
+  else if(localStorage.getItem('tokenMess'))
+  window.location="/mess/dashboard"
+
   const customStyles = {
     content : {
       top                   : '50%',
