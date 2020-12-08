@@ -29,20 +29,18 @@ exports.getAllReviews = async(req, res) => {
             });
         });
     //extract reviews from review collection
+
     await Reviews.find({ _id: { $in: reviewArray } })
         .then(async doc => {
             let reviewDetailsArray = []
             for (let i = 0; i < doc.length; i++) {
-                /*let messName = await Mess.findById(doc[i].messId)
-                    .select('messDetails')
-                    .then(doc => {
-                        return doc.messDetails.messName
-                    }).catch(err => {
-                        throw err
-                    })*/
                 let customerName = await Customer.findById(doc[i].customerId)
-                    .then(doc => {
-                        return doc.name
+                    .then(custdoc => {
+                        if (custdoc === null) {
+                            return "deleted user"
+                        } else {
+                            return custdoc.name
+                        }
                     }).catch(err => {
                         throw err
                     })

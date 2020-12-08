@@ -45,7 +45,8 @@ const messSchema = mongoose.Schema({
         messName: String,
         ownerName: String,
         phone: {
-            type: Number,
+            type: String,
+            match: /^[0-9]{10}$/,
             required: true
         },
         address: String

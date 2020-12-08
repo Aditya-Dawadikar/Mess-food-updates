@@ -18,7 +18,8 @@ const customerSchema = mongoose.Schema({
         required: true,
     },
     phone: {
-        type: Number,
+        type: String,
+        match: /^[0-9]{10}$/,
         required: true
     },
     savedMess: [savedMessSchema]
