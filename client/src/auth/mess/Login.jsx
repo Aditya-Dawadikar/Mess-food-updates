@@ -15,6 +15,11 @@ import { toast } from "react-toastify";
 
 const SignUp = () => {
 
+  if(localStorage.getItem('tokenMess'))
+  window.location="/mess/dashboard"
+  else if(localStorage.getItem('token'))
+  window.location="/customer/dashboard"
+
   const customStyles = {
     content : {
       top                   : '50%',

@@ -90,7 +90,6 @@ const App = () => {
       <BrowserRouter>
         <Header />
           <Switch>
-            <Redirect exact from="/" to="/login/customer" />
             <Route exact path="/" component={Login} />
 
             {/* Login and Signup Routes */}
