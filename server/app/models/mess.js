@@ -32,12 +32,22 @@ const subscriberSchema = {
 
 const messSchema = mongoose.Schema({
     _id: mongoose.Types.ObjectId,
-    email: String,
-    password: String,
+    email: {
+        type: String,
+        required: true,
+        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
     messDetails: {
         messName: String,
         ownerName: String,
-        phone: Number,
+        phone: {
+            type: Number,
+            required: true
+        },
         address: String
     },
     price: {

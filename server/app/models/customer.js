@@ -8,9 +8,19 @@ const savedMessSchema = {
 const customerSchema = mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
     name: String,
-    email: String,
-    password: String,
-    phone: Number,
+    email: {
+        type: String,
+        required: true,
+        match: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+    },
+    password: {
+        type: String,
+        required: true,
+    },
+    phone: {
+        type: Number,
+        required: true
+    },
     savedMess: [savedMessSchema]
 });
 
