@@ -179,6 +179,7 @@ const EditProfile = () => {
                 name="messName"
                 value={messName}
                 onChange={(e) => changeEvent(e)}
+                required
               />
             </div>
             <div className="form-group col-md-6">
@@ -193,6 +194,9 @@ const EditProfile = () => {
                 name="ownerName"
                 value={ownerName}
                 onChange={(e) => changeEvent(e)}
+                pattern="[a-zA-Z]+ [a-zA-Z]+"
+                title="Enter Full name (first & last name) eg John Doe"
+                required
               />
             </div>
           </div>
@@ -209,6 +213,7 @@ const EditProfile = () => {
                 name="email"
                 value={email}
                 onChange={(e) => changeEvent(e)}
+                required
               />
             </div>
             <div className="form-group col-md-6">
@@ -221,6 +226,9 @@ const EditProfile = () => {
                 id="inputPassword4"
                 placeholder="**********"
                 autoComplete="off"
+                pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" 
+                title="Password must contain atleast 1 uppercase,1 lowercase,1 number,1 symbol min 8 max 12 characters" 
+                required
               />
               <span
                 className="password-toogle-icon"

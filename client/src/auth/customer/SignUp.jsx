@@ -23,126 +23,49 @@ const SignUp = () => {
       };
     });
   };
+  const validateName = (name) => {
+    var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
+    
+    if(!regName.test(name)){
+        alert('Invalid name given.');
+    }else{
+        alert('Valid name given.');
+    }
 
+  }
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(user);
-    if(user.phone.length != 10) toast.error("Invalid Mobile Number");
-    else if(user.password.length < 5) toast.error("Password must contain atleast 5 characters");
-    else  {
-      axios
-      .post("api/register/customer", {
-        name: user.fullName,
-        email: user.email,
-        password: user.password,
-        phone: user.phone,
-      })
-      .then((response) => {
-        // console.log(response);
-        alert("Sign Up successfully");
-        if (response.status === 200) window.location = "/login/customer";
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    }
+    // let regName = /^[ a-zA-Z\-\’]+$/;
+    // if(regName.test(user.name)){
+    //    console.log('correct');
+    // }else{
+    //   console.log('incoreect');
+    // }
+    // if(user.phone.length != 10) toast.error("Invalid Mobile Number");
+    // else if(user.password.length < 5) toast.error("Password must contain atleast 5 characters");
+    // else  {
+    //   axios
+    //   .post("api/register/customer", {
+    //     name: user.fullName,
+    //     email: user.email,
+    //     password: user.password,
+    //     phone: user.phone,
+    //   })
+    //   .then((response) => {
+    //     // console.log(response);
+    //     alert("Sign Up successfully");
+    //     if (response.status === 200) window.location = "/login/customer";
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
+    // }
     
   };
 
   return (
     <>
-      {/* <div className="containerr">
-        <div className="main_div">
-          <h3 className="switch">
-            <button>
-              <NavLink to="/login/customer">Login</NavLink>
-            </button>
-            |
-            <button>
-              <NavLink to="/signup/customer">SignUp</NavLink>
-            </button>
-          </h3>
-
-          <form onSubmit={onSubmit} autoComplete="off">
-            <div className="inputForm">
-              <h1>
-                Sign Up <FastfoodIcon />
-              </h1>
-              <div className="inputTag">
-                <input
-                  type="text"
-                  placeholder="Enter Your Name"
-                  name="fullName"
-                  onChange={inputEvent}
-                  value={user.fullName}
-                />
-                <PersonOutlineOutlinedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "1.5rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-                <input
-                  type="email"
-                  placeholder="Enter Your EmailID"
-                  name="email"
-                  onChange={inputEvent}
-                  value={user.email}
-                />
-                <EmailOutlinedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "7.1rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-                <input
-                  type="text"
-                  placeholder="Enter Your Phone no."
-                  name="phone"
-                  onChange={inputEvent}
-                  value={user.phone}
-                />
-                <PhoneIphoneOutlinedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "12.1rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-                <input
-                  type="password"
-                  placeholder="Enter Your password"
-                  name="password"
-                  onChange={inputEvent}
-                  value={user.password}
-                />
-                <LockOutlinedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "17.1rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-                <button type="submit">SIGN UP</button>
-              </div>
-            </div>
-          </form>
-          {/* <div className="switch-user">
-          <NavLink to='/signup/customer' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Customer</button></NavLink>
-          <NavLink to='/signup/mess' activeClassName="PageSwitcher__Item--Active" className="PageSwitcher__Item"><button >Mess</button></NavLink>
-          </div> 
-        </div>
-      </div> */}
       <Container>
         <h3 className="switch" style={{textAlign:"center",margin:"1.5rem 8rem"}}>
             <button>
@@ -160,20 +83,20 @@ const SignUp = () => {
           
             <Form.Group as={Col} >
               <Form.Label>Name</Form.Label>
-              <Form.Control type="text" name="fullName" placeholder="Enter Your Name" onChange={inputEvent} value={user.fullName} required/>
+              <Form.Control type="text" name="fullName" placeholder="Enter Your Name" pattern="[a-zA-Z]+ [a-zA-Z]+" onChange={inputEvent} value={user.fullName} title="Enter Full name (first & last name) eg John Doe" required/>
             </Form.Group>
             <Form.Group as={Col} >
               <Form.Label>Mobile Number</Form.Label>
-              <Form.Control type="number" name="phone" placeholder="Enter Mobile No." onChange={inputEvent} value={user.phone} required/>
+              <Form.Control type="text" name="phone" placeholder="Enter Mobile No." pattern="(7|8|9)\d{9}" onChange={inputEvent} value={user.phone} title="Enter a valid 10-digit no" required/>
             </Form.Group>
             <Form.Group as={Col} controlId="formGridEmail">
               <Form.Label>Email</Form.Label>
-              <Form.Control type="email" name="email" placeholder="Enter Email" onChange={inputEvent} value={user.email} required/>
+              <Form.Control type="email" name="email" placeholder="Enter Email" onChange={inputEvent} value={user.email}  required/>
             </Form.Group>
 
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" name="password" placeholder="Enter password" onChange={inputEvent}   value={user.password} required/>
+              <Form.Control type="password" name="password" placeholder="Enter password" onChange={inputEvent}  pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" title="Password must contain atleast 1 uppercase,1 lowercase,1 number,1 symbol min 8 max 12 characters" value={user.password} required/>
             </Form.Group>
             <Button variant="primary" type="submit" style={{margin:"2rem 10rem 0 45%"}}>
                 SignUp

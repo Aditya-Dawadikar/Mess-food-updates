@@ -85,6 +85,8 @@ const EditProfile = () => {
             placeholder="Name"
             value={name}
             onChange={handleChange}
+            pattern="[a-zA-Z]+ [a-zA-Z]+" 
+            title="Enter Full name (first & last name) eg John Doe"
             required
           />
         </div>
@@ -131,6 +133,8 @@ const EditProfile = () => {
             placeholder="Phone no"
             value={phone}
             onChange={handleChange}
+            pattern="(7|8|9)\d{9}"
+            title="Enter a valid 10-digit no"
             required
           />
         </div>
