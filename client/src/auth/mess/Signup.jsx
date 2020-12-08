@@ -11,7 +11,7 @@ import { NavLink } from "react-router-dom";
 // import LocalDiningRoundedIcon from '@material-ui/icons/LocalDiningRounded';
 // import PaymentRoundedIcon from '@material-ui/icons/PaymentRounded';
 import axios from 'axios';
-import { Container,Form,Col,Button } from "react-bootstrap";
+import { Container,Form,Col,Button,Dropdown,ButtonGroup,DropdownButton } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 
@@ -109,7 +109,7 @@ const SignUp = () => {
 
           <Form.Group as={Col}>
             <Form.Label>Owner name</Form.Label>
-            <Form.Control type="text" name="ownerName" placeholder="Enter Owner name" onChange={inputEvent}   value={mess.messDetails[1]} required/>
+            <Form.Control type="text" name="ownerName" placeholder="Enter Owner name" onChange={inputEvent}   value={mess.messDetails[1]} pattern="[a-zA-Z]+ [a-zA-Z]+" title="Enter Full name (first & last name) eg John Doe" required/>
           </Form.Group>
         </Form.Row>
 
@@ -121,7 +121,7 @@ const SignUp = () => {
 
           <Form.Group as={Col} controlId="formGridPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" name="password" placeholder="Enter password" onChange={inputEvent}   value={mess.password} required/>
+            <Form.Control type="password" name="password" placeholder="Enter password" onChange={inputEvent}   value={mess.password} pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" title="Password must contain atleast 1 uppercase,1 lowercase,1 number,1 symbol min 8 max 12 characters" required/>
           </Form.Group>
         </Form.Row>
 
@@ -134,24 +134,49 @@ const SignUp = () => {
         <Form.Row>
           <Form.Group as={Col} >
             <Form.Label>Mobile no</Form.Label>
-            <Form.Control type="number" name="phone" placeholder="Enter Mobile no." onChange={inputEvent}   value={mess.messDetails[2]} required/>
+            <Form.Control type="text" name="phone" placeholder="Enter Mobile no." onChange={inputEvent}  pattern="(7|8|9)\d{9}" value={mess.messDetails[2]} title="Enter a valid 10-digit no" required/>
           </Form.Group>
 
           <Form.Group as={Col}>
             <Form.Label>Dining Available</Form.Label>
-            <Form.Control type="text" name="onVenue" placeholder="True/False" onChange={inputEvent}   value={mess.price.onVenue[0]} required/>
+            {/* <Form.Control type="text" name="onVenue" placeholder="True/False"  onChange={inputEvent} value={mess.price.onVenue[0]} required/> */}
+            <Form.Control
+                as="select"
+                className="mr-sm-2"
+                id="inlineFormCustomSelect"
+                name="onVenue"
+                required
+                custom
+              >
+                <option value="0" disabled>Choose...</option>
+                <option value="1">Yes</option>
+                <option value="2">No</option>
+            </Form.Control>
           </Form.Group> 
         </Form.Row>
 
         <Form.Row>
           <Form.Group as={Col} >
             <Form.Label>Home Delivery</Form.Label>
-            <Form.Control type="text" name="available" placeholder="True/False" onChange={inputEvent}  value={mess.price.homeDelivery[0]} required/>
+            {/* <Form.Control type="text" name="available" onChange={inputEvent}  value={mess.price.homeDelivery[0]} required/> */}
+            <Form.Control
+                as="select"
+                className="mr-sm-2"
+                id="inlineFormCustomSelect"
+                name="homedel"
+                value={mess.homedel}
+                required
+                custom
+              >
+                <option value="0" disabled>Choose...</option>
+                <option value='1'>Yes</option>
+                <option value='2'>No</option>
+            </Form.Control>
           </Form.Group>
 
           <Form.Group as={Col}>
             <Form.Label>Home Delivery Charge</Form.Label>
-            <Form.Control type="number" name="deliveryCharge" placeholder="Delivery charge" onChange={inputEvent}  value={mess.price.homeDelivery[1]} required/>
+            <Form.Control type="text" name="deliveryCharge" placeholder="Delivery charge" onChange={inputEvent}  value={mess.price.homeDelivery[1]} required/>
           </Form.Group>
         </Form.Row>
 
@@ -168,172 +193,3 @@ const SignUp = () => {
 
 export default SignUp;
 
-{/* <div className="containerr">
-        <div className="main_div">
-          <h3 className="switch">
-            <button>
-              <NavLink to="/login/mess">Login</NavLink>
-            </button>
-            |
-            <button>
-              <NavLink to="/signup/mess">SignUp</NavLink>
-            </button>
-          </h3>
-
-        <form onSubmit={onSubmit} autoComplete="off">
-          <div className="inputForm" id="mess-signup">
-            <h1>
-              Sign Up <FastfoodIcon />
-            </h1>
-            <div className="inputTag">
-              <input
-                type="text"
-                placeholder="Enter Your  Mess Name"
-                name="messName"
-                onChange={inputEvent}
-                value={mess.messDetails[0]}
-              />
-              <HomeRoundedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "1rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-              <input
-                type="text"
-                placeholder="Enter Your Owner Name"
-                name="ownerName"
-                onChange={inputEvent}
-                value={mess.messDetails[1]}
-              />
-              <PersonRoundedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "4.7rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-              <input
-                type="email"
-                placeholder="Enter Your EmailID"
-                name="email"
-                onChange={inputEvent}
-                value={mess.email}
-              />
-              <MailRoundedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "8.4rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-              <input
-                type="number"
-                placeholder="Enter Your Phone no."
-                name="phone"
-                onChange={inputEvent}
-                value={mess.messDetails[2]}
-              />
-              <PhoneIphoneRoundedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "12.1rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-              <input
-                type="password"
-                placeholder="Enter password"
-                name="password"
-                onChange={inputEvent}
-                value={mess.password}
-              />
-              <LockRoundedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "15.8rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-              <input
-                type="text"
-                placeholder="Enter Your Mess Address"
-                name="address"
-                onChange={inputEvent}
-                value={mess.messDetails[3]}
-              />
-              <RoomRoundedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "19.5rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-              <input
-                type="text"
-                placeholder="Home Delivery True/False"
-                name="available"
-                onChange={inputEvent}
-                value={mess.price.homeDelivery[0]}
-              />
-              <LocalShippingRoundedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "23.2rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-              <input
-                type="text"
-                placeholder="On Venue Available True/False"
-                name="onVenue"
-                onChange={inputEvent}
-                value={mess.price.onVenue[0]}
-              />
-              <LocalDiningRoundedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "26.9rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-               <input
-                type="number"
-                placeholder="Home Delivery Charge"
-                name="deliveryCharge"
-                onChange={inputEvent}
-                value={mess.price.homeDelivery[1]}
-              />
-              <PaymentRoundedIcon
-                  style={{
-                    background: "transparent",
-                    color: "black",
-                    top: "30.6rem",
-                    left: "1rem",
-                    position: "absolute",
-                  }}
-                />
-              <button type="submit">SIGN UP</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      </div>
-    </> */}

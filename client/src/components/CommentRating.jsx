@@ -80,7 +80,7 @@ const CommentRating = ({ toggle_action }) => {
     return (
       <>
         {[...Array(star)].map(() => {
-          return <IoIosStar fontSize={30} color="#FFB800" />;
+          return <IoIosStar fontSize={30} color="#FFB800"/>;
         })}
       </>
     );
@@ -325,7 +325,7 @@ const CommentRating = ({ toggle_action }) => {
                           style={{
                             color: "grey",
                             marginTop: "5px",
-                            fontFamily: "'Castoro', serif",
+                            // fontFamily: "'Castoro', serif",
                           }}
                         >
                           ~ by {idx.customerName}
@@ -335,7 +335,7 @@ const CommentRating = ({ toggle_action }) => {
                           style={{
                             color: "grey",
                             marginTop: "5px",
-                            fontFamily: "'Castoro', serif",
+                            // fontFamily: "'Castoro', serif",
                             position: "absolute",
                             right: "10px",
                             bottom: "0",

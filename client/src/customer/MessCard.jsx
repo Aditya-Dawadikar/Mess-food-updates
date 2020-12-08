@@ -68,8 +68,8 @@ const MessCard = (props) => {
     <>
       <Card className='my-3 p-3 rounded' style={{
         // boxShadow : "1px 1px 4px rgba(2, 2, 2, 2)",
-        boxShadow : "rgb(2, 2, 2) 0px 0px 4px"
-      }}>
+        // boxShadow : "rgb(2, 2, 2) 0px 0px 4px"
+      }}> 
         <Link to={`/customer/mess-details/${props.messId}`} >
             <Card.Img src={foodImage} variant='top'/>
         </Link>
