@@ -121,6 +121,8 @@ const EditMenu = () => {
                 placeholder="Price"
                 onChange={addMenu}
                 value={menu.price}
+                min="10"
+                max="999"
               />
             </div>
           </div>
