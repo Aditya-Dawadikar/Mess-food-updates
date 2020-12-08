@@ -144,7 +144,7 @@ const CommentRating = ({ toggle_action }) => {
 
   return (
     <>
-      {!localStorage.getItem("tokenMess") && (
+      {!localStorage.getItem("tokenMess") && localStorage.getItem("token") && (
         <Button
           variant="contained"
           color="secondary"
