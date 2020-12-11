@@ -272,7 +272,7 @@ function MessDetails() {
                 height:"5rem",
                 alignItems:"center"
               }}>
-                <h3>Available Menu's</h3>
+                <h3>{toggle ? "Available Menu's":"Reviews"}</h3>
                 <Fab
                     variant="extended"
                     size="big"

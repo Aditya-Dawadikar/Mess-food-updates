@@ -102,7 +102,7 @@ const SignUp = () => {
               <NavLink to="/login/customer">Login</NavLink>
             </button>
             |  
-            <button>
+            <button className="ml-1">
               <NavLink to="/signup/customer">SignUp</NavLink>
             </button>
         </h3>

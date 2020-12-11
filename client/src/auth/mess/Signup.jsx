@@ -92,7 +92,7 @@ const SignUp = () => {
               <NavLink to="/login/mess">Login</NavLink>
             </button>
             |  
-            <button>
+            <button className="ml-1">
               <NavLink to="/signup/mess">SignUp</NavLink>
             </button>
           </h3>
@@ -121,7 +121,7 @@ const SignUp = () => {
 
           <Form.Group as={Col} controlId="formGridPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control type="password" name="password" placeholder="Enter password" onChange={inputEvent}   value={mess.password} pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" title="Password must contain atleast 1 uppercase,1 lowercase,1 number,1 symbol min 8 max 12 characters" required/>
+            <Form.Control type="password" name="password" placeholder="Enter password" onChange={inputEvent}   value={mess.password} pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,12}$" title="Password must contain atleast 1 uppercase,1 lowercase,1 number,1 symbol min 8 max 12 characters" required/>
           </Form.Group>
         </Form.Row>
 
@@ -147,10 +147,10 @@ const SignUp = () => {
                 name="onVenue"
                 required
                 custom
+                onChange={inputEvent}
               >
-                <option value="0" disabled>Choose...</option>
-                <option value="1">Yes</option>
-                <option value="2">No</option>
+                <option value='true'>Yes</option>
+                <option value='false'>No</option>
             </Form.Control>
           </Form.Group> 
         </Form.Row>
@@ -163,14 +163,13 @@ const SignUp = () => {
                 as="select"
                 className="mr-sm-2"
                 id="inlineFormCustomSelect"
-                name="homedel"
-                value={mess.homedel}
+                name="available"
+                onChange={inputEvent}
                 required
                 custom
               >
-                <option value="0" disabled>Choose...</option>
-                <option value='1'>Yes</option>
-                <option value='2'>No</option>
+                <option value='true'>Yes</option>
+                <option value='false'>No</option>
             </Form.Control>
           </Form.Group>
 

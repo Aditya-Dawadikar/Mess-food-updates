@@ -45,22 +45,21 @@ const SignUp = () => {
     // if(user.phone.length != 10) toast.error("Invalid Mobile Number");
     // else if(user.password.length < 5) toast.error("Password must contain atleast 5 characters");
     // else  {
-    //   axios
-    //   .post("api/register/customer", {
-    //     name: user.fullName,
-    //     email: user.email,
-    //     password: user.password,
-    //     phone: user.phone,
-    //   })
-    //   .then((response) => {
-    //     // console.log(response);
-    //     alert("Sign Up successfully");
-    //     if (response.status === 200) window.location = "/login/customer";
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
-    // }
+      axios
+      .post("api/register/customer", {
+        name: user.fullName,
+        email: user.email,
+        password: user.password,
+        phone: user.phone,
+      })
+      .then((response) => {
+        // console.log(response);
+        alert("Sign Up successfully");
+        if (response.status === 200) window.location = "/login/customer";
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     
   };
 
@@ -72,7 +71,7 @@ const SignUp = () => {
               <NavLink to="/login/customer">Login</NavLink>
             </button>
             |  
-            <button>
+            <button className="ml-1">
               <NavLink to="/signup/customer">SignUp</NavLink>
             </button>
         </h3>
@@ -96,7 +95,7 @@ const SignUp = () => {
 
             <Form.Group as={Col} controlId="formGridPassword">
               <Form.Label>Password</Form.Label>
-              <Form.Control type="password" name="password" placeholder="Enter password" onChange={inputEvent}  pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$" title="Password must contain atleast 1 uppercase,1 lowercase,1 number,1 symbol min 8 max 12 characters" value={user.password} required/>
+              <Form.Control type="password" name="password" placeholder="Enter password" onChange={inputEvent}  pattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{6,12}$" title="Password must contain atleast 1 uppercase,1 lowercase,1 number,1 symbol min 8 max 12 characters" value={user.password} required/>
             </Form.Group>
             <Button variant="primary" type="submit" style={{margin:"2rem 10rem 0 45%"}}>
                 SignUp

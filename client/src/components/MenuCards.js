@@ -139,7 +139,7 @@ const MenuCards = () => {
                         textTransform:"capitalize" , 
                         wordWrap:"break-word" ,
                         maxWidth:"70%"
-                        }}>Add,Edit,Delete Items in your Restaurant</h3>
+                        }}>{toggle ? "Add,Edit,Delete Items in your Restaurant" : "Reviews"}</h3>
                     <Fab
                     variant="extended"
                     size="big"
@@ -251,7 +251,8 @@ const MenuCards = () => {
           </Row>   
           
         )}
-        <div>
+        {toggle ? (
+            <div>
             
             <button
                 type="submit"
@@ -262,7 +263,8 @@ const MenuCards = () => {
                 Add New Menu
             </button>
             
-        </div>
+        </div>)
+        : null}
       </>  
     )
 }
