@@ -251,7 +251,8 @@ const MenuCards = () => {
           </Row>   
           
         )}
-        <div>
+        {toggle ? (
+            <div>
             
             <button
                 type="submit"
@@ -262,7 +263,8 @@ const MenuCards = () => {
                 Add New Menu
             </button>
             
-        </div>
+        </div>)
+        : null}
       </>  
     )
 }

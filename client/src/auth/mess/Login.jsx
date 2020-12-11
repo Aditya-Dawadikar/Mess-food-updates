@@ -101,7 +101,7 @@ const SignUp = () => {
               <NavLink to="/login/mess">Login</NavLink>
             </button>
             |  
-            <button>
+            <button className="ml-1">
               <NavLink to="/signup/mess">SignUp</NavLink>
             </button>
           </h3>

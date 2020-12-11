@@ -14,6 +14,9 @@ import axios from "axios";
 import Loader from "react-loader-spinner";
 import { Col, Row } from "react-bootstrap";
 
+//need to modify comment schema and logic
+// Pending work : Reply and Comment section
+
 const CommentRating = ({ toggle_action }) => {
   const customStyles = {
     content: {
