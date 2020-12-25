@@ -6,7 +6,7 @@ import { authAxiosMess } from "../App";
 import DeleteIcon from "@material-ui/icons/Delete";
 import Loader from "react-loader-spinner";
 import { toast } from "react-toastify";
-import {Card,Col,ListGroup,Row,Image} from 'react-bootstrap';
+import {Card,Col,ListGroup,Row} from 'react-bootstrap';
 import Fab from "@material-ui/core/Fab";
 import CommentRating from './CommentRating';
 

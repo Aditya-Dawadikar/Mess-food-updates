@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { BiSearchAlt } from "react-icons/bi";
-import {  useHistory } from "react-router-dom";
+// import {  useHistory } from "react-router-dom";
 import { authAxiosCust } from "../App";
 
 const Search = ({ searchMess }) => {
-  let history = useHistory();
   const [mess, setMess] = useState([]);
   const [query, setQuery] = useState("");
 

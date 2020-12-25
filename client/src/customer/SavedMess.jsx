@@ -8,6 +8,7 @@ import { authAxiosCust } from "../App";
 import Loader from "react-loader-spinner";
 import {Card,Col, Container, Row} from 'react-bootstrap';
 import {Link} from 'react-router-dom';
+import { IoIosStar } from "react-icons/io";
 
 const SavedMess = () => {
   const custId = localStorage.getItem("userId");
@@ -23,6 +24,25 @@ const SavedMess = () => {
       })
       .catch((err) => console.log(err));
   }, [custId]);
+
+  const displayStar = (star) => {
+    return (
+      <>
+        {[...Array(star)].map(() => {
+          return <IoIosStar fontSize={30} color="#FFB800" />;
+        })}
+      </>
+    );
+  };
+  const LeftdisplayStar = (star) => {
+    return (
+      <>
+        {[...Array(star)].map(() => {
+          return <IoIosStar fontSize={30} color="grey" />;
+        })}
+      </>
+    );
+  };
 
   return (
     <Container>
@@ -55,12 +75,11 @@ const SavedMess = () => {
                         </Card.Title>
                     </Link>
                     <Card.Text as='div'>
-                      <div>
-                        <GradeRoundedIcon />
-                        <GradeRoundedIcon />
-                        <GradeRoundedIcon />
-                        <GradeRoundedIcon />
-                      </div>
+                    <div className="mb-2">
+                      {/* Need to change this logic... */}
+                      {displayStar(Math.ceil(5))}
+                      {LeftdisplayStar(5 - Math.ceil(5))}
+                    </div>
                     </Card.Text>
                     
                     <Card.Text >Chinese,FastFoood,North India....</Card.Text>
