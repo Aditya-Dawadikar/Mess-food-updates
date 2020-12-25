@@ -119,7 +119,7 @@ const App = () => {
             />
 
             {/* Error Route*/}
-            {/* <Route component={Error} /> */}
+            <Route component={Error} />
           </Switch>
       <Footer /> 
         </BrowserRouter>
