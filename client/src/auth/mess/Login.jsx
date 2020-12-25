@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-// import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import CancelIcon from '@material-ui/icons/Cancel';
 import { NavLink } from "react-router-dom";

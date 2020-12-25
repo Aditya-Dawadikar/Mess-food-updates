@@ -4,7 +4,6 @@ import { authAxiosMess } from "../App";
 import {Col,ListGroup,Row,Image} from 'react-bootstrap';
 //icons
 import food1 from "../imgs/food1.jpg";
-import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
 import { IoIosStar } from "react-icons/io";
 
 const MessInfo = () => {

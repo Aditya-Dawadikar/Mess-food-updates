@@ -1,10 +1,5 @@
 import React, { useEffect, useState } from "react";
 import food1 from "../imgs/food1.jpg";
-import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
-// import LocationOnIcon from "@material-ui/icons/LocationOn";
-// import DirectionsIcon from "@material-ui/icons/Directions";
-// import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-// import ArrowBackIcon from "@material-ui/icons/ArrowBack";
 import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
 import BookmarkIcon from "@material-ui/icons/Bookmark";
 import { useParams, useHistory } from "react-router-dom";
@@ -146,72 +141,7 @@ function MessDetails() {
         onClick={() => history.goBack()}
       /> */}
       <Button variant="light" onClick={() => history.goBack()}>Go Back</Button>
-      
-      {/* <div className="containerDetails">
-        <div className="card mess-card mr-4">
-          <div className="row">
-            <div className="col-md-4" >
-              <img src={food1} className="card-img" id="mess-pic" alt="food1" />
-            </div>
-            <div
-              className="col-md-8 mess-info"
-            >
-              <div className="d-flex justify-content-between">
-                <h1>
-                  {mess.messName} <VerifiedUserIcon className=" text-success" />
-                </h1>
-                {subscribe === false ? (
-                  <BookmarkBorderIcon
-                    className="text-warning mx-3 my-2"
-                    style={{ transform: "scale(1.8)", cursor: "pointer" }}
-                    onClick={() => subscribeMess(messId)}
-                  />
-                ) : (
-                  <BookmarkIcon
-                    className="text-warning mx-3 my-2"
-                    style={{ transform: "scale(1.8)", cursor: "pointer" }}
-                    onClick={() => unsubscribeMess()}
-                  />
-                )}
-              </div>
-              <div className="starIcon" >
-                <GradeRoundedIcon style={{ transform: "scale(1.5)" }} />
-                <GradeRoundedIcon
-                  style={{ transform: "scale(1.5)", marginLeft: "8px" }}
-                />
-                <GradeRoundedIcon
-                  style={{ transform: "scale(1.5)", marginLeft: "8px" }}
-                />
-                <GradeRoundedIcon
-                  style={{ transform: "scale(1.5)", marginLeft: "8px" }}
-                />
-              </div>
-              <p
-                className="h4 mess-info-cuisine"
-                style={{
-                  paddingTop: "7px",
-                }}
-              >
-                Chinese,FastFoood,North Asia Food
-              </p>
-              <div
-                className="h4 mess-info-address"
-                style={{ paddingTop: "7px" }}
-              >
-                <LocationOnIcon
-                  style={{ color: "#FF4D00", transform: "scale(1.5)" }}
-                />
-                <span className="ml-2">{mess.address}</span>
-                <p className="ml-4" style={{ marginTop: "5px" }}>
-                  <span>5 km from Pccoe</span>
-                  <DirectionsIcon style={{ color: "#FFB800" }} />
-                </p>
-              </div>
-            </div>
-          </div> */}
-          {/* <div style={{ backgroundColor: "#FFF8DE" }}> */}
-
-       
+            
         <Row style={{marginBottom:"2rem"}}>
           <Col md={5}>
             <Image src={food1} alt='foodimage' fluid />
@@ -223,16 +153,6 @@ function MessDetails() {
               </ListGroup.Item>
 
               <ListGroup.Item>
-                {/* <GradeRoundedIcon style={{ transform: "scale(1.5)" }} />
-                <GradeRoundedIcon
-                  style={{ transform: "scale(1.5)", marginLeft: "8px" }}
-                />
-                <GradeRoundedIcon
-                  style={{ transform: "scale(1.5)", marginLeft: "8px" }}
-                />
-                <GradeRoundedIcon
-                  style={{ transform: "scale(1.5)", marginLeft: "8px" }}
-                /> */}
                 {displayStar(Math.ceil(mess.rating))}
                 {LeftdisplayStar(5 - Math.ceil(mess.rating))}
               </ListGroup.Item>

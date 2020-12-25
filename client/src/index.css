@@ -20,7 +20,15 @@
 .footer{ 
   /* min-height: 10rem; */
   min-height: 10rem;
+  background-color: #39383a;
+}
 
+.name-links{
+  cursor: pointer;
+  color: white;
+}
+.name-links:hover{
+  color: #FFB800
 }
 /* .navbar{
   height: 5rem;

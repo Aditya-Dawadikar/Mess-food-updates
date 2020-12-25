@@ -1,11 +1,4 @@
 import React, { useState } from "react";
-import GradeRoundedIcon from "@material-ui/icons/GradeRounded";
-// import LocationOnIcon from "@material-ui/icons/LocationOn";
-// import DirectionsIcon from "@material-ui/icons/Directions";
-// import BookmarkBorderIcon from "@material-ui/icons/BookmarkBorder";
-// import BookmarkIcon from "@material-ui/icons/Bookmark";
-// import VerifiedUserIcon from "@material-ui/icons/VerifiedUser";
-// import { NavLink, Route } from "react-router-dom";
 import { authAxiosCust } from "../App";
 // import { toast } from "react-toastify";
 import foodImage from "../imgs/food3_1.jpg";
@@ -15,25 +8,25 @@ import { useEffect } from "react";
 import { IoIosStar } from "react-icons/io";
 
 const MessCard = (props) => {
-  const custId = localStorage.getItem("userId");
+  // const custId = localStorage.getItem("userId");
   // const [subscribe, setSubscribe] = useState(false);
-  const [mess, setMess] = useState([]);
+  // const [mess, setMess] = useState([]);
   const [rating, setRating] = useState("");
 
-  function findSubscriptionId(arr1, arr2) {
-    let obj = {};
-    for (let i = 0; i < arr1.length; i++) {
-      if (!obj[arr1[i]]) {
-        const element = arr1[i];
-        obj[element] = element;
-      }
-    }
-    for (let j = 0; j < arr2.length; j++) {
-      if (obj[arr2[j]]) {
-        return obj[arr2[j]];
-      }
-    }
-  }
+  // function findSubscriptionId(arr1, arr2) {
+  //   let obj = {};
+  //   for (let i = 0; i < arr1.length; i++) {
+  //     if (!obj[arr1[i]]) {
+  //       const element = arr1[i];
+  //       obj[element] = element;
+  //     }
+  //   }
+  //   for (let j = 0; j < arr2.length; j++) {
+  //     if (obj[arr2[j]]) {
+  //       return obj[arr2[j]];
+  //     }
+  //   }
+  // }
 
   useEffect(()=>{
   authAxiosCust.get(`/api/mess/${props.messId}`)
@@ -42,7 +35,7 @@ const MessCard = (props) => {
     setRating(res.data.Mess[0].Rating);
   })
   .catch(err=>console.log(err));
-  })
+  },[])
 
 
   const displayStar = (star) => {

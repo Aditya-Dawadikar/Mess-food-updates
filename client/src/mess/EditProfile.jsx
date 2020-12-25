@@ -6,12 +6,10 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axios from "axios";
 import { authAxiosMess } from "../App";
 import { Container,Button } from "react-bootstrap";
-import { useHistory } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const EditProfile = () => {
   const getId = localStorage.getItem("userIdMess");
-  let history = useHistory();
   const [mess, setMess] = useState({
     messName: "",
     ownerName: "",

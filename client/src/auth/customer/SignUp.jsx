@@ -3,7 +3,6 @@ import FastfoodIcon from "@material-ui/icons/Fastfood";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import { Container,Form,Col,Button } from "react-bootstrap";
-import { toast } from "react-toastify";
 
 const SignUp = () => {
   const [user, setState] = useState({
@@ -23,16 +22,6 @@ const SignUp = () => {
       };
     });
   };
-  const validateName = (name) => {
-    var regName = /^[a-zA-Z]+ [a-zA-Z]+$/;
-    
-    if(!regName.test(name)){
-        alert('Invalid name given.');
-    }else{
-        alert('Valid name given.');
-    }
-
-  }
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(user);

@@ -1,17 +1,8 @@
 import React, { useState } from "react";
 import FastfoodIcon from "@material-ui/icons/Fastfood";
 import { NavLink } from "react-router-dom";
-// import HomeRoundedIcon from '@material-ui/icons/HomeRounded';
-// import PersonRoundedIcon from '@material-ui/icons/PersonRounded';
-// import MailRoundedIcon from '@material-ui/icons/MailRounded';
-// import PhoneIphoneRoundedIcon from '@material-ui/icons/PhoneIphoneRounded';
-// import LockRoundedIcon from '@material-ui/icons/LockRounded';
-// import RoomRoundedIcon from '@material-ui/icons/RoomRounded';
-// import LocalShippingRoundedIcon from '@material-ui/icons/LocalShippingRounded';
-// import LocalDiningRoundedIcon from '@material-ui/icons/LocalDiningRounded';
-// import PaymentRoundedIcon from '@material-ui/icons/PaymentRounded';
 import axios from 'axios';
-import { Container,Form,Col,Button,Dropdown,ButtonGroup,DropdownButton } from "react-bootstrap";
+import { Container,Form,Col,Button } from "react-bootstrap";
 import { toast } from "react-toastify";
 
 
@@ -50,7 +41,7 @@ const SignUp = () => {
   const onSubmit = (e) => {
     e.preventDefault();
     console.log(mess);
-    if(mess.phone.length != 10) toast.error("Invalid Mobile Number");
+    if(mess.phone.length !== 10) toast.error("Invalid Mobile Number");
     else if(mess.password.length < 5) toast.error("Password must contain atleast 5 characters");
     else {
      axios.post('api/register/mess',{
